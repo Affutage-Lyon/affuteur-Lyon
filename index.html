@@ -12,7 +12,7 @@
         :root {
             --fond: #1a1c1e;
             --fond-footer: radial-gradient(circle at center, #23272a 0%, #1a1c1e 100%);
-            --chÃªne: #c2a382;
+            --chene: #c2a382;
             --acier: #8e9aaf;
             --neon-orange: #ffb44d;
             --bleu-metal: #4d94ff;
@@ -29,7 +29,7 @@
         }
 
         p { text-transform: none !important; color: var(--texte); font-size: 0.9rem; opacity: 0.8; margin: 0; }
-        h3 { text-transform: none !important; color: var(--chÃªne); letter-spacing: 2px; font-size: 1.15rem; margin-bottom: 15px; font-weight: 400; }
+        h3 { text-transform: none !important; color: var(--chene); letter-spacing: 2px; font-size: 1.15rem; margin-bottom: 15px; font-weight: 400; }
 
         header { 
             min-height: 100vh;
@@ -39,7 +39,7 @@
         }
 
         h1 { font-size: clamp(2.5rem, 10vw, 4rem); margin: 0; text-transform: uppercase; letter-spacing: 12px; font-weight: 400; color: white; }
-        h1 b { color: var(--chÃªne); font-weight: 700; }
+        h1 b { color: var(--chene); font-weight: 700; }
         .subtitle { margin-top: 15px; letter-spacing: 6px; text-transform: uppercase; font-size: 0.9rem; color: var(--acier); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; display: inline-block; }
 
         .knife-container { width: 160px; height: 340px; margin: 20px 0; position: relative; }
@@ -52,7 +52,6 @@
         }
         @keyframes stroke-loop { from { stroke-dashoffset: 1150; } to { stroke-dashoffset: 0; } }
 
-        /* Animation Calligraphie Gravure Diamant (Isolation Juke-Box) */
         .calligraphy-path {
             stroke: var(--bleu-metal);
             stroke-width: 1.1; 
@@ -67,7 +66,7 @@
         @keyframes drawCalligraphy { to { stroke-dashoffset: 0; } }
 
         section { padding: 90px 25px; max-width: 950px; margin: auto; }
-        h2 { color: var(--chÃªne); text-transform: uppercase; letter-spacing: 6px; margin-bottom: 60px; font-weight: 400; text-align: center; position: relative; }
+        h2 { color: var(--chene); text-transform: uppercase; letter-spacing: 6px; margin-bottom: 60px; font-weight: 400; text-align: center; position: relative; }
 
         .souligne-fleche { 
             position: relative; display: inline-block; padding: 0 40px 12px 40px;
@@ -82,53 +81,48 @@
         .galerie-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 50px; }
         .photo-frame { aspect-ratio: 4/5; background: #1d1f21; border: 1px solid rgba(194, 163, 130, 0.1); overflow: hidden; transition: 0.5s; }
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.8s ease; filter: grayscale(50%); }
-        .photo-frame:hover { border-color: var(--chÃªne); transform: scale(1.02); }
+        .photo-frame:hover { border-color: var(--chene); transform: scale(1.02); }
         .photo-frame:hover img { opacity: 1; filter: grayscale(0%); }
 
         .card { border: 1px solid var(--acier); padding: 40px; background: #1d1f21; transition: 0.4s ease; height: 100%; box-sizing: border-box; }
-        .card:hover { border-color: var(--chÃªne); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .card:hover { border-color: var(--chene); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .card ul { list-style: none; padding: 0; margin: 0; }
         .card li { margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: flex-start; gap: 12px; }
-        .card li span.icon { color: var(--chÃªne); font-size: 1rem; min-width: 20px; }
+        .card li span.icon { color: var(--chene); font-size: 1rem; min-width: 20px; }
 
-        .menu-container { border: 1px solid var(--chÃªne); padding: 10px; max-width: 650px; margin: auto; }
-        .menu-border { border: 2px solid var(--chÃªne); padding: 60px 40px; background: #1d1f21; text-align: center; }
+        .menu-container { border: 1px solid var(--chene); padding: 10px; max-width: 650px; margin: auto; }
+        .menu-border { border: 2px solid var(--chene); padding: 60px 40px; background: #1d1f21; text-align: center; }
         .menu-section { margin-bottom: 35px; }
         .menu-row { display: flex; align-items: baseline; margin-bottom: 12px; font-size: 0.95rem; }
         .menu-dots { flex-grow: 1; border-bottom: 1px dotted rgba(194, 163, 130, 0.4); margin: 0 12px; }
-        .menu-price { color: var(--chÃªne); font-weight: bold; min-width: 45px; text-align: right; }
+        .menu-price { color: var(--chene); font-weight: bold; min-width: 45px; text-align: right; }
 
         .contact-form { background: rgba(255,255,255,0.01); padding: 40px; border: 1px solid rgba(255,255,255,0.03); }
         .devis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .item-row { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.02); padding: 12px 18px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s ease; }
         .qty-btn { width: 28px; height: 28px; border: 1px solid var(--acier); background: transparent; color: var(--acier); cursor: pointer; transition: 0.2s; }
-        .qty-btn:hover { background: var(--chÃªne); color: var(--fond); border-color: var(--chÃªne); }
-        .qty-val { min-width: 20px; text-align: center; color: var(--chÃªne); font-weight: bold; }
+        .qty-btn:hover { background: var(--chene); color: var(--fond); border-color: var(--chene); }
+        .qty-val { min-width: 20px; text-align: center; color: var(--chene); font-weight: bold; }
 
         #pro-address-section { max-height: 0; overflow: hidden; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); opacity: 0; }
         #pro-address-section.visible { max-height: 400px; opacity: 1; margin-bottom: 30px; }
 
         input, textarea { width: 100%; padding: 15px 0; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.1); color: white; outline: none; margin-bottom: 30px; font-family: inherit; transition: 0.3s; }
-        input:focus { border-bottom: 1px solid var(--chÃªne); }
+        input:focus { border-bottom: 1px solid var(--chene); }
 
         .btn-cta {
             position: relative; display: inline-block; margin-top: 30px; padding: 18px 40px; 
-            border: 1px solid var(--chÃªne); color: var(--chÃªne); 
+            border: 1px solid var(--chene); color: var(--chene); 
             text-decoration: none; text-transform: uppercase; letter-spacing: 3px;
             font-size: 0.75rem; font-weight: bold; background: rgba(255,255,255,0.02); 
             transition: 0.5s; cursor: pointer; overflow: hidden;
         }
-        .btn-cta:hover { background: var(--chÃªne); color: var(--fond); }
+        .btn-cta:hover { background: var(--chene); color: var(--fond); }
 
         footer { 
-            text-align: center; padding: 80px 20px 40px 20px; 
+            text-align: center; padding: 60px 20px 40px 20px; 
             border-top: 1px solid rgba(255,255,255,0.05);
             background: var(--fond-footer);
-        }
-        .map-container {
-            width: 100%; max-width: 600px; height: 250px; margin: 30px auto;
-            border: 1px solid var(--chÃªne); filter: grayscale(1) invert(0.9) contrast(1.2);
-            opacity: 0.7; transition: 0.5s;
         }
         .phone-footer { color: white; font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 1px; }
     </style>
@@ -138,22 +132,27 @@
     <header>
         <div class="titres-container">
             <h1>KEN <b>AIGUISE</b></h1>
-            <div class="subtitle">Artisan AffÃ»teur â€¢ Lyon 4</div>
+            <div class="subtitle">Artisan Affûteur • Lyon 4</div>
         </div>
         <div class="knife-container">
             <svg viewBox="0 0 200 650" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 85,50 C 85,35 115,35 115,50 L 115,260 L 85,260 Z" fill="#141618" /> 
-                <rect x="75" y="260" width="50" height="35" fill="#333" /> 
-                <path d="M 85,295 L 85,610 C 85,610 105,630 160,295 Z" fill="#222" /> 
+                <path d="M 85,30 C 85,30 75,40 75,70 L 75,240 C 75,270 85,280 85,280 L 115,280 C 115,280 125,270 125,240 L 125,70 C 125,40 115,30 115,30 Z" fill="#141618" />
+                <circle cx="100" cy="80" r="3.5" fill="#333" />
+                <circle cx="100" cy="155" r="3.5" fill="#333" />
+                <circle cx="100" cy="230" r="3.5" fill="#333" />
+                
+                <rect x="72" y="280" width="56" height="15" rx="2" fill="#333" /> 
+                
+                <path d="M 85,295 L 85,610 C 85,610 100,630 165,295 Z" fill="#222" /> 
 
-                <svg x="98" y="320" width="30" height="150" viewBox="0 0 40 120">
+                <svg x="98" y="340" width="30" height="150" viewBox="0 0 40 120">
                     <g>
                         <path class="calligraphy-path" d="M5,10 L30,10 M18,2 L18,25 M35,5 L25,25 M45,5 L35,25" />
                         <path class="calligraphy-path" d="M5,50 L35,50 M20,45 L20,85 M10,60 L30,60 M10,75 L30,75 M5,45 L5,90 L35,90 L35,45" />
                     </g>
                 </svg>
 
-                <path d="M 85,50 C 85,35 115,35 115,50 L 115,260 L 125,260 L 125,295 L 75,295 L 75,260 L 85,260 L 85,610 C 85,610 105,630 160,295 L 85,295 Z" class="outline-animated" />
+                <path d="M 85,30 C 85,30 75,40 75,70 L 75,240 C 75,270 85,280 85,280 L 72,280 L 72,295 L 128,295 L 128,280 L 115,280 C 115,280 125,270 125,240 L 125,70 C 125,40 115,30 115,30 L 85,30 M 85,295 L 85,610 C 85,610 100,630 165,295 L 85,295" class="outline-animated" />
             </svg>
         </div>
         <a href="#contact" class="btn-cta">Demander un entretien</a>
@@ -162,9 +161,9 @@
     <section id="expertise">
         <h2><span class="souligne-fleche">L'Art du Tranchant</span></h2>
         <div class="galerie-grid">
-            <div class="photo-frame"><img src="img/geste.webp" alt="Geste"></div>
-            <div class="photo-frame"><img src="img/lame.webp" alt="Lame"></div>
-            <div class="photo-frame"><img src="img/atelier.webp" alt="Atelier"></div>
+            <div class="photo-frame"><img src="geste.webp" alt="Geste technique"></div>
+            <div class="photo-frame"><img src="lame.webp" alt="Lame affûtée"></div>
+            <div class="photo-frame"><img src="atelier.webp" alt="Atelier d'Ypres"></div>
         </div>
     </section>
 
@@ -172,21 +171,21 @@
         <h2><span class="souligne-fleche">L'Exigence Technique</span></h2>
         <div style="margin-top: 60px;">
             <div style="margin-bottom: 80px; text-align: left;">
-                <h3>01. La prÃ©cision du diamant</h3>
+                <h3>01. La précision du diamant</h3>
                 <div class="tech-border-L">
-                    <p>L'atelier utilise exclusivement des meules diamantÃ©es sur <b>Tormek T8</b>. Le diamant reste inaltÃ©rable, assurant une gÃ©omÃ©trie angulaire mathÃ©matique constante.</p>
+                    <p>L'atelier utilise exclusivement des meules diamantées sur <b>Tormek T8</b>. Le diamant reste inaltérable, assurant une géométrie angulaire mathématique constante.</p>
                 </div>
             </div>
             <div style="margin-bottom: 80px; text-align: right;">
-                <h3>02. L'affÃ»tage Ã  cÅ“ur froid</h3>
+                <h3>02. L'affûtage à cœur froid</h3>
                 <div class="tech-border-R">
-                    <p>La lubrification constante Ã  l'eau protÃ¨ge la structure molÃ©culaire de l'acier. Votre lame conserve sa <b>trempe d'origine</b> sans aucune chauffe possible.</p>
+                    <p>La lubrification constante à l'eau protège la structure moléculaire de l'acier. Votre lame conserve sa <b>trempe d'origine</b> sans aucune chauffe possible.</p>
                 </div>
             </div>
             <div style="margin-bottom: 40px; text-align: left;">
                 <h3>03. La finition au cuir</h3>
                 <div class="tech-border-L">
-                    <p>Le dÃ©morfilage final sur disque de cuir naturel rÃ©vÃ¨le un tranchant miroir, validÃ© par un test de coupe sur papier de soie avant de quitter l'Ã©tabli.</p>
+                    <p>Le démorfilage final sur disque de cuir naturel révèle un tranchant miroir, validé par un test de coupe sur papier de soie avant de quitter l'établi.</p>
                 </div>
             </div>
         </div>
@@ -196,22 +195,22 @@
         <h2><span class="souligne-fleche">Tarifs</span></h2>
         <div class="menu-container">
             <div class="menu-border">
-                <p style="font-size: 0.7rem; letter-spacing: 3px; opacity: 0.5; text-transform: uppercase; margin-bottom: 40px; color: var(--acier);">Service d'affÃ»tage â€¢ Lyon 4Ã¨me</p>
+                <p style="font-size: 0.7rem; letter-spacing: 3px; opacity: 0.5; text-transform: uppercase; margin-bottom: 40px; color: var(--acier);">Service d'affûtage • Lyon 4ème</p>
                 <div class="menu-section">
                     <h3>I. Cuisine</h3>
-                    <div class="menu-row"><span>Santoku / Ã‰minceur</span><div class="menu-dots"></div><span class="menu-price">13 â‚¬</span></div>
-                    <div class="menu-row"><span>Couteau d'Office</span><div class="menu-dots"></div><span class="menu-price">8 â‚¬</span></div>
-                    <div class="menu-row"><span>Lame DentelÃ©e</span><div class="menu-dots"></div><span class="menu-price">10 â‚¬</span></div>
+                    <div class="menu-row"><span>Santoku / Éminceur</span><div class="menu-dots"></div><span class="menu-price">13 €</span></div>
+                    <div class="menu-row"><span>Couteau d'Office</span><div class="menu-dots"></div><span class="menu-price">8 €</span></div>
+                    <div class="menu-row"><span>Lame Dentelée</span><div class="menu-dots"></div><span class="menu-price">10 €</span></div>
                 </div>
                 <div class="menu-section">
                     <h3>II. Poche & Jardin</h3>
-                    <div class="menu-row"><span>Couteau de Poche</span><div class="menu-dots"></div><span class="menu-price">7 â‚¬</span></div>
-                    <div class="menu-row"><span>Ciseaux / SÃ©cateur</span><div class="menu-dots"></div><span class="menu-price">12 â‚¬</span></div>
+                    <div class="menu-row"><span>Couteau de Poche</span><div class="menu-dots"></div><span class="menu-price">7 €</span></div>
+                    <div class="menu-row"><span>Ciseaux / Sécateur</span><div class="menu-dots"></div><span class="menu-price">12 €</span></div>
                 </div>
                 <div class="menu-section">
-                    <h3>III. Atelier & ForÃªt</h3>
-                    <div class="menu-row"><span>Foret / MÃ¨che</span><div class="menu-dots"></div><span class="menu-price">5 â‚¬</span></div>
-                    <div class="menu-row"><span>Ciseau Ã  bois</span><div class="menu-dots"></div><span class="menu-price">8 â‚¬</span></div>
+                    <h3>III. Atelier & Forêt</h3>
+                    <div class="menu-row"><span>Foret / Mèche</span><div class="menu-dots"></div><span class="menu-price">5 €</span></div>
+                    <div class="menu-row"><span>Ciseau à bois</span><div class="menu-dots"></div><span class="menu-price">8 €</span></div>
                 </div>
             </div>
         </div>
@@ -219,50 +218,50 @@
 
     <section id="atelier">
         <h2><span class="souligne-fleche">L'Atelier d'Ypres</span></h2>
-        <div class="atelier-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
             <div class="card">
                 <h3>Accueil Particuliers</h3>
                 <ul>
-                    <li><span class="icon">ðŸ“…</span> <b>Mercredi</b></li>
-                    <li><span class="icon">â°</span> <span style="color: var(--acier);">10h00 â€” 18h00</span></li>
-                    <li><span class="icon">âš¡</span> <span>DÃ©pÃ´t matin / Retour soir.</span></li>
+                    <li><span class="icon">📅</span> <b>Mercredi</b></li>
+                    <li><span class="icon">⏰</span> <span style="color: var(--acier);">10h00 — 18h00</span></li>
+                    <li><span class="icon">⚡</span> <span>Dépôt matin / Retour soir.</span></li>
                 </ul>
             </div>
             <div class="card">
                 <h3>Service Professionnel</h3>
                 <ul>
-                    <li><span class="icon">ðŸšš</span> <b>Collecte & Livraison</b></li>
-                    <li><span class="icon">ðŸ“ž</span> <span style="color: var(--acier);">7j / 7 â€” Sur RDV</span></li>
-                    <li><span class="icon">ðŸ› ï¸</span> <span>Retour garanti sous 24h.</span></li>
+                    <li><span class="icon">🚚</span> <b>Collecte & Livraison</b></li>
+                    <li><span class="icon">📞</span> <span style="color: var(--acier);">7j / 7 — Sur RDV</span></li>
+                    <li><span class="icon">🛠️</span> <span>Retour garanti sous 24h.</span></li>
                 </ul>
             </div>
             <div class="card">
-                <h3>Venir Ã  l'Atelier</h3>
+                <h3>Venir à l'Atelier</h3>
                 <ul>
-                    <li style="color: white; font-weight: bold;"><span class="icon">ðŸ“</span> 74 Rue d'Ypres, Lyon 4</li>
-                    <li style="color: white; font-weight: bold;"><span class="icon">ðŸ…¿ï¸</span> Place privÃ©e / Garage vÃ©lo</li>
+                    <li style="color: white; font-weight: bold;"><span class="icon">📍</span> 74 Rue d'Ypres, Lyon 4</li>
+                    <li style="color: white; font-weight: bold;"><span class="icon">🅿️</span> Place privée / Garage vélo</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="contact">
-        <h2><span class="souligne-fleche">Devis PersonnalisÃ©</span></h2>
+        <h2><span class="souligne-fleche">Devis Personnalisé</span></h2>
         <div class="contact-form">
             <form action="https://formspree.io/f/VOTRE_ID" method="POST" id="devis-form">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
                     <input type="text" name="nom" placeholder="Votre Nom" required>
                     <input type="email" name="email" placeholder="Votre E-mail" required>
                 </div>
                 <div style="margin: 40px 0; border-top: 1px solid rgba(194,163,130,0.1); padding-top: 30px;">
-                    <p style="font-size: 0.7rem; color: var(--chÃªne); text-align: center; letter-spacing: 2px; margin-bottom: 25px; text-transform: uppercase;">Lieu de l'intervention</p>
+                    <p style="font-size: 0.7rem; color: var(--chene); text-align: center; letter-spacing: 2px; margin-bottom: 25px; text-transform: uppercase;">Lieu de l'intervention</p>
                     <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px;">
                         <label><input type="radio" name="Lieu" value="Atelier" checked onchange="toggleProAddress(false)"> Atelier</label>
                         <label><input type="radio" name="Lieu" value="Professionnel" onchange="toggleProAddress(true)"> Professionnel</label>
                     </div>
                     <div id="pro-address-section">
                         <input type="text" name="nom_etablissement" placeholder="Nom du restaurant">
-                        <input type="text" name="adresse_collecte" placeholder="Adresse complÃ¨te">
+                        <input type="text" name="adresse_collecte" placeholder="Adresse complète">
                     </div>
                     <div class="devis-grid">
                         <div class="item-row" data-price="13" data-name="Santoku"><span>Santoku</span><div class="qty-controls"><button type="button" class="qty-btn minus">-</button><span class="qty-val">0</span><button type="button" class="qty-btn plus">+</button></div></div>
@@ -270,7 +269,7 @@
                         <div class="item-row" data-price="10" data-name="Pain"><span>Pain</span><div class="qty-controls"><button type="button" class="qty-btn minus">-</button><span class="qty-val">0</span><button type="button" class="qty-btn plus">+</button></div></div>
                     </div>
                     <div style="text-align: center; margin-top: 40px; padding: 30px; border: 1px dashed var(--acier);">
-                        <span id="synthesis-text" style="font-weight:bold; color:var(--chÃªne);">Aucun outil sÃ©lectionnÃ©</span>
+                        <span id="synthesis-text" style="font-weight:bold; color:var(--chene);">Aucun outil sélectionné</span>
                         <input type="hidden" name="Total" id="hidden-total">
                         <input type="hidden" name="Detail" id="hidden-list">
                     </div>
@@ -281,11 +280,8 @@
     </section>
 
     <footer>
-        <div class="map-container">
-            <iframe width="100%" height="100%" frameborder="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2782.593441584288!2d4.821104376823351!3d45.779344812361715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4eb17c4c47ad7%3A0xc3d935975bd31c7f!2s74%20Rue%20d'Ypres%2C%2069004%20Lyon!5e0!3m2!1sfr!2sfr!4v1711340000000!5m2!1sfr!2sfr"></iframe>
-        </div>
         <div class="phone-footer">06 35 21 87 84</div>
-        <div style="font-size: 0.7rem; color: var(--acier); letter-spacing: 3px;">Â© 2026 KEN AIGUISE â€” LYON 4</div>
+        <div style="font-size: 0.7rem; color: var(--acier); letter-spacing: 3px;">© 2026 KEN AIGUISE — LYON 4</div>
     </footer>
 
     <script>
@@ -309,15 +305,24 @@
                     list += val + "x " + row.dataset.name + ", ";
                 }
             });
-            synthesis.innerText = qty > 0 ? `Estimation (${qty} outil${qty > 1 ? 's' : ''}) : ${total} â‚¬` : "Aucun outil sÃ©lectionnÃ©";
-            hTotal.value = total + " â‚¬"; hList.value = list;
+            synthesis.innerText = qty > 0 ? `Estimation (${qty} outil${qty > 1 ? 's' : ''}) : ${total} €` : "Aucun outil sélectionné";
+            hTotal.value = total + " €"; 
+            hList.value = list.replace(/, $/, ""); 
         }
 
         rows.forEach(row => {
-            row.querySelector('.plus').onclick = () => { row.querySelector('.qty-val').innerText++; calculate(); };
-            row.querySelector('.minus').onclick = () => { 
+            row.querySelector('.plus').onclick = (e) => { 
+                e.preventDefault();
+                row.querySelector('.qty-val').innerText++; 
+                calculate(); 
+            };
+            row.querySelector('.minus').onclick = (e) => { 
+                e.preventDefault();
                 let val = parseInt(row.querySelector('.qty-val').innerText);
-                if (val > 0) { row.querySelector('.qty-val').innerText = val - 1; calculate(); }
+                if (val > 0) { 
+                    row.querySelector('.qty-val').innerText = val - 1; 
+                    calculate(); 
+                }
             };
         });
     </script>
