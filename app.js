@@ -1,3 +1,31 @@
+  // --- ScrollSpy Fluide ---
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('section');
+
+function updateActiveLink() {
+    let current = "";
+    
+    sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        // On utilise un décalage de 100px pour anticiper le scroll
+        if (window.pageYOffset >= sectionTop - 100) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").includes(current)) {
+            link.classList.add("active");
+        }
+    });
+}
+
+// Utilisation de requestAnimationFrame pour plus de fluidité
+window.addEventListener("scroll", () => {
+    window.requestAnimationFrame(updateActiveLink);
+});
+ 
         function toggleProAddress(show) {
             const section = document.getElementById('pro-address-section');
             if (show) section.classList.add('visible'); else section.classList.remove('visible');
