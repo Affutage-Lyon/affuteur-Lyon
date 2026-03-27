@@ -3,34 +3,39 @@ const navLinks = document.querySelectorAll('.nav-links a');
 const sections = document.querySelectorAll('section');
 
 function updateActiveLink() {
+    const scrollPos = window.scrollY;
+    const offset = 120;
     let current = "";
-    const scrollPos = window.pageYOffset;
 
-    // Si on est dans le header (avant la première section)
-    // On active tous les liens pour qu'ils soient tous en couleur
-    if (sections.length > 0 && scrollPos < sections[0].offsetTop - 150) {
-        navLinks.forEach((link) => {
-            link.classList.add("active");
-        });
+    // Force l'état actif sur TOUT le menu si on est dans le header
+    if (sections.length > 0 && scrollPos < sections[0].offsetTop - offset) {
+        navLinks.forEach(link => link.classList.add("active"));
         return;
     }
 
-    // Logique standard de ScrollSpy pour les sections
-    sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        // Décalage de 100px pour anticiper le scroll
-        if (scrollPos >= sectionTop - 100) {
+    // Sinon, détection classique de la section
+    sections.forEach(section => {
+        if (scrollPos >= section.offsetTop - offset) {
             current = section.getAttribute("id");
         }
     });
 
-    navLinks.forEach((link) => {
+    navLinks.forEach(link => {
         link.classList.remove("active");
         if (current && link.getAttribute("href").includes(current)) {
             link.classList.add("active");
         }
     });
 }
+
+
+window.addEventListener('scroll', updateActiveLink);
+
+
+// Écouteur d'événement avec optimisation
+window.addEventListener('scroll', updateActiveLink);
+// Appel immédiat pour l'état initial au chargement
+document.addEventListener('DOMContentLoaded', updateActiveLink);
 
 // Utilisation de requestAnimationFrame pour plus de fluidité
 window.addEventListener("scroll", () => {

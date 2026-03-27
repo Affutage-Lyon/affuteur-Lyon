@@ -43,33 +43,55 @@
 }
 
   
-  .nav-links {
-      display: flex;
-      gap: clamp(20px, 6vw, 50px); /* Espacement aéré */
-  }
-  
-  .nav-links a {
-    color: var(--acier);
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    position: relative;
-    padding: 8px 0;
-    /* Transition douce pour la couleur du texte */
-    transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+.nav-links {
+    display: flex;
+    /* Réduit l'espace sur petit écran, l'augmente sur grand écran */
+    gap: clamp(10px, 4vw, 50px); 
+    padding: 0 15px;
+    width: 100%;
+    justify-content: center;
+    /* Permet de scroller le menu à la main s'il est vraiment trop large */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
+/* Cache la barre de scroll pour garder le design propre */
+.nav-links::-webkit-scrollbar {
+    display: none;
+}
+
+  
 .nav-links a {
-    color: var(--acier);
+    color: var(--chene); /* Tous les liens sont dorés par défaut */
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
+    font-size: 0.70rem;
+    letter-spacing: 1.5px;
     position: relative;
     padding: 8px 0;
-    /* Transition plus longue pour la couleur (0.6s) */
-    transition: color 0.6s ease-in-out;
+    min-width: fit-content;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+}
+
+/* Le trait : il existe sur tous les liens mais sa largeur est à 0 */
+.nav-links a {
+    color: var(--acier); /* Gris par défaut */
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.70rem;
+    letter-spacing: 1.5px;
+    position: relative;
+    padding: 8px 0;
+    min-width: fit-content;
+    white-space: nowrap;
+    opacity: 0.7;
+    transition: color 0.4s ease, opacity 0.4s ease;
+}
+
+.nav-links a.active {
+    color: var(--chene); /* Or uniquement si actif */
+    opacity: 1;
 }
 
 .nav-links a::after {
@@ -77,62 +99,42 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-    width: 0;
+    width: 0; 
     height: 1px;
     background-color: var(--chene);
-    /* Transition ralentie à 0.8s avec une courbe plus fluide */
-    transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
-                left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-    width: 100%;
-    left: 0;
+    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 
+/* Optionnel : le trait apparaît aussi au survol de la souris */
 .nav-links a:hover::after {
     width: 100%;
     left: 0;
 }
 
-/* État Actif (ScrollSpy ou Header) */
-.nav-links a.active {
-    color: var(--chene);
-    font-weight: bold;
-}
-
+/* Affiche le trait quand le lien est actif (ScrollSpy ou Header) */
 .nav-links a.active::after {
     width: 100%;
     left: 0;
 }
 
 
-  .nav-links a.active::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background-color: var(--chene);
-      transform: scaleX(1);
-  }
 
 
-        header { 
+
+  header { 
             min-height: 100vh;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             padding: 120px 20px 40px 20px; text-align: center; box-sizing: border-box;
             background: radial-gradient(circle at center, #23272a 0%, #1a1c1e 100%);
         }
 
-        h1 { font-size: clamp(2.5rem, 10vw, 4rem); margin: 0; text-transform: uppercase; letter-spacing: 12px; font-weight: 400; color: white; }
-        h1 b { color: var(--chene); font-weight: 700; }
-        .subtitle { margin-top: 15px; letter-spacing: 6px; text-transform: uppercase; font-size: 0.9rem; color: var(--acier); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; display: inline-block; }
+ h1 { font-size: clamp(2.5rem, 10vw, 4rem); margin: 0; text-transform: uppercase; letter-spacing: 12px; font-weight: 400; color: white; }
+  h1 b { color: var(--chene); font-weight: 700; }
+  .subtitle { margin-top: 15px; letter-spacing: 6px; text-transform: uppercase; font-size: 0.9rem; color: var(--acier); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; display: inline-block; }
 
-        .knife-container { width: 160px; height: 340px; margin: 20px 0; position: relative; }
+  .knife-container { width: 160px; height: 340px; margin: 20px 0; position: relative; }
         svg { width: 100%; height: 100%; overflow: visible; }
 
         .outline-animated {
@@ -173,6 +175,59 @@
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.8s ease; filter: grayscale(50%); }
         .photo-frame:hover { border-color: var(--chene); transform: scale(1.02); }
         .photo-frame:hover img { opacity: 1; filter: grayscale(0%); }
+      
+      
+      
+        /* --- Optimisation de la Section Technique --- */
+
+#technique h3 {
+    font-size: 1.1rem;
+    color: var(--chene);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+/* Animation au survol des blocs de texte */
+.tech-border-L:hover, .tech-border-R:hover {
+    border-color: var(--chene);
+    background: rgba(194, 163, 130, 0.03);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Style spécifique pour les paragraphes techniques */
+#technique p {
+    font-size: 0.95rem;
+    color: var(--texte);
+    opacity: 0.9;
+    max-width: 600px;
+    display: inline-block; /* Pour garder l'alignement text-align */
+}
+
+/* Mise en valeur des termes importants (vos balises <b>) */
+#technique b {
+    color: white;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255, 180, 77, 0.3); /* Rappel du neon-orange discret */
+}
+
+/* Ajustement pour le mobile */
+@media (max-width: 768px) {
+    #technique div[style*="text-align: right"],
+    #technique div[style*="text-align: left"] {
+        text-align: left !important;
+        margin-bottom: 60px !important;
+    }
+    
+    .tech-border-R {
+        border-right: none;
+        border-left: 0.5px solid var(--acier);
+        padding-right: 0;
+        padding-left: 25px;
+    }
+}
+
 
         .card { border: 1px solid var(--acier); padding: 40px; background: #1d1f21; transition: 0.4s ease; height: 100%; box-sizing: border-box; }
         .card:hover { border-color: var(--chene); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
@@ -218,4 +273,4 @@
             border-top: 1px solid rgba(255,255,255,0.05);
             background: var(--fond-footer);
         }
-        .phone-footer { color: white; font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 1px; 
+        .phone-footer { color: white; font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 1px;} 
