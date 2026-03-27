@@ -20,17 +20,19 @@
 
   /* Navigation Fixe - Version Sans Logo */
   nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 25px 0;
-      background: rgba(26, 28, 30, 0.9);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      border-bottom: 1px solid rgba(194, 163, 130, 0.1);
-      display: flex;
-      justify-content: center; /* Centre parfaitement les liens */
-  }
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 25px 0;
+    background: rgba(26, 28, 30, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(194, 163, 130, 0.1);
+    display: flex;
+    justify-content: center;
+}
+
   
   section {
     padding: 90px 25px;
@@ -47,27 +49,66 @@
   }
   
   .nav-links a {
-      color: var(--acier);
-      text-decoration: none;
-      text-transform: uppercase;
-      font-size: 0.75rem;
-      letter-spacing: 3px;
-      transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      padding: 5px 0;
-  }
-  
-  /* État Hover : passage au blanc pur */
-  .nav-links a:hover {
-      color: white;
-  }
-  
-  /* État Actif : Couleur Chêne (C2A382) et soulignement fin */
-  .nav-links a.active {
-      color: var(--chene);
-      font-weight: bold;
-  }
-  
+    color: var(--acier);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    position: relative;
+    padding: 8px 0;
+    /* Transition douce pour la couleur du texte */
+    transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-links a {
+    color: var(--acier);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    position: relative;
+    padding: 8px 0;
+    /* Transition plus longue pour la couleur (0.6s) */
+    transition: color 0.6s ease-in-out;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background-color: var(--chene);
+    /* Transition ralentie à 0.8s avec une courbe plus fluide */
+    transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+    left: 0;
+}
+
+
+.nav-links a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* État Actif (ScrollSpy ou Header) */
+.nav-links a.active {
+    color: var(--chene);
+    font-weight: bold;
+}
+
+.nav-links a.active::after {
+    width: 100%;
+    left: 0;
+}
+
+
   .nav-links a.active::after {
       content: '';
       position: absolute;
@@ -177,4 +218,4 @@
             border-top: 1px solid rgba(255,255,255,0.05);
             background: var(--fond-footer);
         }
-        .phone-footer { color: white; font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 1px; }
+        .phone-footer { color: white; font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 1px; 
