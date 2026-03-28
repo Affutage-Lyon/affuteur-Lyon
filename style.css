@@ -33,6 +33,18 @@
     justify-content: center;
 }
 
+.precaution-banner {
+    background-color: rgba(194, 163, 130, 0.1); /* Couleur chêne très légère */
+    color: var(--chene);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(194, 163, 130, 0.2);
+    margin-top: 80px; /* Pour passer sous la barre de navigation fixe */
+}
+
   
   section {
     padding: 90px 25px;
