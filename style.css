@@ -178,55 +178,52 @@
       
       
       
-        /* --- Optimisation de la Section Technique --- */
+/* --- CORRECTION RADICALE SECTION TECHNIQUE --- */
 
-#technique h3 {
-    font-size: 1.1rem;
-    color: var(--chene);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 15px;
+#technique > div:nth-child(2) { 
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    width: 100%;
 }
 
-/* Animation au survol des blocs de texte */
-.tech-border-L:hover, .tech-border-R:hover {
-    border-color: var(--chene);
-    background: rgba(194, 163, 130, 0.03);
-    padding-top: 10px;
-    padding-bottom: 10px;
+/* On cible les div qui ont le style inline text-align */
+#technique div[style*="text-align: left"], 
+#technique div[style*="text-align: right"] {
+    display: flex !important;
+    flex-direction: column;
+    width: 100% !important;
 }
 
-/* Style spécifique pour les paragraphes techniques */
-#technique p {
-    font-size: 0.95rem;
-    color: var(--texte);
-    opacity: 0.9;
-    max-width: 600px;
-    display: inline-block; /* Pour garder l'alignement text-align */
+/* BLOC GAUCHE (01 et 03) */
+#technique div[style*="text-align: left"] {
+    align-items: flex-start; /* Pousse le contenu à gauche */
 }
 
-/* Mise en valeur des termes importants (vos balises <b>) */
-#technique b {
-    color: white;
-    font-weight: 700;
-    border-bottom: 1px solid rgba(255, 180, 77, 0.3); /* Rappel du neon-orange discret */
+/* BLOC DROITE (02) - C'est ici que la magie opère */
+#technique div[style*="text-align: right"] {
+    align-items: flex-end; /* FORCE le contenu à aller tout à droite */
 }
 
-/* Ajustement pour le mobile */
-@media (max-width: 768px) {
-    #technique div[style*="text-align: right"],
-    #technique div[style*="text-align: left"] {
-        text-align: left !important;
-        margin-bottom: 60px !important;
-    }
-    
-    .tech-border-R {
-        border-right: none;
-        border-left: 0.5px solid var(--acier);
-        padding-right: 0;
-        padding-left: 25px;
-    }
+/* Ajustement des boîtes pour qu'elles ne fassent pas 100% */
+.tech-border-L, .tech-border-R {
+    max-width: 80%; /* Laisse de la place pour le décalage */
+    width: fit-content;
 }
+
+/* Rendu des bordures */
+.tech-border-L {
+    border-left: 3px solid var(--acier);
+    padding-left: 20px;
+}
+
+.tech-border-R {
+    border-right: 3px solid var(--acier);
+    padding-right: 20px;
+}
+
+#technique h3 { color: var(--chene); text-transform: uppercase; }
+
 
 
         .card { border: 1px solid var(--acier); padding: 40px; background: #1d1f21; transition: 0.4s ease; height: 100%; box-sizing: border-box; }
