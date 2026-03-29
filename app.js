@@ -71,6 +71,30 @@ window.onload = () => {
     window.scrollTo(0, 0);
 };
 
+document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.getElementById('burger-trigger');
+    const navMenu = document.getElementById('nav-menu');
+    const body = document.body;
+    const links = document.querySelectorAll('.nav-links a');
+
+    // Fonction pour basculer le menu
+    function toggleMenu() {
+        burger.classList.toggle('open');
+        navMenu.classList.toggle('open');
+        body.classList.toggle('menu-open'); // Active l'effet de flou CSS
+    }
+
+    burger.addEventListener('click', toggleMenu);
+
+    // Fermer le menu quand on clique sur un lien
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navMenu.classList.contains('open')) {
+                toggleMenu();
+            }
+        });
+    });
+});
 
 
 
