@@ -159,15 +159,38 @@ header {
 
 
 .knife-container { 
-    /* Dimensions réduites pour une hauteur plus basse */
-    width: 120px; 
-    height: 260px; 
-    /* Réduction de la marge verticale de 40px à 20px */
+    width: 110px; 
+    height: 240px; 
     margin: 20px auto; 
-    position: relative;
+    position: relative; /* Indispensable pour que le halo se place par rapport à ce bloc */
     display: flex;
     justify-content: center;
+    align-items: center;
+    z-index: 5; /* On remonte le conteneur pour être sûr qu'il est au-dessus du fond */
 }
+
+/* Le Halo Métallique */
+.knife-container::before {
+    content: ""; /* Obligatoire pour que le pseudo-élément existe */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px; /* Taille fixe pour tester si ça dépasse bien du couteau */
+    height: 250px;
+    background: radial-gradient(
+        circle, 
+        rgba(142, 154, 175, 0.2) 15%, 
+        rgba(77, 148, 255, 0.1) 100%, 
+        transparent 70%
+    );
+    filter: blur(30px); /* Augmentation du flou pour un effet plus vaporeux */
+    z-index: -1; /* Se place juste derrière le SVG mais dans le même contexte */
+    pointer-events: none;
+}
+
+
+
 
 
 
@@ -462,7 +485,7 @@ footer {
 
     .knife-container { 
         width: 120px; 
-        height: 280px; 
+        height: 380px; 
         margin: 20px auto; /* Centre le couteau sans marges fixes excessives */
         position: relative;
     }
