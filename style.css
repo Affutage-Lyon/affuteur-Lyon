@@ -215,22 +215,36 @@ body.menu-open > *:not(nav) {
 }
 
 
-/* --- CONFIGURATION PAR DÉFAUT (MOBILE) --- */
-header {
-    display: flex;
-    flex-direction: column; /* Empilé verticalement */
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 100dvh;
-}
-
-.header-left, .header-right {
+/* --- STYLE DU LOGO SVG DANS LE MENU --- */
+.menu-logo-container {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    /* On supprime le padding-top ou on le réduit au minimum */
+    padding-top: 0px; 
+    /* Marge négative si vous voulez "coller" le logo au bord supérieur du menu */
+    margin-top: 0px; 
+    /* Espace important sous le logo pour aérer le reste du menu */
+    margin-bottom: 10px; 
 }
+
+.menu-logo-svg {
+    width: 250px; /* Réduit pour éviter qu'il ne prenne trop de place verticale */
+    height: auto;
+    filter: brightness(0) invert(1);
+    opacity: 1;
+    /* Assure que le logo ne crée pas d'espace vide invisible autour */
+    display: block;
+}
+
+
+/* Cache le logo sur Desktop pour garder la nav centrée et épurée */
+@media (min-width: 1024px) {
+    .menu-logo-container {
+        display: none;
+    }
+}
+
 
 
 /* --- Titre Header & Effet Shimmer --- */
