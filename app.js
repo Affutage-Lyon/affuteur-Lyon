@@ -42,3 +42,30 @@ function toggleProAddress(show) {
         section.classList.remove('visible');
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const title = document.querySelector('.shimmer-effect');
+    if (!title) return;
+
+    let position = 120; // On commence juste à droite du texte
+
+    function animate() {
+        position -= 0.6; // Vitesse du slash (ajuste à ta guise)
+        
+        // LA MAGIE EST ICI :
+        // Dès que la position atteint -20% (le slash a fini de passer à gauche)
+        // on le renvoie immédiatement à 120% (il s'apprête à revenir par la droite)
+        if (position < -20) {
+            position = 120; 
+        }
+
+        title.style.setProperty('--glint-pos', position + '%');
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+});
+
+
+
+
