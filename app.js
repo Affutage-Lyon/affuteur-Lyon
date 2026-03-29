@@ -66,6 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
     animate();
 });
 
+window.onload = () => {
+    // Force le scroll en haut de page au rafraîchissement
+    window.scrollTo(0, 0);
+};
+
 
 
 
