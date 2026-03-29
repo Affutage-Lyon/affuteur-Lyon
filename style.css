@@ -1,91 +1,63 @@
-
-        :root {
-            --fond: #1a1c1e;
-            --fond-footer: radial-gradient(circle at center, #23272a 0%, #1a1c1e 100%);
-            --chene: #c2a382;
-            --acier: #8e9aaf;
-            --neon-orange: #ffb44d;
-            --bleu-metal: #4d94ff;
-            --texte: #e0e1dd;
-        }
-
-        html { scroll-behavior: smooth !important; }
-
-        body { 
-            font-family: 'Cinzel', serif; 
-            margin: 0; background: var(--fond); color: var(--texte); 
-            line-height: 1.8; overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-  /* Navigation Fixe - Version Sans Logo */
-  /* --- BURGER MENU STYLE --- */
-.burger-menu {
-    display: none; /* Caché par défaut sur desktop */
-    cursor: pointer;
-    flex-direction: column;
-    gap: 6px;
-    z-index: 1100;
+/* ==========================================================================
+   1. VARIABLES & RESET
+   ========================================================================== */
+:root {
+    --fond: #1a1c1e;
+    --fond-footer: radial-gradient(circle at center, #23272a 0%, #1a1c1e 100%);
+    --chene: #c2a382;
+    --acier: #8e9aaf;
+    --neon-orange: #ffb44d;
+    --bleu-metal: #4d94ff;
+    --texte: #e0e1dd;
+    --glint-pos: 0%;
 }
 
-
-
-.precaution-banner {
-    background-color: rgba(194, 163, 130, 0.1); /* Couleur chêne */
-    color: var(--chene);
-    text-align: center;
-    padding: 10px 20px;
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(194, 163, 130, 0.2);
-    /* Ajustement précis pour la nav plus fine */
-    margin-top: 54px; 
+html { 
+    scroll-behavior: smooth !important; 
 }
 
-section {
-    padding: 90px 25px;
-    max-width: 950px;
-    margin: auto;
-    /* Aligne le haut de la section sous la navbar (80px environ) */
-    scroll-margin-top: 80px; 
+body { 
+    font-family: 'Cinzel', serif; 
+    margin: 0; 
+    background: var(--fond); 
+    color: var(--texte); 
+    line-height: 1.8; 
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-  
+/* ==========================================================================
+   2. NAVIGATION & BANNER
+   ========================================================================== */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 12px 0;
+    background: rgba(30, 34, 38, 0.98);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+}
+
 .nav-links {
     display: flex;
-    /* Réduit l'espace sur petit écran, l'augmente sur grand écran */
     gap: clamp(10px, 4vw, 50px); 
     padding: 0 15px;
     width: 100%;
     justify-content: center;
-    /* Permet de scroller le menu à la main s'il est vraiment trop large */
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
 
-/* Cache la barre de scroll pour garder le design propre */
-.nav-links::-webkit-scrollbar {
-    display: none;
+.nav-links::-webkit-scrollbar { 
+    display: none; 
 }
 
-  
 .nav-links a {
-    color: var(--chene); /* Tous les liens sont dorés par défaut */
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 0.70rem;
-    letter-spacing: 1.5px;
-    position: relative;
-    padding: 8px 0;
-    min-width: fit-content;
-    white-space: nowrap;
-    transition: opacity 0.3s ease;
-}
-
-/* Le trait : il existe sur tous les liens mais sa largeur est à 0 */
-.nav-links a {
-    color: var(--acier); /* Gris par défaut */
+    color: var(--acier);
     text-decoration: none;
     text-transform: uppercase;
     font-size: 0.70rem;
@@ -99,7 +71,7 @@ section {
 }
 
 .nav-links a.active {
-    color: var(--chene); /* Or uniquement si actif */
+    color: var(--chene);
     opacity: 1;
 }
 
@@ -111,62 +83,21 @@ section {
     width: 0; 
     height: 1px;
     background-color: var(--chene);
-    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1), left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-
-/* Optionnel : le trait apparaît aussi au survol de la souris */
-.nav-links a:hover::after {
-    width: 100%;
-    left: 0;
-}
-
-/* Affiche le trait quand le lien est actif (ScrollSpy ou Header) */
+.nav-links a:hover::after,
 .nav-links a.active::after {
     width: 100%;
     left: 0;
 }
 
-/* --- NAVIGATION & BURGER --- */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 12px 0; /* Hauteur réduite */
-    background: rgba(30, 34, 38, 0.98); /* Teinte gris acier foncé */
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-    -webkit-backdrop-filter: blur(12px);
-    z-index: 1000;
-    border-bottom: none;
-    display: flex;
-    justify-content: center; /* Aligne le bouton burger au centre exact */
-}
-
-/* --- CONFIGURATION PAR DÉFAUT (MOBILE) --- */
-header {
-    display: flex;
-    flex-direction: column; /* Empilé verticalement */
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 100dvh;
-}
-
-.header-left, .header-right {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .burger-menu {
-    display: flex;
+    display: none;
+    cursor: pointer;
     flex-direction: column;
     gap: 6px;
-    cursor: pointer;
     z-index: 1100;
-    transition: transform 0.3s ease;
 }
 
 .burger-menu span {
@@ -177,116 +108,113 @@ header {
     transition: all 0.3s ease;
 }
 
-/* --- LE MENU LATÉRAL (DROITE) --- */
-@media (max-width: 1023px) {
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%; /* Caché hors écran à droite */
-        width: 180px; /* Largeur du tiroir */
-        height: 100vh;
-        background: rgba(26, 28, 30, 0.95);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 35px;
-        transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-        z-index: 1050;
-        border-left: 1px solid rgba(194, 163, 130, 0.2);
-        backdrop-filter: blur(10px);
-    }
-
-    .nav-links.open {
-        right: 0; /* Glisse vers l'intérieur */
-    }
-
-    /* Animation du Burger en X */
-    .burger-menu.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .burger-menu.open span:nth-child(2) { opacity: 0; }
-    .burger-menu.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+.precaution-banner {
+    background-color: rgba(194, 163, 130, 0.1);
+    color: var(--chene);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(194, 163, 130, 0.2);
+    margin-top: 54px; 
 }
 
-/* --- EFFET DE FLOU SUR LE BODY --- */
-/* On floute tout SAUF la nav quand le menu est ouvert */
-body.menu-open > *:not(nav) {
-    filter: blur(8px);
-    pointer-events: none; /* Désactive les clics sur le contenu flou */
-    transition: filter 0.4s ease;
-}
-
-
-/* --- STYLE DU LOGO SVG DANS LE MENU --- */
-.menu-logo-container {
-    width: 100%;
+/* ==========================================================================
+   3. HEADER (ACCUEIL)
+   ========================================================================== */
+header {
     display: flex;
     justify-content: center;
-    /* On supprime le padding-top ou on le réduit au minimum */
-    padding-top: 0px; 
-    /* Marge négative si vous voulez "coller" le logo au bord supérieur du menu */
-    margin-top: 0px; 
-    /* Espace important sous le logo pour aérer le reste du menu */
-    margin-bottom: 10px; 
+    align-items: center;
+    min-height: 70vh; 
+    text-align: center;
+    background: var(--fond);
+    /* Réduction du padding de 80px à 40px pour remonter le titre */
+    padding: 40px 20px; 
 }
 
-.menu-logo-svg {
-    width: 250px; /* Réduit pour éviter qu'il ne prenne trop de place verticale */
-    height: auto;
-    filter: brightness(0) invert(1);
-    opacity: 1;
-    /* Assure que le logo ne crée pas d'espace vide invisible autour */
-    display: block;
-}
-
-
-/* Cache le logo sur Desktop pour garder la nav centrée et épurée */
-@media (min-width: 1024px) {
-    .menu-logo-container {
-        display: none;
-    }
+.precaution-banner {
+    background-color: rgba(194, 163, 130, 0.1);
+    color: var(--chene);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(194, 163, 130, 0.2);
+    /* On réduit la marge pour coller davantage à la nav (54px -> 45px) */
+    margin-top: 45px; 
 }
 
 
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    /* On réduit l'espace global ici aussi */
+    gap: 10px; 
+}
 
-/* --- Titre Header & Effet Shimmer --- */
+
+.knife-container { 
+    /* Dimensions réduites pour une hauteur plus basse */
+    width: 120px; 
+    height: 260px; 
+    /* Réduction de la marge verticale de 40px à 20px */
+    margin: 20px auto; 
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+
+
 .shimmer-effect {
     font-size: clamp(2.2rem, 8vw, 4rem);
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 12px;
-    font-weight: 500; /* Un peu plus épais pouri compenser la perte du 'b' */
+    font-weight: 500;
     display: inline-block;
-    /* LE SLASH MÉTALLIQUE */
-    background-image: linear-gradient(
-        110deg, 
-        rgba(255,255,255,0) 35%, 
-        rgba(255,255,255,1) 50%, 
-        rgba(255,255,255,0) 65%
-    );
+    background-image: linear-gradient(110deg, rgba(255,255,255,0) 35%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 65%);
     background-size: 200% 100%;
     background-repeat: no-repeat;
     background-position: var(--glint-pos) 0%;
-    /* COULEUR DORÉE UNIFIÉE */
     background-color: var(--chene); 
-    /* MASQUAGE DU TEXTE */
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    
 }
 
-  
-  
-.subtitle { margin-top: 15px; letter-spacing: 6px; text-transform: uppercase; font-size: 0.9rem; color: var(--acier); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; display: inline-block; }
+.subtitle { 
+    margin-top: 15px; 
+    letter-spacing: 6px; 
+    text-transform: uppercase; 
+    font-size: 0.9rem; 
+    color: var(--acier); 
+    border-top: 1px solid rgba(255,255,255,0.1); 
+    padding-top: 15px; 
+    display: inline-block; 
+}
 
-.knife-container { width: 160px; height: 340px; margin: 20px 0; position: relative; }
-svg { width: 100%; height: 100%; overflow: visible; }
+
+
 
 .outline-animated {
-    stroke: var(--neon-orange); stroke-width: 2.5; fill: none; stroke-linecap: round;
+    stroke: var(--neon-orange); 
+    stroke-width: 2.5; 
+    fill: none; 
+    stroke-linecap: round;
     stroke-dasharray: 150 1000;
     animation: stroke-loop 4s linear infinite;
 }
-@keyframes stroke-loop { from { stroke-dashoffset: 1150; } to { stroke-dashoffset: 0; } }
+
+@keyframes stroke-loop { 
+    from { stroke-dashoffset: 1150; } 
+    to { stroke-dashoffset: 0; } 
+}
 
 .calligraphy-path {
     stroke: var(--bleu-metal);
@@ -299,243 +227,271 @@ svg { width: 100%; height: 100%; overflow: visible; }
     animation: drawCalligraphy 6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
     animation-delay: 1.5s;
 }
-@keyframes drawCalligraphy { to { stroke-dashoffset: 0; } }
 
-section { padding: 90px 25px; max-width: 950px; margin: auto; }
-h2 { color: var(--chene); text-transform: uppercase; letter-spacing: 6px; margin-bottom: 60px; font-weight: 400; text-align: center; position: relative; }
+@keyframes drawCalligraphy { 
+    to { stroke-dashoffset: 0; } 
+}
+
+/* ==========================================================================
+   4. SECTIONS COMMUNES
+   ========================================================================== */
+section {
+    padding: 90px 25px;
+    max-width: 950px;
+    margin: auto;
+    scroll-margin-top: 80px; 
+}
+
+h2 { 
+    color: var(--chene); 
+    text-transform: uppercase; 
+    letter-spacing: 6px; 
+    margin-bottom: 60px; 
+    font-weight: 400; 
+    text-align: center; 
+    position: relative; 
+}
 
 .souligne-fleche { 
-    position: relative; display: inline-block; padding: 0 40px 12px 40px;
+    position: relative; 
+    display: inline-block; 
+    padding: 0 40px 12px 40px;
     border-bottom: 0.5px solid var(--acier);
 }
-.souligne-fleche::before { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-right: 6px solid var(--acier); opacity: 0.8; }
-.souligne-fleche::after { content: ''; position: absolute; right: 0; bottom: -3px; width: 0; height: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-left: 6px solid var(--acier); opacity: 0.8; }
 
-.tech-border-L { border-left: 0.5px solid var(--acier); padding-left: 25px; transition: 0.4s ease; }
-.tech-border-R { border-right: 0.5px solid var(--acier); padding-right: 25px; transition: 0.4s ease; }
+.souligne-fleche::before, .souligne-fleche::after {
+    content: ''; 
+    position: absolute; 
+    bottom: -3px; 
+    width: 0; 
+    height: 0; 
+    border-top: 3px solid transparent; 
+    border-bottom: 3px solid transparent; 
+    opacity: 0.8;
+}
 
-.galerie-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 50px; }
-.photo-frame { aspect-ratio: 4/5; background: #1d1f21; border: 1px solid rgba(194, 163, 130, 0.1); overflow: hidden; transition: 0.5s; }
-.photo-frame img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.8s ease; filter: grayscale(50%); }
+.souligne-fleche::before { left: 0; border-right: 6px solid var(--acier); }
+.souligne-fleche::after { right: 0; border-left: 6px solid var(--acier); }
+
+/* ==========================================================================
+   5. EXPERTISE & TECHNIQUE
+   ========================================================================== */
+.galerie-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 15px; 
+    margin-bottom: 50px; 
+}
+
+.photo-frame { 
+    aspect-ratio: 4/5; 
+    background: #1d1f21; 
+    border: 1px solid rgba(194, 163, 130, 0.1); 
+    overflow: hidden; 
+    transition: 0.5s; 
+}
+
+.photo-frame img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    opacity: 0.6; 
+    transition: 0.8s ease; 
+    filter: grayscale(50%); 
+}
+
 .photo-frame:hover { border-color: var(--chene); transform: scale(1.02); }
 .photo-frame:hover img { opacity: 1; filter: grayscale(0%); }
 
-
-
-/* --- CORRECTION RADICALE SECTION TECHNIQUE --- */
-
-#technique > div:nth-child(2) { 
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-    width: 100%;
-}
-
-/* On cible les div qui ont le style inline text-align */
-#technique div[style*="text-align: left"], 
-#technique div[style*="text-align: right"] {
-    display: flex !important;
-    flex-direction: column;
-    width: 100% !important;
-}
-
-/* BLOC GAUCHE (01 et 03) */
-#technique div[style*="text-align: left"] {
-    align-items: flex-start; /* Pousse le contenu à gauche */
-}
-
-/* BLOC DROITE (02) - C'est ici que la magie opère */
-#technique div[style*="text-align: right"] {
-    align-items: flex-end; /* FORCE le contenu à aller tout à droite */
-}
-
-/* Ajustement des boîtes pour qu'elles ne fassent pas 100% */
-.tech-border-L, .tech-border-R {
-    max-width: 80%; /* Laisse de la place pour le décalage */
-    width: fit-content;
-}
-
-/* Rendu des bordures */
-.tech-border-L {
-    border-left: 3px solid var(--acier);
-    padding-left: 20px;
-}
-
-.tech-border-R {
-    border-right: 3px solid var(--acier);
-    padding-right: 20px;
-}
-
 #technique h3 { color: var(--chene); text-transform: uppercase; }
 
-
-
-.card { 
-  border: 1px solid var(--acier); padding: 40px; background: #1d1f21; transition: 0.4s ease; height: 100%; box-sizing: border-box; }
-  
-          .card:hover { border-color: var(--chene); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-          .card ul { list-style: none; padding: 0; margin: 0; }
-          .card li { margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: flex-start; gap: 12px; }
-          .card li span.icon { color: var(--chene); font-size: 1rem; min-width: 20px; }
-          
-          .phone-link {
-    color: inherit; /* Utilise la couleur du texte parent */
-    text-decoration: none; /* Enlève le soulignement */
-    font-weight: bold;
+.tech-border-L { 
+    border-left: 3px solid var(--acier); 
+    padding-left: 20px; 
+    transition: 0.4s ease; 
 }
 
-.phone-link:hover {
-    text-decoration: underline; /* Optionnel : effet au survol */
+.tech-border-R { 
+    border-right: 3px solid var(--acier); 
+    padding-right: 20px; 
+    transition: 0.4s ease; 
 }
 
-  
+#technique div[style*="text-align: left"] { align-items: flex-start; }
+#technique div[style*="text-align: right"] { align-items: flex-end; }
+
+/* ==========================================================================
+   6. TARIFS & ATELIER
+   ========================================================================== */
 .menu-container { border: 1px solid var(--chene); padding: 10px; max-width: 650px; margin: auto; }
 .menu-border { border: 2px solid var(--chene); padding: 60px 40px; background: #1d1f21; text-align: center; }
 .menu-section { margin-bottom: 35px; }
-          .menu-row { display: flex; align-items: baseline; margin-bottom: 12px; font-size: 0.95rem; }
-          .menu-dots { flex-grow: 1; border-bottom: 1px dotted rgba(194, 163, 130, 0.4); margin: 0 12px; }
-          .menu-price { color: var(--chene); font-weight: bold; min-width: 45px; text-align: right; }
-  
-          .contact-form { background: rgba(255,255,255,0.01); padding: 40px; border: 1px solid rgba(255,255,255,0.03); }
-          .devis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-          .item-row { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.02); padding: 12px 18px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s ease; }
-          .qty-btn { width: 28px; height: 28px; border: 1px solid var(--acier); background: transparent; color: var(--acier); cursor: pointer; transition: 0.2s; }
-          .qty-btn:hover { background: var(--chene); color: var(--fond); border-color: var(--chene); }
-          .qty-val { min-width: 20px; text-align: center; color: var(--chene); font-weight: bold; }
-  
-          #pro-address-section { max-height: 0; overflow: hidden; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); opacity: 0; }
-          #pro-address-section.visible { max-height: 400px; opacity: 1; margin-bottom: 30px; }
-  
-          input, textarea { width: 100%; padding: 15px 0; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.1); color: white; outline: none; margin-bottom: 30px; font-family: inherit; transition: 0.3s; }
-          input:focus { border-bottom: 1px solid var(--chene); }
-  
-          /* Bouton CTA Épuré */
-          .btn-cta {
-              position: relative; display: inline-flex; align-items: center; justify-content: center;
-              margin-top: 30px; padding: 12px 28px; 
-              border: 1px solid var(--chene); color: var(--chene); 
-              text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
-              font-size: 0.7rem; font-weight: bold; background: rgba(255,255,255,0.01); 
-              transition: 0.5s; cursor: pointer; overflow: hidden;
-          }
-          .btn-cta svg { margin-right: 10px; transition: 0.5s ease; fill: var(--chene); width: 16px; height: 16px; }
-          .btn-cta:hover { background: var(--chene); color: var(--fond); }
-          .btn-cta:hover svg { fill: var(--fond); }
-  
-          footer { 
-              text-align: center; padding: 60px 20px 40px 20px; 
-              border-top: 1px solid rgba(255,255,255,0.05);
-              background: var(--fond-footer);
-          }
-          .phone-footer { color: white; font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 1px;} 
-          
-          /* --- Ajustements Mobile --- */
-  @media (max-width: 768px) {
-    
-      header {
-          min-height: 80vh; /* Réduit la hauteur sur mobile */
-          padding: 100px 15px 40px 15px; /* Moins de padding en haut */
-      }
-  
-      .knife-container {
-          width: 120px; /* Réduit un peu la taille du couteau */
-          height: 280px;
-          margin: 10px 0; /* Rapproche les éléments */
-      }
-  
-      h1 {
-          font-size: 2.2rem; /* Réduit la taille du titre pour éviter qu'il prenne trop de place */
-          letter-spacing: 6px; /* Moins d'espace entre les lettres */
-      }
-  
-      .precaution-banner {
-          font-size: 0.6rem; /* Texte de prévention plus petit pour qu'il tienne sur une ligne */
-          margin-top: 80px;
-      }
-  }
+.menu-row { display: flex; align-items: baseline; margin-bottom: 12px; font-size: 0.95rem; }
+.menu-dots { flex-grow: 1; border-bottom: 1px dotted rgba(194, 163, 130, 0.4); margin: 0 12px; }
+.menu-price { color: var(--chene); font-weight: bold; min-width: 45px; text-align: right; }
 
-@media screen and (min-width: 1024px) {
-  
-  
-    /* --- HEADER SPLIT --- */
-    header {
-        flex-direction: row;
-        padding: 0;
-        justify-content: flex-start;
-    }
+.card { 
+    border: 1px solid var(--acier); 
+    padding: 40px; 
+    background: #1d1f21; 
+    transition: 0.4s ease; 
+    height: 100%; 
+    box-sizing: border-box; 
+}
 
-    .header-left {
-        width: 50%;
+.card:hover { border-color: var(--chene); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.card li { margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: flex-start; gap: 12px; }
+
+.phone-link { color: inherit; text-decoration: none; font-weight: bold; }
+
+/* ==========================================================================
+   7. CONTACT & FOOTER
+   ========================================================================== */
+.contact-form { background: rgba(255,255,255,0.01); padding: 40px; border: 1px solid rgba(255,255,255,0.03); }
+
+input, textarea { 
+    width: 100%; 
+    padding: 15px 0; 
+    background: transparent; 
+    border: none; 
+    border-bottom: 1px solid rgba(255,255,255,0.1); 
+    color: white; 
+    outline: none; 
+    margin-bottom: 30px; 
+    font-family: inherit; 
+    transition: 0.3s; 
+}
+
+input:focus { border-bottom: 1px solid var(--chene); }
+
+.btn-cta {
+    position: relative; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center;
+    margin-top: 30px; 
+    padding: 12px 28px; 
+    border: 1px solid var(--chene); 
+    color: var(--chene); 
+    text-decoration: none; 
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+    font-size: 0.7rem; 
+    font-weight: bold; 
+    background: rgba(255,255,255,0.01); 
+    transition: 0.5s; 
+    cursor: pointer; 
+    overflow: hidden;
+}
+
+.btn-cta svg { margin-right: 10px; transition: 0.5s ease; fill: var(--chene); width: 16px; height: 16px; }
+.btn-cta:hover { background: var(--chene); color: var(--fond); }
+.btn-cta:hover svg { fill: var(--fond); }
+
+footer { 
+    text-align: center; 
+    padding: 60px 20px 40px 20px; 
+    border-top: 1px solid rgba(255,255,255,0.05);
+    background: var(--fond-footer);
+}
+
+/* ==========================================================================
+   8. MEDIA QUERIES (RESPONSIVE)
+   ========================================================================== */
+
+/* MOBILE & TABLETTE BURGER */
+@media (max-width: 1023px) {
+    .burger-menu { display: flex; }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 180px;
         height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding-left: 8%;
-        background: var(--fond);
-    }
-
-    .header-right {
-        width: 50%;
-        height: 100vh;
-        display: flex;
+        background: rgba(26, 28, 30, 0.95);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: var(--texte); /* Fond blanc à droite */
+        gap: 35px;
+        transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        z-index: 1050;
+        border-left: 1px solid rgba(194, 163, 130, 0.2);
+        backdrop-filter: blur(10px);
     }
 
-    /* Adaptation des éléments sur fond blanc */
-    .header-right .btn-cta {
-        border-color: #1a1c1e;
-        color: #1a1c1e;
-    }
-    
-    .header-right .btn-cta svg { fill: #1a1c1e; }
-    
-    .shimmer-effect {
-        font-size: 5.5rem;
-        letter-spacing: 20px;
-    }
-    
-        /* --- TARIFS DESKTOP --- */
-    .menu-border {
-        display: grid;
-        grid-template-columns: 1fr 1fr; /* Deux colonnes égales */
-        gap: 60px;
-        max-width: 1000px;
-        text-align: left;
+    .nav-links.open { right: 0; }
+
+    .burger-menu.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .burger-menu.open span:nth-child(2) { opacity: 0; }
+    .burger-menu.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    body.menu-open > *:not(nav) {
+        filter: blur(8px);
+        pointer-events: none;
+        transition: filter 0.4s ease;
     }
 
-    .menu-border p[style*="font-size: 0.7rem"] {
-        grid-column: span 2; /* Le petit texte reste sur toute la largeur */
-        text-align: center;
-    }
+    .menu-logo-svg { width: 250px; filter: brightness(0) invert(1); display: block; }
+}
 
-    .menu-section { margin-bottom: 0; }
-    
-        /* --- ATELIER DESKTOP --- */
-    #atelier div[style*="display: grid"] {
-        grid-template-columns: repeat(3, 1fr) !important; /* Force 3 colonnes */
-        gap: 20px;
-    }
-
-    .card {
-        height: 100%;
+/* SMARTPHONES */
+@media (max-width: 768px) {
+    header { 
+        min-height: 60vh; /* Utilise toute la hauteur de l'écran mobile */
+        padding: 80px 15px 40px 15px; 
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-    }
-    
-        section {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 120px 50px;
+        justify-content: center; /* Centre verticalement l'ensemble */
+        align-items: center;     /* Centre horizontalement l'ensemble */
+        gap: 20px;               /* Espace de sécurité entre les blocs */
     }
 
-    .galerie-grid {
-        grid-template-columns: repeat(3, 1fr); /* Triptyque photo */
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .shimmer-effect { 
+        font-size: 2.2rem; 
+        letter-spacing: 6px; 
+        margin-bottom: 10px;
+    }
+
+    .knife-container { 
+        width: 120px; 
+        height: 280px; 
+        margin: 20px auto; /* Centre le couteau sans marges fixes excessives */
+        position: relative;
+    }
+
+    .precaution-banner { 
+        font-size: 0.6rem; 
+        margin-top: 60px; /* Aligne la bannière sous la navigation fixe */
     }
 }
 
 
+/* DESKTOP */
+@media screen and (min-width: 1024px) {
+    .menu-logo-container { display: none; }
 
+    header { flex-direction: row; padding: 0; justify-content: flex-start; }
+    .header-left { width: 50%; height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-left: 8%; background: var(--fond); }
+    .header-right { width: 50%; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: var(--texte); }
+
+    .header-right .btn-cta { border-color: #1a1c1e; color: #1a1c1e; }
+    .header-right .btn-cta svg { fill: #1a1c1e; }
+    
+    .shimmer-effect { font-size: 5.5rem; letter-spacing: 20px; }
+
+    .menu-border { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1000px; text-align: left; }
+    .menu-border p[style*="font-size: 0.7rem"] { grid-column: span 2; text-align: center; }
+
+    #atelier div[style*="display: grid"] { grid-template-columns: repeat(3, 1fr) !important; gap: 20px; }
+    
+    section { max-width: 1100px; padding: 120px 50px; }
+    .galerie-grid { grid-template-columns: repeat(3, 1fr); }
+}
