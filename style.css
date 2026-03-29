@@ -132,15 +132,22 @@
 }
 
 
+/* --- CONFIGURATION PAR DÉFAUT (MOBILE) --- */
+header {
+    display: flex;
+    flex-direction: column; /* Empilé verticalement */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100dvh;
+}
 
-
-
-  header { 
-  min-height: 100vh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 120px 20px 40px 20px; text-align: center; box-sizing: border-box;
-  background: radial-gradient(circle at center, #23272a 0%, #1a1c1e 100%);
-    }
+.header-left, .header-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 
 /* --- Titre Header & Effet Shimmer --- */
@@ -285,9 +292,9 @@ h2 { color: var(--chene); text-transform: uppercase; letter-spacing: 6px; margin
 }
 
   
-          .menu-container { border: 1px solid var(--chene); padding: 10px; max-width: 650px; margin: auto; }
-          .menu-border { border: 2px solid var(--chene); padding: 60px 40px; background: #1d1f21; text-align: center; }
-          .menu-section { margin-bottom: 35px; }
+.menu-container { border: 1px solid var(--chene); padding: 10px; max-width: 650px; margin: auto; }
+.menu-border { border: 2px solid var(--chene); padding: 60px 40px; background: #1d1f21; text-align: center; }
+.menu-section { margin-bottom: 35px; }
           .menu-row { display: flex; align-items: baseline; margin-bottom: 12px; font-size: 0.95rem; }
           .menu-dots { flex-grow: 1; border-bottom: 1px dotted rgba(194, 163, 130, 0.4); margin: 0 12px; }
           .menu-price { color: var(--chene); font-weight: bold; min-width: 45px; text-align: right; }
@@ -327,6 +334,7 @@ h2 { color: var(--chene); text-transform: uppercase; letter-spacing: 6px; margin
           
           /* --- Ajustements Mobile --- */
   @media (max-width: 768px) {
+    
       header {
           min-height: 80vh; /* Réduit la hauteur sur mobile */
           padding: 100px 15px 40px 15px; /* Moins de padding en haut */
@@ -348,3 +356,89 @@ h2 { color: var(--chene); text-transform: uppercase; letter-spacing: 6px; margin
           margin-top: 80px;
       }
   }
+
+@media screen and (min-width: 1024px) {
+  
+  
+    /* --- HEADER SPLIT --- */
+    header {
+        flex-direction: row;
+        padding: 0;
+        justify-content: flex-start;
+    }
+
+    .header-left {
+        width: 50%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 8%;
+        background: var(--fond);
+    }
+
+    .header-right {
+        width: 50%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: var(--texte); /* Fond blanc à droite */
+    }
+
+    /* Adaptation des éléments sur fond blanc */
+    .header-right .btn-cta {
+        border-color: #1a1c1e;
+        color: #1a1c1e;
+    }
+    
+    .header-right .btn-cta svg { fill: #1a1c1e; }
+    
+    .shimmer-effect {
+        font-size: 5.5rem;
+        letter-spacing: 20px;
+    }
+    
+        /* --- TARIFS DESKTOP --- */
+    .menu-border {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Deux colonnes égales */
+        gap: 60px;
+        max-width: 1000px;
+        text-align: left;
+    }
+
+    .menu-border p[style*="font-size: 0.7rem"] {
+        grid-column: span 2; /* Le petit texte reste sur toute la largeur */
+        text-align: center;
+    }
+
+    .menu-section { margin-bottom: 0; }
+    
+        /* --- ATELIER DESKTOP --- */
+    #atelier div[style*="display: grid"] {
+        grid-template-columns: repeat(3, 1fr) !important; /* Force 3 colonnes */
+        gap: 20px;
+    }
+
+    .card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+        section {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 120px 50px;
+    }
+
+    .galerie-grid {
+        grid-template-columns: repeat(3, 1fr); /* Triptyque photo */
+    }
+}
+
+
+
