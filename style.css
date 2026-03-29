@@ -136,60 +136,88 @@
 
 
   header { 
-            min-height: 100vh;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 120px 20px 40px 20px; text-align: center; box-sizing: border-box;
-            background: radial-gradient(circle at center, #23272a 0%, #1a1c1e 100%);
-        }
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 120px 20px 40px 20px; text-align: center; box-sizing: border-box;
+  background: radial-gradient(circle at center, #23272a 0%, #1a1c1e 100%);
+    }
 
- h1 { font-size: clamp(2.5rem, 10vw, 4rem); margin: 0; text-transform: uppercase; letter-spacing: 12px; font-weight: 400; color: white; }
-  h1 b { color: var(--chene); font-weight: 700; }
-  .subtitle { margin-top: 15px; letter-spacing: 6px; text-transform: uppercase; font-size: 0.9rem; color: var(--acier); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; display: inline-block; }
 
-  .knife-container { width: 160px; height: 340px; margin: 20px 0; position: relative; }
-        svg { width: 100%; height: 100%; overflow: visible; }
+/* --- Titre Header & Effet Shimmer --- */
+.shimmer-effect {
+    font-size: clamp(2.2rem, 8vw, 4rem);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 12px;
+    font-weight: 500; /* Un peu plus épais pouri compenser la perte du 'b' */
+    display: inline-block;
+    /* LE SLASH MÉTALLIQUE */
+    background-image: linear-gradient(
+        110deg, 
+        rgba(255,255,255,0) 35%, 
+        rgba(255,255,255,1) 50%, 
+        rgba(255,255,255,0) 65%
+    );
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+    background-position: var(--glint-pos) 0%;
+    /* COULEUR DORÉE UNIFIÉE */
+    background-color: var(--chene); 
+    /* MASQUAGE DU TEXTE */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+}
 
-        .outline-animated {
-            stroke: var(--neon-orange); stroke-width: 2.5; fill: none; stroke-linecap: round;
-            stroke-dasharray: 150 1000;
-            animation: stroke-loop 4s linear infinite;
-        }
-        @keyframes stroke-loop { from { stroke-dashoffset: 1150; } to { stroke-dashoffset: 0; } }
+  
+  
+.subtitle { margin-top: 15px; letter-spacing: 6px; text-transform: uppercase; font-size: 0.9rem; color: var(--acier); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; display: inline-block; }
 
-        .calligraphy-path {
-            stroke: var(--bleu-metal);
-            stroke-width: 1.1; 
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            fill: none;
-            stroke-dasharray: 800;
-            stroke-dashoffset: 800;
-            animation: drawCalligraphy 6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-            animation-delay: 1.5s;
-        }
-        @keyframes drawCalligraphy { to { stroke-dashoffset: 0; } }
+.knife-container { width: 160px; height: 340px; margin: 20px 0; position: relative; }
+svg { width: 100%; height: 100%; overflow: visible; }
 
-        section { padding: 90px 25px; max-width: 950px; margin: auto; }
-        h2 { color: var(--chene); text-transform: uppercase; letter-spacing: 6px; margin-bottom: 60px; font-weight: 400; text-align: center; position: relative; }
+.outline-animated {
+    stroke: var(--neon-orange); stroke-width: 2.5; fill: none; stroke-linecap: round;
+    stroke-dasharray: 150 1000;
+    animation: stroke-loop 4s linear infinite;
+}
+@keyframes stroke-loop { from { stroke-dashoffset: 1150; } to { stroke-dashoffset: 0; } }
 
-        .souligne-fleche { 
-            position: relative; display: inline-block; padding: 0 40px 12px 40px;
-            border-bottom: 0.5px solid var(--acier);
-        }
-        .souligne-fleche::before { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-right: 6px solid var(--acier); opacity: 0.8; }
-        .souligne-fleche::after { content: ''; position: absolute; right: 0; bottom: -3px; width: 0; height: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-left: 6px solid var(--acier); opacity: 0.8; }
+.calligraphy-path {
+    stroke: var(--bleu-metal);
+    stroke-width: 1.1; 
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    animation: drawCalligraphy 6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    animation-delay: 1.5s;
+}
+@keyframes drawCalligraphy { to { stroke-dashoffset: 0; } }
 
-        .tech-border-L { border-left: 0.5px solid var(--acier); padding-left: 25px; transition: 0.4s ease; }
-        .tech-border-R { border-right: 0.5px solid var(--acier); padding-right: 25px; transition: 0.4s ease; }
+section { padding: 90px 25px; max-width: 950px; margin: auto; }
+h2 { color: var(--chene); text-transform: uppercase; letter-spacing: 6px; margin-bottom: 60px; font-weight: 400; text-align: center; position: relative; }
 
-        .galerie-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 50px; }
-        .photo-frame { aspect-ratio: 4/5; background: #1d1f21; border: 1px solid rgba(194, 163, 130, 0.1); overflow: hidden; transition: 0.5s; }
-        .photo-frame img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.8s ease; filter: grayscale(50%); }
-        .photo-frame:hover { border-color: var(--chene); transform: scale(1.02); }
-        .photo-frame:hover img { opacity: 1; filter: grayscale(0%); }
-      
-      
-      
+.souligne-fleche { 
+    position: relative; display: inline-block; padding: 0 40px 12px 40px;
+    border-bottom: 0.5px solid var(--acier);
+}
+.souligne-fleche::before { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-right: 6px solid var(--acier); opacity: 0.8; }
+.souligne-fleche::after { content: ''; position: absolute; right: 0; bottom: -3px; width: 0; height: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-left: 6px solid var(--acier); opacity: 0.8; }
+
+.tech-border-L { border-left: 0.5px solid var(--acier); padding-left: 25px; transition: 0.4s ease; }
+.tech-border-R { border-right: 0.5px solid var(--acier); padding-right: 25px; transition: 0.4s ease; }
+
+.galerie-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 50px; }
+.photo-frame { aspect-ratio: 4/5; background: #1d1f21; border: 1px solid rgba(194, 163, 130, 0.1); overflow: hidden; transition: 0.5s; }
+.photo-frame img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.8s ease; filter: grayscale(50%); }
+.photo-frame:hover { border-color: var(--chene); transform: scale(1.02); }
+.photo-frame:hover img { opacity: 1; filter: grayscale(0%); }
+
+
+
 /* --- CORRECTION RADICALE SECTION TECHNIQUE --- */
 
 #technique > div:nth-child(2) { 
