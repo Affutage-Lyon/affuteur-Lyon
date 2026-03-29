@@ -1,103 +1,41 @@
-/**
- * PROJET : Ken Aiguise (Affûtage de précision, Lyon)
- * FICHIER : app.js
- * RÔLE : Animations, Navigation mobile et ScrollSpy
- */
+// --- ScrollSpy Fluide ---
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('section');
 
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- 1. SÉLECTEURS PRINCIPAUX ---
-    const burger = document.getElementById('burger-trigger');
-    const navMenu = document.getElementById('nav-menu');
-    const body = document.body;
-    const navLinks = document.querySelectorAll('.nav-links a');
-    const sections = document.querySelectorAll('section');
-    const title = document.querySelector('.shimmer-effect');
+function updateActiveLink() {
+    const scrollPos = window.scrollY;
+    const offset = 120;
+    let current = "";
 
-    // --- 2. GESTION DU MENU MOBILE (BURGER) ---
-    function toggleMenu() {
-        burger.classList.toggle('open');
-        navMenu.classList.toggle('open');
-        body.classList.toggle('menu-open'); // Active l'effet de flou défini dans style.css
+    if (sections.length > 0 && scrollPos < sections[0].offsetTop - offset) {
+        navLinks.forEach(link => link.classList.add("active"));
+        return;
     }
 
-    if (burger) {
-        burger.addEventListener('click', toggleMenu);
-    }
+    sections.forEach(section => {
+        if (scrollPos >= section.offsetTop - offset) {
+            current = section.getAttribute("id");
+        }
+    });
 
-    // Fermeture automatique au clic sur un lien
     navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navMenu.classList.contains('open')) {
-                toggleMenu();
-            }
-        });
-    });
-
-    // --- 3. SCROLLSPY (MISE EN AVANT DU LIEN ACTIF) ---
-    function updateActiveLink() {
-        const scrollPos = window.scrollY;
-        const offset = 120; // Décalage pour l'activation
-        let current = "";
-
-        // Si on est tout en haut, on active le premier lien
-        if (sections.length > 0 && scrollPos < sections[0].offsetTop - offset) {
-            navLinks.forEach(link => link.classList.remove("active"));
-            if (navLinks[0]) navLinks[0].classList.add("active");
-            return;
+        link.classList.remove("active");
+        if (current && link.getAttribute("href").includes(current)) {
+            link.classList.add("active");
         }
-
-        sections.forEach(section => {
-            if (scrollPos >= section.offsetTop - offset) {
-                current = section.getAttribute("id");
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove("active");
-            if (current && link.getAttribute("href").includes(current)) {
-                link.classList.add("active");
-            }
-        });
-    }
-
-    // Optimisation de la performance du scroll
-    window.addEventListener('scroll', () => {
-        window.requestAnimationFrame(updateActiveLink);
     });
+}
 
-    // --- 4. ANIMATION DU TITRE (EFFET SHIMMER / SLASH) ---
-    if (title) {
-        let position = 120; // Point de départ à droite
-
-        function animateShimmer() {
-            position -= 0.6; // Vitesse de passage du reflet
-            
-            // Boucle infinie : une fois à gauche (-20%), on repart à droite (120%)
-            if (position < -20) {
-                position = 120; 
-            }
-
-            title.style.setProperty('--glint-pos', position + '%');
-            requestAnimationFrame(animateShimmer);
-        }
-
-        animateShimmer();
-    }
-
-    // Initialisation immédiate du ScrollSpy
-    updateActiveLink();
+// Optimisation du scroll
+window.addEventListener('scroll', () => {
+    window.requestAnimationFrame(updateActiveLink);
 });
+document.addEventListener('DOMContentLoaded', updateActiveLink);
+window.addEventListener("load", updateActiveLink);
 
-// --- 5. LOGIQUE DU FORMULAIRE (ADRESSE PRO) ---
-/**
- * Affiche ou masque les champs spécifiques aux professionnels
- * @param {boolean} show 
- */
+// Gestion de l'affichage de l'adresse pro
 function toggleProAddress(show) {
     const section = document.getElementById('pro-address-section');
-    if (!section) return;
-
     if (show) {
         section.classList.add('visible');
     } else {
@@ -105,8 +43,58 @@ function toggleProAddress(show) {
     }
 }
 
-// --- 6. ÉVÉNEMENTS DE CHARGEMENT ---
-window.addEventListener('load', () => {
-    // Force le retour en haut de page au rafraîchissement pour l'expérience utilisateur
-    window.scrollTo(0, 0);
+document.addEventListener('DOMContentLoaded', () => {
+    const title = document.querySelector('.shimmer-effect');
+    if (!title) return;
+
+    let position = 120; // On commence juste à droite du texte
+
+    function animate() {
+        position -= 0.6; // Vitesse du slash (ajuste à ta guise)
+        
+        // LA MAGIE EST ICI :
+        // Dès que la position atteint -20% (le slash a fini de passer à gauche)
+        // on le renvoie immédiatement à 120% (il s'apprête à revenir par la droite)
+        if (position < -20) {
+            position = 120; 
+        }
+
+        title.style.setProperty('--glint-pos', position + '%');
+        requestAnimationFrame(animate);
+    }
+
+    animate();
 });
+
+window.onload = () => {
+    // Force le scroll en haut de page au rafraîchissement
+    window.scrollTo(0, 0);
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.getElementById('burger-trigger');
+    const navMenu = document.getElementById('nav-menu');
+    const body = document.body;
+    const links = document.querySelectorAll('.nav-links a');
+
+    // Fonction pour basculer le menu
+    function toggleMenu() {
+        burger.classList.toggle('open');
+        navMenu.classList.toggle('open');
+        body.classList.toggle('menu-open'); // Active l'effet de flou CSS
+    }
+
+    burger.addEventListener('click', toggleMenu);
+
+    // Fermer le menu quand on clique sur un lien
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navMenu.classList.contains('open')) {
+                toggleMenu();
+            }
+        });
+    });
+});
+
+
+
