@@ -114,10 +114,10 @@ nav {
     text-align: center;
     padding: 10px 20px;
     font-size: 0.75rem;
-    letter-spacing: 1px;
     text-transform: uppercase;
     border-bottom: 1px solid rgba(194, 163, 130, 0.2);
-    margin-top: 54px; 
+    /* On réduit la marge pour coller davantage à la nav (54px -> 45px) */
+    margin-top: 45px; 
 }
 
 /* ==========================================================================
@@ -134,17 +134,6 @@ header {
     padding: 40px 20px; 
 }
 
-.precaution-banner {
-    background-color: rgba(194, 163, 130, 0.1);
-    color: var(--chene);
-    text-align: center;
-    padding: 10px 20px;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(194, 163, 130, 0.2);
-    /* On réduit la marge pour coller davantage à la nav (54px -> 45px) */
-    margin-top: 45px; 
-}
 
 
 .header-content {
@@ -156,7 +145,6 @@ header {
     /* On réduit l'espace global ici aussi */
     gap: 10px; 
 }
-
 
 .knife-container { 
     width: 110px; 
@@ -189,6 +177,46 @@ header {
     pointer-events: none;
 }
 
+/* Zone étendue jusqu'au sommet du header */
+#water-particles {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 100%; /* Couvre toute la hauteur du header */
+    pointer-events: none;
+    z-index: 4;
+}
+
+.particle {
+    position: absolute;
+    /* Point de départ au niveau de la lame [cite: 26-03-26] */
+    top: 95%; 
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 4px rgba(77, 148, 255, 0.6); /* Éclat bleu-métal */
+    /* ease-out permet le ralentissement sur la fin [cite: 26-03-27] */
+    animation: floatUp var(--duration) ease-out forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    80% {
+        opacity: 0.4;
+    }
+    100% {
+        /* La goutte s'élève loin mais ralentit grâce au timing-function */
+        transform: translate(var(--xDir), var(--yDir)) scale(0.3);
+        opacity: 0;
+    }
+}
 
 
 

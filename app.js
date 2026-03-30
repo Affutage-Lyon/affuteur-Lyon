@@ -94,6 +94,45 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    
+    /**
+ * Animation personnalisée : envolée fluide des gouttes d'eau
+ */
+function createFloatingDrop() {
+    const container = document.getElementById('water-particles');
+    if (!container) return;
+
+    // Création par grappes de 2 pour un flux élégant
+    for (let i = 0; i < 2; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+
+        const size = (Math.random() * 3 + 1) + 'px';
+        // Durée plus longue (3 à 5s) pour apprécier le ralentissement
+        const duration = (Math.random() * 2 + 3) + 's';
+        
+        // Projection vers le haut (négatif) couvrant le haut du header
+        const xDir = (Math.random() - 0.5) * 150 + 'px';
+        const yDir = -(Math.random() * 350 + 200) + 'px';
+
+        p.style.width = size;
+        p.style.height = size;
+        p.style.left = '50%';
+        
+        p.style.setProperty('--duration', duration);
+        p.style.setProperty('--xDir', xDir);
+        p.style.setProperty('--yDir', yDir);
+
+        container.appendChild(p);
+
+        // Nettoyage après l'envolée complète [cite: 26-03-27]
+        setTimeout(() => p.remove(), parseFloat(duration) * 1000);
+    }
+}
+
+// Intervalle de 80ms pour une densité harmonieuse
+setInterval(createFloatingDrop, 80);
+
 });
 
 
