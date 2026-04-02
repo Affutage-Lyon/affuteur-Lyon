@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rapport d'Intervention | Ken Aiguise</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+</head>
+<body style="padding-top: 100px;">
+    <section>
+        <h2 id="client-name">Chargement...</h2>
+        <div class="menu-border" id="rapport-content">
+            </div>
+            <div style="margin-top: 30px;">
+    <a href="../rapports/rapport-lycee-ecpr-avril.pdf" target="_blank" class="btn-cta">
+        📄 TÉLÉCHARGER LE COMPTE-RENDU TECHNIQUE
+    </a>
+</div>
+        <a href="index.html" class="btn-cta">Retour à l'accueil</a>
+        
+        
+
+    </section>
+
+    <script>
+       <script>
+document.addEventListener('DOMContentLoaded', async () => {
+    // 1. Récupérer le client connecté via la session
+    const sessionData = sessionStorage.getItem('kenAiguise_client');
+    if (!sessionData) {
+        window.location.href = 'index.html';
+        return;
+    }
+
+    const client = JSON.parse(sessionData);
+    document.getElementById('client-name').innerText = client.nom;
+
+    try {
+        // 2. Charger tous les rapports d'intervention
+        const response = await fetch('./data/rapport.json');
+        const data = await response.json();
+
+        // 3. Filtrer pour trouver l'intervention de ce client
+        const interventions = data.interventions.filter(i => i.client_id === client.id);
+        
+        const btn = document.querySelector('.btn-cta');
+if (derniere.lien_pdf) {
+    btn.href = derniere.lien_pdf;
+    btn.target = "_blank"; // Ouvre le PDF dans un nouvel onglet
+}
+
+
+        const content = document.getElementById('rapport-content');
+        if (interventions.length > 0) {
+            // On prend la plus récente (la première dans ton JSON)
+            const derniere = interventions[0]; 
+            
+            content.innerHTML = `
+                <div style="text-align: left; border-left: 2px solid var(--chene); padding-left: 20px;">
+                    <p><strong>Forfait :</strong> ${client.forfait} (${client.tarif_annuel}€/an)</p>
+                    <p><strong>Dernier passage :</strong> ${derniere.date}</p>
+                    <p><strong>Travail effectué :</strong> ${derniere.lames_affutees} lames traitées, ${derniere.baguettes_posees} protections posées.</p>
+                    <p style="font-style: italic; color: var(--acier); margin: 15px 0;">"${derniere.observations}"</p>
+                    <hr style="border: 0.5px solid rgba(142, 154, 175, 0.2);">
+                    <p style="color: var(--chene); font-weight: bold;">Prochaine intervention : ${derniere.prochain_passage}</p>
+                </div>
+            `;
+        } else {
+            content.innerHTML = "<p>Aucune intervention enregistrée pour le moment.</p>";
+        }
+    } catch (error) {
+        console.error("Erreur de chargement du rapport :", error);
+    }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+    // 1. Récupérer l'ID du client stocké lors de la connexion
+    const sessionData = sessionStorage.getItem('kenAiguise_client');
+    
+    if (!sessionData) {
+        window.location.href = 'index.html';
+        return;
+    }
+
+    const client = JSON.parse(sessionData);
+    document.getElementById('client-name').innerText = client.nom;
+
+    try {
+        // 2. Charger les interventions (Vérifie bien le nom du fichier : rapport.json)
+        const response = await fetch('./data/rapport.json');
+        
+        if (!response.ok) throw new Error("Faire attention au nom du fichier JSON");
+
+        const data = await response.json();
+
+        // 3. Filtrer pour trouver l'intervention correspondante (ID: ECPR)
+        const interventions = data.interventions.filter(i => i.client_id === client.id);
+
+        const content = document.getElementById('rapport-content');
+        
+        if (interventions.length > 0) {
+            const derniere = interventions[0]; // La plus récente
+            content.innerHTML = `
+                <div style="text-align: left; padding: 10px;">
+                    <p><strong>Forfait :</strong> ${client.forfait} (${client.tarif_annuel}€/an)</p>
+                    <p><strong>Dernière intervention :</strong> ${derniere.date}</p>
+                    <p><strong>Travail effectué :</strong> ${derniere.lames_affutees} lames, ${derniere.baguettes_posees} baguettes.</p>
+                    <p style="font-style: italic; color: var(--acier); margin: 15px 0;">"${derniere.observations}"</p>
+                    <hr style="border: 0.5px solid rgba(142, 154, 175, 0.2);">
+                    <p style="color: var(--chene); font-weight: bold;">Prochain passage : ${derniere.prochain_passage}</p>
+                </div>
+            `;
+        } else {
+            content.innerHTML = "<p>Aucun rapport trouvé pour cet établissement.</p>";
+        }
+    } catch (error) {
+        console.error("Erreur de chargement :", error);
+        document.getElementById('rapport-content').innerHTML = "<p>Erreur de chargement des données techniques.</p>";
+    }
+});
+</script>
+
+</body>
+</html>

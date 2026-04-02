@@ -1,0 +1,21 @@
+{
+  "interventions": [
+{
+  "client_id": "ECPR",
+  "date": "02/04/2026",
+  "lames_affutees": 112,
+  "baguettes_posees": 38,
+  "observations": "Affûtage complet...",
+  "prochain_passage": "Juillet 2026",
+  "lien_pdf": "rapports/ecpr-avril-2026.pdf" 
+},
+    {
+      "client_id": "ECPR",
+      "date": "2026-01-10",
+      "lames_affutees": 95,
+      "baguettes_posees": 12,
+      "observations": "Premier passage. Mise en conformité du parc.",
+      "prochain_passage": "Avril 2026"
+    }
+  ]
+}

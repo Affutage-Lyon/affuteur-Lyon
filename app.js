@@ -135,18 +135,33 @@ setInterval(createFloatingDrop, 80);
 });
 
 
-function accessClientSpace() {
-    const code = document.getElementById('client-code').value.trim().toLowerCase();
+async function accessClientSpace() {
+    const codeSaisi = document.getElementById('client-code').value.trim().toUpperCase();
     const errorMsg = document.getElementById('login-error');
 
-    if (code) {
-        // On redirige vers un sous-dossier ou un fichier HTML nommé comme le code
-        // Exemple : si le code est 'ehpad-lyon', il cherche 'clients/ehpad-lyon.html'
-        window.location.href = `clients/${code}.html`;
-    } else {
+    try {
+        // Chargement de la base client depuis le dossier data
+        const response = await fetch('./data/clients.json');
+        const data = await response.json();
+
+        // Vérification du code (ID)
+        const client = data.clients.find(c => c.id === codeSaisi);
+
+        if (client) {
+            // On mémorise le client pour la page suivante
+            sessionStorage.setItem('kenAiguise_client', JSON.stringify(client));
+            // Redirection vers l'interface unique
+            window.location.href = 'rapport.html';
+        } else {
+            errorMsg.style.display = 'block';
+            errorMsg.innerText = "Code inconnu. Vérifiez vos documents Ken Aiguise.";
+        }
+    } catch (error) {
         errorMsg.style.display = 'block';
+        errorMsg.innerText = "Erreur de connexion aux données.";
     }
 }
+
 
 
 
