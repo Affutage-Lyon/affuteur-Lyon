@@ -132,8 +132,21 @@ function createFloatingDrop() {
 
 // Intervalle de 80ms pour une densité harmonieuse
 setInterval(createFloatingDrop, 80);
-
 });
+
+
+function accessClientSpace() {
+    const code = document.getElementById('client-code').value.trim().toLowerCase();
+    const errorMsg = document.getElementById('login-error');
+
+    if (code) {
+        // On redirige vers un sous-dossier ou un fichier HTML nommé comme le code
+        // Exemple : si le code est 'ehpad-lyon', il cherche 'clients/ehpad-lyon.html'
+        window.location.href = `clients/${code}.html`;
+    } else {
+        errorMsg.style.display = 'block';
+    }
+}
 
 
 
