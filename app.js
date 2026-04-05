@@ -162,6 +162,35 @@ async function accessClientSpace() {
     }
 }
 
+// --- Gestion de la réparation du couteau au scroll ---
+window.addEventListener('scroll', () => {
+    const blade = document.getElementById('main-blade');
+    const logo = document.getElementById('blade-logo-scroll');
+    if (!blade || !logo) return;
+
+    const scrollY = window.scrollY;
+    // L'animation se complète après 300px de scroll
+    const threshold = 130; 
+    const progress = Math.min(scrollY / threshold, 1);
+
+    if (progress >= 0.8) {
+        // État : RÉPARÉ
+        blade.setAttribute('d', blade.getAttribute('data-new'));
+        blade.style.fill = "#ffffff";
+        blade.classList.add('is-repaired');
+        logo.style.transform = "translateY(10px)";
+        logo.style.opacity = "1";
+    } else {
+        // État : CASSÉ
+        blade.setAttribute('d', blade.getAttribute('data-broken'));
+        blade.style.fill = "#555c69";
+        blade.classList.remove('is-repaired');
+        logo.style.transform = "translateY(0px)";
+        logo.style.opacity = "0.7";
+    }
+});
+
+
 
 
 
