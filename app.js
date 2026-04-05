@@ -190,6 +190,64 @@ window.addEventListener('scroll', () => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const monthDisplay = document.getElementById('monthDisplay');
+    const calendarDays = document.getElementById('calendarDays');
+    const prevBtn = document.getElementById('prevMonth');
+    const nextBtn = document.getElementById('nextMonth');
+    const selectedDateInput = document.getElementById('selectedDateInput');
+    const dateStatus = document.getElementById('dateStatus');
+
+    let currentDate = new Date();
+
+    function renderCalendar() {
+        calendarDays.innerHTML = '';
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        
+        monthDisplay.innerText = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' }).format(currentDate);
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const startingDay = firstDay === 0 ? 6 : firstDay - 1; // Ajustement pour commencer par Lundi
+
+        // Cases vides pour le début du mois
+        for (let i = 0; i < startingDay; i++) {
+            const div = document.createElement('div');
+            div.classList.add('calendar-day', 'empty');
+            calendarDays.appendChild(div);
+        }
+
+        // Jours du mois
+        for (let day = 1; day <= daysInMonth; day++) {
+            const div = document.createElement('div');
+            div.classList.add('calendar-day');
+            div.innerText = day;
+
+            // Marquer aujourd'hui
+            const today = new Date();
+            if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                div.classList.add('today');
+            }
+
+            div.onclick = () => {
+                document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
+                div.classList.add('selected');
+                const formattedDate = `${day} ${monthDisplay.innerText}`;
+                selectedDateInput.value = `${year}-${month + 1}-${day}`;
+                dateStatus.innerText = `Souhaité pour le : ${formattedDate}`;
+            };
+
+            calendarDays.appendChild(div);
+        }
+    }
+
+    prevBtn.onclick = () => { currentDate.setMonth(currentDate.getMonth() - 1); renderCalendar(); };
+    nextBtn.onclick = () => { currentDate.setMonth(currentDate.getMonth() + 1); renderCalendar(); };
+
+    renderCalendar();
+});
+
 
 
 

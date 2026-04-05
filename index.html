@@ -225,7 +225,7 @@
             </ul>
         </div>
     </div>
-    <p class="pro-note">Idéal pour Collèges, Lycées ECPR et EHPAD de la région lyonnaise [cite: 2026-04-01].</p>
+    <p class="pro-note">Idéal pour Collèges, Lycées PRO et EHPAD de la région lyonnais</p>
 </div>
         </section>
 
@@ -292,6 +292,24 @@
                     </div>
 
                     <textarea name="message" placeholder="Décrivez vos outils ou votre besoin (ex: 3 couteaux de chef, 1 paire de ciseaux...)" rows="4" style="width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); background: transparent; color: white; font-family: inherit; margin-bottom: 30px; border-top: none; border-left: none; border-right: none; outline: none;"></textarea>
+                    
+                    <div class="calendar-section">
+    <p class="calendar-label">Choisissez votre date de passage idéale</p>
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <button type="button" id="prevMonth">&lt;</button>
+            <h4 id="monthDisplay">Avril 2026</h4>
+            <button type="button" id="nextMonth">&gt;</button>
+        </div>
+        <div class="calendar-weekdays">
+            <div>Lun</div><div>Mar</div><div>Mer</div><div>Jeu</div><div>Ven</div><div>Sam</div><div>Dim</div>
+        </div>
+        <div id="calendarDays" class="calendar-days">
+            </div>
+    </div>
+    <input type="hidden" name="date_rdv" id="selectedDateInput" required>
+    <p id="dateStatus" class="date-status">Aucune date sélectionnée</p>
+</div>
 
                     <button type="submit" class="btn-cta" style="width:100%;">Envoyer mon message</button>
                 </form>
