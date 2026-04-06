@@ -182,6 +182,22 @@ galerieContainer.addEventListener('touchend', e => {
     handleSwipe();
 }, {passive: true});
 
+// --- GESTION ACCORDÉON ROI ---
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const faqItem = button.parentElement;
+        
+        // Ferme les autres items
+        document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) item.classList.remove('active');
+        });
+        
+        // Bascule l'état actuel
+        faqItem.classList.toggle('active');
+    });
+});
+
+
 
 // --- 7. GESTION DU CALENDRIER DE RÉSERVATION ---
 document.addEventListener('DOMContentLoaded', () => {

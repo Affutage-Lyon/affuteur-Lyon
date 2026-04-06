@@ -112,24 +112,22 @@ nav {
     margin-top: 45px; 
 }
 
-/* Logo dans la navigation */
 .menu-logo-svg {
-    width: 200px; /* Taille réduite pour plus d'élégance */
+    width: 200px;
     height: auto;
     transition: transform 0.3s ease;
-    filter: brightness(0) invert(1); /* Garde le logo en blanc sur fond sombre */
+    filter: brightness(0) invert(1);
     padding: 5px 0;
 }
 
 .menu-logo-container {
     display: flex;
     align-items: center;
-    margin-right: 20px; /* Espace avec les liens */
+    margin-right: 20px;
 }
 
-
 /* ==========================================================================
-   3. HEADER & ANIMATION COUTEAU
+   3. HEADER & ANIMATION COUTEAU DYNAMIQUE
    ========================================================================== */
 header {
     display: flex;
@@ -226,6 +224,9 @@ header {
     padding-top: 15px; 
 }
 
+/* ==========================================================================
+   4. BOUTONS & CTA
+   ========================================================================== */
 .btn-cta {
     display: inline-flex;
     align-items: center;
@@ -253,11 +254,10 @@ header {
     transition: transform 0.4s ease, fill 0.4s ease;
 }
 
-/* Effet au survol : Inversion et éclat orange */
 .btn-cta:hover {
     background: var(--chene);
     color: var(--fond);
-    box-shadow: 0 0 20px rgba(255, 180, 77, 0.3); /* Rappel du néon orange */
+    box-shadow: 0 0 20px rgba(255, 180, 77, 0.3);
     transform: translateY(-2px);
 }
 
@@ -267,7 +267,7 @@ header {
 }
 
 /* ==========================================================================
-   4. SECTIONS & GRILLES
+   5. SECTIONS & TITRES (SOULIGNÉ FLÈCHE)
    ========================================================================== */
 section {
     padding: 90px 25px;
@@ -294,31 +294,15 @@ h2 {
 .souligne-fleche::before { content: ''; position: absolute; bottom: -3px; left: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-right: 6px solid var(--acier); }
 .souligne-fleche::after { content: ''; position: absolute; bottom: -3px; right: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-left: 6px solid var(--acier); }
 
-.galerie-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 15px; 
-}
-
-.photo-frame { 
-    aspect-ratio: 4/5; 
-    border: 1px solid rgba(194, 163, 130, 0.1); 
-    overflow: hidden; 
-    transition: 0.5s; 
-}
-
-.photo-frame img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.8s; filter: grayscale(50%); }
-.photo-frame:hover { border-color: var(--chene); transform: scale(1.02); }
-.photo-frame:hover img { opacity: 1; filter: grayscale(0%); }
-
-
-/* --- Galerie Ultra-Fluide --- */
+/* ==========================================================================
+   6. GALERIE ULTRA-FLUIDE (ACCORDÉON)
+   ========================================================================== */
 .galerie-container {
     display: flex;
     gap: 12px;
-    height: 550px; /* Légèrement plus grand pour l'impact visuel */
+    height: 550px;
     margin-top: 40px;
-    perspective: 1000px; /* Prépare la profondeur */
+    perspective: 1000px;
 }
 
 .galerie-card {
@@ -326,15 +310,13 @@ h2 {
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    /* Courbe Bézier typique des interfaces haut de gamme */
-    transition: flex 0.7s cubic-bezier(0.23, 1, 0.32, 1), 
-                transform 0.5s ease;
+    transition: flex 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.5s ease;
     border: 1px solid rgba(194, 163, 130, 0.1);
     background: #000;
 }
 
 .galerie-card.active {
-    flex: 5; /* Expansion plus marquée */
+    flex: 5;
     border-color: var(--chene);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
@@ -344,15 +326,13 @@ h2 {
     height: 100%;
     object-fit: cover;
     filter: grayscale(100%) contrast(1.1);
-    /* L'image bouge un peu plus lentement que le cadre pour l'effet parallaxe */
-    transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1), 
-                filter 0.8s ease;
-    transform: scale(1.1); /* Légère marge pour le mouvement */
+    transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1), filter 0.8s ease;
+    transform: scale(1.1);
 }
 
 .galerie-card.active img {
     filter: grayscale(0%) contrast(1);
-    transform: scale(1); /* L'image se "pose" lors de l'activation */
+    transform: scale(1);
 }
 
 .card-overlay {
@@ -362,7 +342,6 @@ h2 {
     width: 100%;
     padding: 40px;
     background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
-    /* Apparition en fondu montant */
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.2s;
@@ -373,32 +352,77 @@ h2 {
     transform: translateY(0);
 }
 
+/* ==========================================================================
+   7. EXPERTISE PRO (ACCORDÉON FAQ)
+   ========================================================================== */
+.faq-container {
+    max-width: 800px;
+    margin: 40px auto;
+}
 
+.faq-item {
+    border-bottom: 1px solid rgba(194, 163, 130, 0.2);
+    margin-bottom: 10px;
+}
 
+.faq-question {
+    width: 100%;
+    padding: 25px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border: none;
+    color: var(--texte);
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
 
+.faq-question:hover { color: var(--chene); }
+.faq-question span { letter-spacing: 1px; }
 
+.chevron {
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--chene);
+    border-bottom: 2px solid var(--chene);
+    transform: rotate(45deg);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
 
-.tech-border-L { border-left: 3px solid var(--acier); padding-left: 20px; }
-.tech-border-R { border-right: 3px solid var(--acier); padding-right: 20px; }
+.faq-item.active .chevron { transform: rotate(-135deg); }
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.faq-answer p {
+    padding-bottom: 25px;
+    color: var(--acier);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.faq-item.active .faq-answer { max-height: 200px; }
 
 /* ==========================================================================
-   5. TARIFS, ATELIER & FORMULAIRE
+   8. TARIFS (PARTICULIERS & PROS)
    ========================================================================== */
 .menu-container { border: 1px solid var(--chene); padding: 10px; max-width: 650px; margin: auto; }
+.menu-border { border: 2px solid var(--chene); padding: 60px 40px; background: #1d1f21; }
+.menu-section { margin-bottom: 35px; }
+.menu-row { display: flex; align-items: baseline; margin-bottom: 12px; }
+.menu-dots { flex-grow: 1; border-bottom: 1px dotted rgba(194, 163, 130, 0.4); margin: 0 12px; }
+.menu-price { color: var(--chene); font-weight: bold; }
 
-/* --- Grille des Forfaits Pros --- */
-
-.pro-tarifs-container {
-    margin-top: 80px;
-    text-align: center;
-}
-
-.pro-subtitle {
-    font-size: 0.8rem;
-    color: var(--acier);
-    margin-bottom: 40px;
-    letter-spacing: 1px;
-}
+/* Forfaits Professionnels */
+.pro-tarifs-container { margin-top: 80px; text-align: center; }
+.pro-subtitle { font-size: 0.8rem; color: var(--acier); margin-bottom: 40px; letter-spacing: 1px; }
 
 .pro-grid {
     display: grid;
@@ -416,12 +440,12 @@ h2 {
     overflow: hidden;
 }
 
-/* Mise en avant du forfait Moyen */
 .pro-card.featured {
     border-color: var(--chene);
     background: rgba(194, 163, 130, 0.05);
     transform: scale(1.05);
     z-index: 2;
+    box-shadow: 0 0 40px rgba(194, 163, 130, 0.15);
 }
 
 .pro-badge {
@@ -437,88 +461,38 @@ h2 {
     text-transform: uppercase;
 }
 
-.pro-card h4 {
-    color: var(--chene);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
+.pro-card h4 { color: var(--chene); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; }
+.pro-price { font-size: 2.5rem; font-weight: bold; color: white; margin-bottom: 25px; }
+.pro-price span { font-size: 0.9rem; color: var(--acier); }
+.pro-features { list-style: none; padding: 0; text-align: left; font-size: 0.85rem; color: var(--acier); }
+.pro-features li { margin-bottom: 15px; padding-left: 20px; position: relative; }
+.pro-features li::before { content: "✓"; position: absolute; left: 0; color: var(--chene); }
+.pro-features li strong { color: var(--chene); letter-spacing: 1px; }
+
+.pro-card.featured::after {
+    content: "CONSEILLÉ POUR COLLÈGES & EHPAD";
+    position: absolute; bottom: 0; left: 0; width: 100%;
+    background: var(--chene); color: var(--fond);
+    font-size: 0.6rem; font-weight: bold; padding: 5px 0;
 }
 
-.pro-price {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 25px;
-}
+.pro-card:hover { border-color: var(--neon-orange); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transform: translateY(-10px); }
+.pro-note { margin-top: 40px; font-size: 0.75rem; color: var(--acier); font-style: italic; }
 
-.pro-price span {
-    font-size: 0.9rem;
-    color: var(--acier);
-}
-
-.pro-features {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    font-size: 0.85rem;
-    color: var(--acier);
-}
-
-.pro-features li {
-    margin-bottom: 15px;
-    padding-left: 20px;
-    position: relative;
-}
-
-.pro-features li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--chene);
-}
-
-.pro-card:hover {
-    border-color: var(--neon-orange);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    transform: translateY(-10px);
-}
-
-.pro-note {
-    margin-top: 40px;
-    font-size: 0.75rem;
-    color: var(--acier);
-    font-style: italic;
-}
-.menu-border { border: 2px solid var(--chene); padding: 60px 40px; background: #1d1f21; }
-.menu-section { margin-bottom: 35px; }
-.menu-row { display: flex; align-items: baseline; margin-bottom: 12px; }
-.menu-dots { flex-grow: 1; border-bottom: 1px dotted rgba(194, 163, 130, 0.4); margin: 0 12px; }
-.menu-price { color: var(--chene); font-weight: bold; }
-
-.card { 
-    border: 1px solid var(--acier); 
-    padding: 40px; 
-    background: #1d1f21; 
-    transition: 0.4s ease; 
-}
-
-.card:hover { border-color: var(--chene); transform: translateY(-5px); }
-
+/* ==========================================================================
+   9. FORMULAIRE DE CONTACT & CALENDRIER
+   ========================================================================== */
 .contact-form { background: rgba(255,255,255,0.01); padding: 40px; border: 1px solid rgba(255,255,255,0.03); }
 
 input, textarea { 
-    width: 100%; 
-    padding: 15px 0; 
-    background: transparent; 
-    border: none; 
-    border-bottom: 1px solid rgba(255,255,255,0.1); 
-    color: white; 
-    margin-bottom: 30px; 
+    width: 100%; padding: 15px 0; background: transparent; 
+    border: none; border-bottom: 1px solid rgba(255,255,255,0.1); 
+    color: white; margin-bottom: 30px; 
 }
 
 input:focus { border-bottom: 1px solid var(--chene); outline: none; }
 
-/* --- Style du Calendrier Ken Aiguise --- */
+/* Style du Calendrier */
 .calendar-section { margin-bottom: 30px; text-align: center; }
 .calendar-label { font-size: 0.7rem; color: var(--chene); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; }
 
@@ -538,53 +512,25 @@ input:focus { border-bottom: 1px solid var(--chene); outline: none; }
 .calendar-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
 
 .calendar-day {
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: 0.3s;
-    border: 1px solid transparent;
+    aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; cursor: pointer; transition: 0.3s; border: 1px solid transparent;
 }
 
 .calendar-day:hover:not(.empty) { background: rgba(194, 163, 130, 0.1); border-color: var(--chene); }
 .calendar-day.selected { background: var(--chene); color: var(--fond); font-weight: bold; box-shadow: 0 0 10px var(--neon-orange); }
 .calendar-day.today { color: var(--neon-orange); text-decoration: underline; }
 .calendar-day.empty { cursor: default; }
-
 .date-status { font-size: 0.75rem; color: var(--acier); margin-top: 10px; font-style: italic; }
 
-.btn-cta {
-    display: inline-flex; 
-    align-items: center; 
-    padding: 12px 28px; 
-    border: 1px solid var(--chene); 
-    color: var(--chene); 
-    text-decoration: none; 
-    text-transform: uppercase; 
-    background: transparent; 
-    transition: 0.5s; 
-    cursor: pointer; 
-}
-
-.btn-cta:hover { background: var(--chene); color: var(--fond); }
-
 /* ==========================================================================
-   6. RESPONSIVE
+   10. RESPONSIVE & FOOTER
    ========================================================================== */
 @media (max-width: 1023px) {
     .burger-menu { display: flex; }
     .nav-links {
-        position: fixed;
-        right: -100%;
-        width: 180px;
-        height: 100vh;
-        background: rgba(26, 28, 30, 0.95);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: right 0.4s ease;
+        position: fixed; right: -100%; width: 180px; height: 100vh;
+        background: rgba(26, 28, 30, 0.95); flex-direction: column;
+        justify-content: center; align-items: center; transition: right 0.4s ease;
         backdrop-filter: blur(10px);
     }
     .nav-links.open { right: 0; }
@@ -603,8 +549,4 @@ input:focus { border-bottom: 1px solid var(--chene); outline: none; }
     .menu-border { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; text-align: left; }
 }
 
-footer { 
-    text-align: center; 
-    padding: 60px 20px; 
-    background: var(--fond-footer);
-}
+footer { text-align: center; padding: 60px 20px; background: var(--fond-footer); }
