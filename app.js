@@ -108,6 +108,81 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// GALERIE ANIMATION 
+
+const cards = document.querySelectorAll('.galerie-card');
+const dots = document.querySelectorAll('.nav-dot');
+
+cards.forEach((card, index) => {
+    card.addEventListener('mouseenter', () => {
+        // Nettoyage rapide des états
+        cards.forEach(c => c.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
+        
+        // Activation ciblée
+        card.classList.add('active');
+        if(dots[index]) dots[index].classList.add('active');
+    });
+});
+
+// Optionnel : Retour à la première carte quand la souris quitte la galerie
+const container = document.querySelector('.galerie-container');
+container.addEventListener('mouseleave', () => {
+    cards.forEach(c => c.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    cards[0].classList.add('active'); // On remet le focus sur la première
+    dots[0].classList.add('active');
+});
+
+cards.forEach((card, index) => {
+    // Ajout de l'événement 'click' pour le mobile
+    card.addEventListener('click', () => {
+        cards.forEach(c => c.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
+        
+        card.classList.add('active');
+        if(dots[index]) dots[index].classList.add('active');
+    });
+});
+
+// --- OPTIMISATION SWIPE POUR LA GALERIE ---
+let touchStartX = 0;
+let touchEndX = 0;
+const galerieContainer = document.querySelector('.galerie-container');
+
+function handleSwipe() {
+    const threshold = 50; // Distance minimale en pixels pour valider le swipe
+    let currentIndex = Array.from(cards).findIndex(card => card.classList.contains('active'));
+
+    if (touchStartX - touchEndX > threshold) {
+        // Swipe vers la gauche -> Carte suivante
+        const nextIndex = (currentIndex + 1) % cards.length;
+        activateCard(nextIndex);
+    } else if (touchEndX - touchStartX > threshold) {
+        // Swipe vers la droite -> Carte précédente
+        const prevIndex = (currentIndex - 1 + cards.length) % cards.length;
+        activateCard(prevIndex);
+    }
+}
+
+function activateCard(index) {
+    cards.forEach(c => c.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    
+    cards[index].classList.add('active');
+    if(dots[index]) dots[index].classList.add('active');
+}
+
+galerieContainer.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+}, {passive: true});
+
+galerieContainer.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, {passive: true});
+
+
 // --- 7. GESTION DU CALENDRIER DE RÉSERVATION ---
 document.addEventListener('DOMContentLoaded', () => {
     const monthDisplay = document.getElementById('monthDisplay');
