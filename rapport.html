@@ -2,92 +2,115 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rapport d'Intervention | Ken Aiguise</title>
+    <title>Ken Aiguise | Votre Espace de Maintenance</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body style="padding-top: 100px;">
+    <style>
+        /* --- Styles Spécifiques à l'Espace Client --- */
+        .client-dashboard { max-width: 900px; margin: 100px auto; padding: 20px; text-align: center; }
 
-    <section>
-        <h2 id="client-name"></h2>
+        /* Mise en valeur de l'Établissement */
+        .establishment-header { background: rgba(194, 163, 130, 0.05); padding: 40px; border: 1px solid rgba(194, 163, 130, 0.2); margin-bottom: 50px; }
+        .establishment-header h1 { color: #EEEEEE; font-size: 3rem; text-transform: uppercase; letter-spacing: 5px; margin: 0; }
+        .contract-tag { font-size: 0.7rem; color: var(--acier); letter-spacing: 3px; border: 1px solid var(--acier); padding: 5px 15px; display: inline-block; margin-top: 15px; }
+
+        /* Grille des Interventions (Cards) */
+        .history-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; text-align: left; }
         
-        <div class="menu-border">
-            <div id="rapport-content">
-                <p>Analyse des registres en cours...</p>
-            </div>
+        .intervention-card { background: #1d1f21; border: 1px solid rgba(142, 154, 175, 0.2); padding: 30px; transition: 0.3s; position: relative; }
+        .intervention-card:hover { border-color: var(--chene); transform: translateY(-3px); }
+        .intervention-date { font-weight: bold; color: white; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .intervention-date::before { content: "✓"; color: var(--chene); }
+
+        .tech-detail { border-left: 2px solid var(--acier); padding-left: 15px; margin-bottom: 15px; }
+        .tech-label { font-size: 0.65rem; text-transform: uppercase; color: var(--acier); margin: 0; }
+        .tech-value { font-size: 0.9rem; color: white; margin: 5px 0 0 0; }
+
+        .note-card { background: rgba(194, 163, 130, 0.03); border: 1px dashed rgba(194, 163, 130, 0.2); padding: 25px; margin-top: 50px; text-align: left; }
+        .note-title { color: var(--chene); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
+        .note-content { font-style: italic; font-size: 0.9rem; color: var(--texte); }
+
+    </style>
+</head>
+<body>
+
+    <div class="client-dashboard">
+        <div class="establishment-header">
+            <h1 id="clientName">Chargement...</h1>
+            <div id="contractType" class="contract-tag">Chargement...</div>
         </div>
 
-        <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 15px; align-items: center;">
-            <a id="pdf-link" href="#" target="_blank" class="btn-cta" style="display: none;">
-                📄 TÉLÉCHARGER LE COMPTE-RENDU TECHNIQUE
-            </a>
-            
-            <a href="index.html" class="btn-cta" style="border-color: var(--acier); color: var(--acier);">
-                Retour à l'accueil
-            </a>
+        <h2 style="text-align: left; margin-bottom: 30px;">Historique des Interventions</h2>
+        
+        <div id="detailsList" class="history-grid">
+            </div>
+
+        <div class="note-card">
+            <p class="note-title">Notes de l'Artisan</p>
+            <p id="artisanNote" class="note-content">Chargement...</p>
         </div>
-    </section>
+
+        <div style="margin-top: 60px; text-align: center;">
+            <a href="index.html" class="btn-cta">Quitter l'Espace</a>
+        </div>
+    </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        // 1. Récupération de la session
-        const sessionData = sessionStorage.getItem('kenAiguise_client');
-        if (!sessionData) {
-            window.location.href = 'index.html';
-            return;
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+    // 1. Récupération des données stockées lors de la connexion
+    const clientData = sessionStorage.getItem('kenAiguise_client');
+    const historiqueData = sessionStorage.getItem('kenAiguise_historique');
+    
+    // 2. Vérification de sécurité
+    if (!clientData || !historiqueData) { 
+        window.location.href = 'index.html'; 
+        return; 
+    }
 
-        const client = JSON.parse(sessionData);
-        document.getElementById('client-name').innerText = client.nom;
+    // 3. Transformation du texte en objets JavaScript
+    const client = JSON.parse(clientData);
+    const historique = JSON.parse(historiqueData); // On définit bien "historique" ici
 
-        try {
-            // 2. Chargement des interventions depuis le dossier data
-            const response = await fetch('./data/rapport.json');
-            if (!response.ok) throw new Error("Fichier rapport.json introuvable");
+    // 4. Affichage des infos de l'établissement
+    document.getElementById('clientName').innerText = client.nom_usage;
+    document.getElementById('contractType').innerText = `Contrat Pro : ${client.forfait}`;
+
+    const list = document.getElementById('detailsList');
+    list.innerHTML = ""; 
+
+    // 5. Affichage de l'historique (Note de l'artisan incluse)
+    if (historique.length === 0) {
+        list.innerHTML = "<p>Aucune intervention enregistrée pour le moment.</p>";
+    } else {
+        historique.forEach(rapport => {
+            const card = document.createElement('div');
+            card.classList.add('intervention-card');
             
-            const data = await response.json();
+            card.innerHTML = `
+                <div class="intervention-date">Passage du ${rapport.date}</div>
+                
+                <div class="tech-detail">
+                    <p class="tech-label">Bilan Technique</p>
+                    <p class="tech-value">${rapport.lames_affutees}</p>
+                </div>
 
-            // 3. Filtrage des interventions pour ce client précis
-            const interventions = data.interventions.filter(i => i.client_id === client.id);
-            const content = document.getElementById('rapport-content');
-            const pdfBtn = document.getElementById('pdf-link');
+                <div class="tech-detail">
+                    <p class="tech-label">Observations</p>
+                    <p class="tech-value">${rapport.observations}</p>
+                </div>
 
-            if (interventions.length > 0) {
-                // On prend la première intervention (la plus récente selon votre JSON)
-                const derniere = interventions[0]; 
+                <div class="note-card" style="margin-top:15px; border:none; padding:10px; background:rgba(255,255,255,0.05);">
+                    <p class="note-title" style="font-size:0.6rem; color:var(--chene);">L'avis de Ken :</p>
+                    <p class="note-content" style="font-size:0.85rem;">${rapport.note_artisan || "Aucune note spécifique."}</p>
+                </div>
 
-                // Mise à jour du contenu HTML
-                content.innerHTML = `
-                    <div style="text-align: left; padding: 10px;">
-                        <p style="text-transform: uppercase; letter-spacing: 2px; color: var(--acier); font-size: 0.8rem; margin-bottom: 20px;">
-                            Détails du Contrat : ${client.forfait}
-                        </p>
-                        <p><strong>Dernière intervention :</strong> ${derniere.date}</p>
-                        <p><strong>Travail effectué :</strong> ${derniere.lames_affutees} lames traitées, ${derniere.baguettes_posees} baguettes posées.</p>
-                        <p style="font-style: italic; color: var(--acier); margin: 20px 0; border-left: 2px solid var(--chene); padding-left: 15px;">
-                            "${derniere.observations}"
-                        </p>
-                        <hr style="border: 0; border-top: 1px dashed rgba(194, 163, 130, 0.3); margin: 20px 0;">
-                        <p style="color: var(--chene); font-weight: bold; letter-spacing: 1px;">
-                            PROCHAIN PASSAGE PRÉVU : ${derniere.prochain_passage}
-                        </p>
-                    </div>
-                `;
-
-                // 4. Gestion dynamique du bouton PDF
-                if (derniere.lien_pdf) {
-                    pdfBtn.href = derniere.lien_pdf;
-                    pdfBtn.style.display = 'inline-flex';
-                }
-            } else {
-                content.innerHTML = "<p>Aucune intervention enregistrée pour le moment.</p>";
-            }
-        } catch (error) {
-            console.error("Erreur technique :", error);
-            document.getElementById('rapport-content').innerHTML = "<p>Erreur lors de la récupération des données techniques.</p>";
-        }
-    });
+                <div style="margin-top: 15px; font-size:0.8rem; color:var(--acier)">
+                    Prochain passage : <strong>${rapport.prochain_passage}</strong>
+                </div>
+            `;
+            list.appendChild(card);
+        });
+    }
+});
     </script>
 </body>
 </html>

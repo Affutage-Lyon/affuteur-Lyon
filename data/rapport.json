@@ -6,16 +6,14 @@
   "lames_affutees": 112,
   "baguettes_posees": 38,
   "observations": "Affûtage complet...",
-  "prochain_passage": "Juillet 2026",
-  "lien_pdf": "rapports/maintenance_ECPR_avril_2026.pdf" 
+  "prochain_passage": "Juillet 2026"
 },
     {
-      "client_id": "ECPR",
-      "date": "2026-01-10",
+      "client_id": "JDF",
+      "date": "02-01-2026",
       "lames_affutees": 95,
       "baguettes_posees": 12,
-      "observations": "Premier passage. Mise en conformité du parc.",
-      "prochain_passage": "Avril 2026"
+      "observations": "Premier passage. Mise en conformité avec les eleves ."
     }
   ]
 }

@@ -2,19 +2,13 @@
   "clients": [
     {
       "id": "ECPR",
-      "nom": "Lycée Pro ECPR",
-      "ville": "Lyon 3ème",
-      "forfait": "Grand",
-      "tarif_annuel": 3000,
-      "date_signature": "2026-04-02"
+      "nom_usage": "Cuisine Centrale - ECPR",
+      "forfait": "Moyen (25)"
     },
     {
-      "id": "SUD-69",
-      "nom": "EHPAD Résidence du Sud",
-      "ville": "Lyon 7ème",
-      "forfait": "Moyen",
-      "tarif_annuel": 1800,
-      "date_signature": "2026-03-15"
+      "id": "JDF",
+      "nom_usage": "Lycée Jehanne de France",
+      "forfait": "Grand (45)"
     }
   ]
 }
