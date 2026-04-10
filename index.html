@@ -277,47 +277,41 @@
         <section id="contact">
             <h2><span class="souligne-fleche">Contact & Rendez-vous</span></h2>
             <div class="contact-form">
-                <form action="https://formspree.io/f/xvzvjqve" method="POST" id="contact-form">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-                        <input type="text" name="nom" placeholder="Votre Nom" required>
-                        <input type="email" name="email" placeholder="Votre E-mail" required>
-                    </div>
-                    
-                    <div style="margin: 20px 0;">
-                        <p style="font-size: 0.7rem; color: var(--chene); text-align: center; letter-spacing: 2px; margin-bottom: 25px; text-transform: uppercase;">Lieu de l'intervention</p>
-                        <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 20px;">
-                            <label><input type="radio" name="Lieu" value="Atelier" checked onchange="toggleProAddress(false)"> Particulier (Atelier)</label>
-                            <label><input type="radio" name="Lieu" value="Professionnel" onchange="toggleProAddress(true)"> Professionnel (Collecte)</label>
-                        </div>
+            <form action="https://formspree.io/f/xvzvjqve" method="POST" id="contact-form">
 
-                        <div id="pro-address-section">
-                            <input type="text" name="nom_etablissement" placeholder="Nom de l'établissement">
-                            <input type="text" name="adresse_collecte" placeholder="Adresse à Lyon">
-                        </div>
-                    </div>
-
-                    <textarea name="message" placeholder="Décrivez vos outils ou votre besoin (ex: 3 couteaux de chef, 1 paire de ciseaux...)" rows="4" style="width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); background: transparent; color: white; font-family: inherit; margin-bottom: 30px; border-top: none; border-left: none; border-right: none; outline: none;"></textarea>
-                    
-                    <div class="calendar-section">
-    <p class="calendar-label">Choisissez votre date de passage idéale</p>
-    <div class="calendar-container">
-        <div class="calendar-header">
-            <button type="button" id="prevMonth">&lt;</button>
-            <h4 id="monthDisplay">Avril 2026</h4>
-            <button type="button" id="nextMonth">&gt;</button>
-        </div>
-        <div class="calendar-weekdays">
-            <div>Lun</div><div>Mar</div><div>Mer</div><div>Jeu</div><div>Ven</div><div>Sam</div><div>Dim</div>
-        </div>
-        <div id="calendarDays" class="calendar-days">
-            </div>
+    <input type="hidden" name="_subject" value="Nouvelle demande Ken Aiguise">
+    
+    <div style="margin-bottom: 15px;">
+        <label for="full-name">Nom / Nom de l'établissement :</label><br>
+        <input type="text" id="full-name" name="name" placeholder="Ex: Collège Jean Moulin ou M. Martin" required style="width: 100%; padding: 8px;">
     </div>
-    <input type="hidden" name="date_rdv" id="selectedDateInput" required>
-    <p id="dateStatus" class="date-status">Aucune date sélectionnée</p>
-</div>
 
-                    <button type="submit" class="btn-cta" style="width:100%;">Envoyer mon message</button>
-                </form>
+    <div style="margin-bottom: 15px;">
+        <label for="client-type">Vous êtes :</label><br>
+        <select id="client-type" name="type_client" required style="width: 100%; padding: 8px;">
+            <option value="" disabled selected>Sélectionnez votre profil</option>
+            <option value="Professionnel (Collège, Lycée, EHPAD)">Professionnel (Collège, Lycée, EHPAD)</option>
+            <option value="Particulier">Particulier</option>
+            <option value="Autre">Autre</option>
+        </select>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="email-address">Adresse Email :</label><br>
+        <input type="email" id="email-address" name="_replyto" placeholder="votre@email.com" required style="width: 100%; padding: 8px;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="message">Votre message :</label><br>
+        <textarea id="message" name="message" rows="5" placeholder="Décrivez votre besoin (nombre de couteaux, type de contrat souhaité...)" required style="width: 100%; padding: 8px;"></textarea>
+    </div>
+
+    <button type="submit" style="background-color: #d32f2f; color: white; padding: 12px 24px; border: none; cursor: pointer; font-weight: bold; width: 100%;">
+        ENVOYER LA DEMANDE
+    </button>
+
+</form>
+
             </div>
         </section>
         <section id="espace-client">
