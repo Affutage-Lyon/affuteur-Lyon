@@ -91,7 +91,7 @@ window.addEventListener('scroll', () => {
     const blade = document.getElementById('main-blade');
     const logo = document.getElementById('blade-logo-scroll');
     if (!blade || !logo) return;
-    const progress = Math.min(window.scrollY / 130, 1);
+    const progress = Math.min(window.scrollY / 0, 1);
 
     if (progress >= 0.8) {
         blade.setAttribute('d', blade.getAttribute('data-new'));
