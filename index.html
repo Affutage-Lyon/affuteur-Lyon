@@ -282,11 +282,6 @@
     <input type="hidden" name="_subject" value="Nouvelle demande Ken Aiguise">
     
     <div style="margin-bottom: 15px;">
-        <label for="full-name">Nom / Nom de l'établissement :</label><br>
-        <input type="text" id="full-name" name="name" placeholder="Ex: Collège Jean Moulin ou M. Martin" required style="width: 100%; padding: 8px;">
-    </div>
-
-    <div style="margin-bottom: 15px;">
         <label for="client-type">Vous êtes :</label><br>
         <select id="client-type" name="type_client" required style="width: 100%; padding: 8px;">
             <option value="" disabled selected>Sélectionnez votre profil</option>
@@ -295,6 +290,17 @@
             <option value="Autre">Autre</option>
         </select>
     </div>
+    
+    <div style="margin-bottom: 15px;">
+        <label for="full-name">Nom / Nom de l'établissement :</label><br>
+        <input type="text" id="full-name" name="name" placeholder="Ex: Collège Jean Moulin ou M. Martin" required style="width: 100%; padding: 8px;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+    <label for="address">Adresse du lieu d'intervention :</label><br>
+    <input type="text" id="address" name="adresse_lieu" placeholder="N°, rue et code postal (Lyon/Métropole)" required style="width: 100%; padding: 8px;">
+</div>
+
 
     <div style="margin-bottom: 15px;">
         <label for="email-address">Adresse Email :</label><br>
