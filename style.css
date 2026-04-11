@@ -554,6 +554,85 @@ select option { background: var(--fond); color: white; }
     display: block !important;
 }
 
+/* --- STYLE DU CALENDRIER --- */
+.calendar-container {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(194, 163, 130, 0.2);
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    color: var(--chene);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.calendar-header button {
+    background: transparent;
+    border: 1px solid var(--chene);
+    color: var(--chene);
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--acier);
+    margin-bottom: 10px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-day {
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.calendar-day:hover:not(.empty) {
+    border-color: var(--chene);
+    color: var(--chene);
+}
+
+.calendar-day.selected {
+    background: var(--chene);
+    color: var(--fond);
+    font-weight: bold;
+}
+
+.calendar-day.selected {
+    background-color: var(--chene) !important; 
+    color: #1a1c1e !important;               
+    font-weight: bold;
+    border-radius: 2px
+}
+
+
+.date-status {
+    font-size: 0.8rem;
+    color: var(--chene);
+    margin-top: 10px;
+    font-style: italic;
+}
+
+
 
 /* ==========================================================================
    10. RESPONSIVE & FOOTER

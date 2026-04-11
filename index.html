@@ -278,6 +278,23 @@
                     </div>
 
                     <div class="form-group">
+                      <div class="form-group">
+    <label>Date d'intervention souhaitée :</label>
+    <div id="calendar-widget" class="calendar-container">
+        <div class="calendar-header">
+            <button type="button" id="prevMonth">&lt;</button>
+            <span id="monthDisplay"></span>
+            <button type="button" id="nextMonth">&gt;</button>
+        </div>
+        <div class="calendar-weekdays">
+            <div>Lun</div><div>Mar</div><div>Mer</div><div>Jeu</div><div>Ven</div><div>Sam</div><div>Dim</div>
+        </div>
+        <div id="calendarDays" class="calendar-grid"></div>
+    </div>
+    <input type="hidden" name="date_souhaitee" id="selectedDateInput">
+    <p id="dateStatus" class="date-status">Aucune date sélectionnée</p>
+</div>
+
                         <textarea name="message" rows="5" placeholder="Votre besoin (nombre de couteaux...)" required></textarea>
                     </div>
 
