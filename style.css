@@ -617,12 +617,18 @@ select option { background: var(--fond); color: white; }
     font-weight: bold;
 }
 
-.calendar-day.selected {
-    background-color: var(--chene) !important; 
-    color: #1a1c1e !important;               
-    font-weight: bold;
-    border-radius: 2px
+
+.calendar-day.past-date {
+    color: rgba(142, 154, 175, 0.3); 
+    cursor: not-allowed;
+    text-decoration: line-through;
 }
+
+.calendar-day.past-date:hover {
+    border-color: transparent;
+    color: rgba(142, 154, 175, 0.3);
+}
+
 
 
 .date-status {

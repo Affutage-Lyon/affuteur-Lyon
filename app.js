@@ -235,30 +235,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Génération des jours cliquables
-        for (let day = 1; day <= daysInMonth; day++) {
-            const div = document.createElement('div');
-            div.classList.add('calendar-day');
-            div.innerText = day;
+for (let day = 1; day <= daysInMonth; day++) {
+    const div = document.createElement('div');
+    div.classList.add('calendar-day');
+    div.innerText = day;
 
-            // Identification du jour actuel pour le souligner (style.css)
-            const today = new Date();
-            if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
-                div.classList.add('today');
-            }
+    // Création d'un objet date pour le jour en cours de génération
+    const cellDate = new Date(year, month, day);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); 
 
-            // Gestion de la sélection au clic
-            div.onclick = () => {
-                document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
-                div.classList.add('selected');
-                
-                // On met à jour le champ caché pour l'envoi du formulaire
-                const formattedDate = `${day} ${monthDisplay.innerText}`;
-                selectedDateInput.value = `${year}-${month + 1}-${day}`;
-                dateStatus.innerText = `Souhaité pour le : ${formattedDate}`;
-            };
-
-            calendarDays.appendChild(div);
+    if (cellDate < today) {
+        div.classList.add('past-date');
+    } else {
+        if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+            div.classList.add('today');
         }
+
+        div.onclick = () => {
+            document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
+            div.classList.add('selected');
+            
+            const formattedDate = `${day} ${monthDisplay.innerText}`;
+            selectedDateInput.value = `${year}-${month + 1}-${day}`;
+            dateStatus.innerText = `Souhaité pour le : ${formattedDate}`;
+        };
+    }
+
+    calendarDays.appendChild(div);
+}
+
     }
 
     // Navigation entre les mois
