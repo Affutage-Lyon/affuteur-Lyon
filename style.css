@@ -460,26 +460,6 @@ h2 {
     display: none; /* Par défaut caché */
 }
 
-.pro-card:nth-child(1)::after {
-    content: "Idéal pour les restaurateurs Lyonnaises";
-    display: block; position: absolute; bottom: 0; left: 0; width: 100%;
-    background: var(--chene); color: var(--fond); font-size: 0.6rem; 
-    font-weight: bold; padding: 5px 0; text-transform: uppercase;
-}
-
-.pro-card.featured::after {
-    content: "CONSEILLÉ POUR COLLÈGES & EHPAD";
-    display: block; position: absolute; bottom: 0; left: 0; width: 100%;
-    background: var(--chene); color: var(--fond); font-size: 0.6rem; 
-    font-weight: bold; padding: 5px 0; text-transform: uppercase;
-}
-
-.pro-card:nth-child(3)::after {
-    content: "Performance & Gros Volumes";
-    display: block; position: absolute; bottom: 0; left: 0; width: 100%;
-    background: var(--chene); color: var(--fond); font-size: 0.6rem; 
-    font-weight: bold; padding: 5px 0; text-transform: uppercase;
-}
 
 .pro-card:hover { border-color: var(--neon-orange); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transform: translateY(-10px); }
 
