@@ -91,7 +91,7 @@ window.addEventListener('scroll', () => {
     const blade = document.getElementById('main-blade');
     const logo = document.getElementById('blade-logo-scroll');
     if (!blade || !logo) return;
-    const progress = Math.min(window.scrollY / 0, 1);
+    const progress = Math.min(window.scrollY / 100, 1);
 
     if (progress >= 0.8) {
         blade.setAttribute('d', blade.getAttribute('data-new'));
@@ -275,32 +275,3 @@ for (let day = 1; day <= daysInMonth; day++) {
 });
 
 
-// --- 6. ACCÈS ESPACE CLIENT DYNAMIQUE ---
-async function accessClientSpace() {
-    const codeSaisi = document.getElementById('client-code').value.trim().toUpperCase();
-    const errorMsg = document.getElementById('login-error');
-    try {
-        const [resClients, resRapports] = await Promise.all([
-            fetch('./data/clients.json'),
-            fetch('./data/rapport.json')
-        ]);
-        const dataClients = await resClients.json();
-        const dataRapports = await resRapports.json();
-
-        const client = dataClients.clients.find(c => c.id === codeSaisi);
-
-        if (client) {
-            // Filtrage dynamique par ID
-            const historique = dataRapports.interventions.filter(r => r.client_id === client.id); 
-            sessionStorage.setItem('kenAiguise_client', JSON.stringify(client));
-            sessionStorage.setItem('kenAiguise_historique', JSON.stringify(historique));
-            window.location.href = 'rapport.html';
-        } else {
-            errorMsg.style.display = 'block';
-            errorMsg.innerText = "Code inconnu.";
-        }
-    } catch (error) {
-        errorMsg.style.display = 'block';
-        errorMsg.innerText = "Erreur de chargement.";
-    }
-}

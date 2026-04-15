@@ -526,14 +526,6 @@ select option { background: var(--fond); color: white; }
     left: 100%;
 }
 
-
-#login-error {
-    display: none !important;
-}
-#login-error.visible {
-    display: block !important;
-}
-
 /* --- STYLE DU CALENDRIER --- */
 .calendar-container {
     background: rgba(255, 255, 255, 0.03);
