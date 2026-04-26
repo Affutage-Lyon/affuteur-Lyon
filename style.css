@@ -335,6 +335,15 @@ h2 {
     transform: scale(1);
 }
 
+.video-galerie {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* La vidéo s'adapte à la hauteur ou largeur sans être coupée */
+    background-color: #000; /* Ajoute un fond noir pour les bandes si nécessaire */
+    display: block;
+}
+
+
 .card-overlay {
     position: absolute;
     bottom: 0;
