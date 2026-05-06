@@ -1,0 +1,31 @@
+name: ken_flutter
+description: Ken Aiguise - Affûteur Lyon
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  url_launcher: ^6.3.1
+  http: ^1.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/knife_1.webp
+    - assets/images/knife_2.webp
+    - assets/images/lame.webp
+    - assets/images/geste.webp
+    - assets/images/atelier.webp
+    - assets/images/logo.svg
