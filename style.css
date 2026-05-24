@@ -12,8 +12,8 @@
     --glint-pos: 0%;
 }
 
-html { 
-    scroll-behavior: smooth !important; 
+html {
+    scroll-behavior: smooth;
 }
 
 body { 
@@ -37,6 +37,7 @@ nav {
     background: rgba(30, 34, 38, 0.98);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     z-index: 1000;
     display: flex;
     justify-content: center;
@@ -291,8 +292,25 @@ h2 {
     border-bottom: 0.5px solid var(--acier);
 }
 
-.souligne-fleche::before { content: ''; position: absolute; bottom: -3px; left: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-right: 6px solid var(--acier); }
-.souligne-fleche::after { content: ''; position: absolute; bottom: -3px; right: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-left: 6px solid var(--acier); }
+.souligne-fleche::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-right: 6px solid var(--acier);
+}
+
+.souligne-fleche::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    right: 0;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-left: 6px solid var(--acier);
+}
 
 /* ==========================================================================
    6. GALERIE ULTRA-FLUIDE
@@ -338,8 +356,8 @@ h2 {
 .video-galerie {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* La vidéo s'adapte à la hauteur ou largeur sans être coupée */
-    background-color: #000; /* Ajoute un fond noir pour les bandes si nécessaire */
+    object-fit: contain;
+    background-color: #000;
     display: block;
 }
 
@@ -421,28 +439,69 @@ h2 {
 /* ==========================================================================
    8. TARIFS
    ========================================================================== */
-.menu-container { border: 1px solid var(--chene); padding: 10px; max-width: 650px; margin: auto; }
-.menu-border { border: 2px solid var(--chene); padding: 60px 40px; background: #1d1f21; }
-.menu-section { margin-bottom: 35px; }
-.menu-row { display: flex; align-items: baseline; margin-bottom: 12px; }
-.menu-dots { flex-grow: 1; border-bottom: 1px dotted rgba(194, 163, 130, 0.4); margin: 0 12px; }
-.menu-price { color: var(--chene); font-weight: bold; }
+.menu-container {
+    border: 1px solid var(--chene);
+    padding: 10px;
+    max-width: 650px;
+    margin: auto;
+}
+
+.menu-border {
+    border: 2px solid var(--chene);
+    padding: 60px 40px;
+    background: #1d1f21;
+}
+
+.menu-section {
+    margin-bottom: 35px;
+}
+
+.menu-row {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 12px;
+}
+
+.menu-dots {
+    flex-grow: 1;
+    border-bottom: 1px dotted rgba(194, 163, 130, 0.4);
+    margin: 0 12px;
+}
+
+.menu-price {
+    color: var(--chene);
+    font-weight: bold;
+}
 
 
 /* ==========================================================================
    9. CONTACT & FORMULAIRE
    ========================================================================== */
-.contact-form { background: rgba(255,255,255,0.01); padding: 40px; border: 1px solid rgba(255,255,255,0.03); }
-
-input, textarea, select { 
-    width: 100%; padding: 15px 0; background: transparent; 
-    border: none; border-bottom: 1px solid rgba(255,255,255,0.1); 
-    color: white; margin-bottom: 30px; 
+.contact-form {
+    background: rgba(255,255,255,0.01);
+    padding: 40px;
+    border: 1px solid rgba(255,255,255,0.03);
 }
 
-input:focus, textarea:focus, select:focus { border-bottom: 1px solid var(--chene); outline: none; }
+input, textarea, select {
+    width: 100%;
+    padding: 15px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    margin-bottom: 30px;
+}
 
-select option { background: var(--fond); color: white; }
+input:focus, textarea:focus, select:focus {
+    border-bottom: 1px solid var(--chene);
+    outline: none;
+}
+
+select option {
+    background: var(--fond);
+    color: white;
+}
 
 /* Style spécifique pour le bouton d'envoi du formulaire */
 .btn-submit-pro {
@@ -592,9 +651,16 @@ select option { background: var(--fond); color: white; }
 @media (max-width: 1023px) {
     .burger-menu { display: flex; }
     .nav-links {
-        position: fixed; right: -100%; width: 180px; height: 100vh;
-        background: rgba(26, 28, 30, 0.95); flex-direction: column;
-        justify-content: center; align-items: center; transition: right 0.4s ease;
+        position: fixed;
+        right: -100%;
+        width: clamp(160px, 60vw, 220px);
+        height: 100vh;
+        background: rgba(26, 28, 30, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease;
+        -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
     }
     .nav-links.open { right: 0; }
@@ -614,4 +680,33 @@ select option { background: var(--fond); color: white; }
     .menu-border { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; text-align: left; }
 }
 
-footer { text-align: center; padding: 60px 20px; background: var(--fond-footer); }
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--fond-footer);
+}
+
+/* ==========================================================================
+   11. CARD TAGS & UTILITAIRES
+   ========================================================================== */
+.card-tag--avant { color: #E13F7C; }
+.card-tag--apres { color: #67C090; }
+
+.btn-cta--inline {
+    display: inline-flex;
+    margin-top: 16px;
+}
+
+/* ==========================================================================
+   12. ACCESSIBILITÉ : RÉDUCTION DES ANIMATIONS
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+}

