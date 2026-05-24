@@ -131,13 +131,14 @@ cards.forEach((card, index) => {
 
 // Retour à la première carte quand la souris quitte la galerie
 const container = document.querySelector('.galerie-container');
-if (!container) return;
-container.addEventListener('mouseleave', () => {
-    cards.forEach(c => c.classList.remove('active'));
-    dots.forEach(d => d.classList.remove('active'));
-    cards[0].classList.add('active'); // On remet le focus sur la première
-    dots[0].classList.add('active');
-});
+if (container) {
+    container.addEventListener('mouseleave', () => {
+        cards.forEach(c => c.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
+        cards[0].classList.add('active');
+        dots[0].classList.add('active');
+    });
+}
 
 cards.forEach((card, index) => {
     // Ajout de l'événement 'click' pour le mobile
