@@ -1,5 +1,6 @@
 // Point d'entrée SCSS — compile vers style.css (racine du site)
 @use 'abstracts/variables';
+@use 'abstracts/functions';
 @use 'abstracts/breakpoints';
 @use 'base/reset';
 @use 'layout/nav';

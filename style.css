@@ -1434,18 +1434,22 @@ h2 {
 }
 .contact-service {
   padding: 20px 22px;
-  border: 1px solid rgba(var(--chene-rgb), 0.25);
-  background: rgba(40, 45, 53, 0.6);
+  border: 1px solid rgba(221, 184, 146, 0.35);
+  background: var(--fond-elevated);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
   transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .contact-service:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  border-color: rgba(221, 184, 146, 0.55);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
 }
 
 .contact-service--pro {
-  border-color: rgba(var(--chene-rgb), 0.35);
+  border-color: rgba(221, 184, 146, 0.5);
+  background: linear-gradient(145deg, rgba(40, 45, 53, 0.95) 0%, var(--fond-elevated) 100%);
 }
 
 .contact-service h3 {
@@ -1472,29 +1476,37 @@ h2 {
   margin-bottom: 32px;
 }
 
-.contact-phone {
+a.contact-tel-link,
+a.contact-tel-link:link,
+a.contact-tel-link:visited,
+a.contact-tel-link:hover,
+a.contact-tel-link:active {
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
-  padding: 6px 14px;
+  padding: 8px 16px;
   border-radius: 999px;
-  border: 1px solid rgba(var(--chene-rgb), 0.3);
+  border: 1px solid rgba(221, 184, 146, 0.45);
   font-family: "Cinzel", serif;
   font-size: 1.35rem;
   letter-spacing: 2px;
   color: var(--chene-clair);
   text-decoration: none;
-  transition: color 0.3s ease;
+  -webkit-text-fill-color: currentColor;
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
   animation: phonePulse 3s ease-in-out infinite;
 }
 
-.contact-phone::before {
+a.contact-tel-link::before {
   content: "📞";
   font-size: 1rem;
 }
 
-.contact-phone:hover {
+a.contact-tel-link:hover,
+a.contact-tel-link:active {
   color: var(--chene);
+  border-color: var(--chene);
+  background: rgba(221, 184, 146, 0.12);
 }
 
 .contact-hours {
@@ -1509,11 +1521,13 @@ h2 {
 }
 
 .contact-form {
-  background: rgba(40, 45, 53, 0.55);
+  background: var(--fond-elevated);
   padding: 40px;
-  border: 1px solid rgba(var(--chene-rgb), 0.22);
+  border: 1px solid rgba(221, 184, 146, 0.3);
+  border-radius: 4px;
   max-width: 680px;
   margin: 0 auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .form-group {
@@ -1529,7 +1543,9 @@ h2 {
   margin-bottom: 6px;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   width: 100%;
   padding: 15px 0;
   background: transparent;
@@ -1547,7 +1563,9 @@ textarea::placeholder {
   opacity: 1;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   border-bottom: 1px solid var(--chene-clair);
   outline: none;
 }
@@ -1557,7 +1575,6 @@ select option {
   color: var(--texte);
 }
 
-/* Style spécifique pour le bouton d'envoi du formulaire */
 .btn-submit-pro {
   background-color: transparent;
   color: var(--chene);
@@ -1576,20 +1593,17 @@ select option {
   border-radius: 2px;
 }
 
-/* Effet au survol : remplissage et lueur orange néon */
 .btn-submit-pro:hover {
   background-color: var(--chene);
   color: var(--fond);
-  box-shadow: 0 0 15px rgba(255, 180, 77, 0.4); /* Rappel neon-orange */
+  box-shadow: 0 0 15px rgba(255, 180, 77, 0.4);
   transform: translateY(-2px);
 }
 
-/* Effet actif (clic) */
 .btn-submit-pro:active {
   transform: translateY(0);
 }
 
-/* Optionnel : petit trait décoratif avant le texte */
 .btn-submit-pro::before {
   content: "";
   position: absolute;
@@ -1780,6 +1794,11 @@ html.js-reveal .reveal-stagger > *:not(.is-visible) {
   transform: translateY(0);
 }
 
+html.js-reveal .reveal.is-visible .reveal-stagger > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .btn-emoji {
   display: inline-block;
   margin-right: 0.35em;
@@ -1796,7 +1815,7 @@ html.js-reveal .reveal-stagger > *:not(.is-visible) {
 
 @media (prefers-reduced-motion: reduce) {
   .emoji-float,
-  .contact-phone,
+  a.contact-tel-link,
   .app-badge {
     animation: none;
   }
@@ -1964,7 +1983,7 @@ html.js-reveal .reveal-stagger > *:not(.is-visible) {
   .contact-service {
     padding: 16px 18px;
   }
-  .contact-phone {
+  .contact-tel-link {
     font-size: 1.2rem;
   }
   .contact-form {
@@ -2059,13 +2078,17 @@ footer {
   color: var(--texte-muted);
 }
 
-.footer-phone {
+a.footer-phone,
+a.footer-phone:link,
+a.footer-phone:visited {
   color: var(--chene-clair);
   text-decoration: none;
   letter-spacing: 1px;
+  -webkit-text-fill-color: currentColor;
 }
 
-.footer-phone:hover {
+a.footer-phone:hover,
+a.footer-phone:active {
   color: var(--chene);
 }
 

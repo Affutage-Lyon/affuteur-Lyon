@@ -74,6 +74,12 @@ html.js-reveal .reveal-stagger > *:not(.is-visible) {
     transform: translateY(0);
 }
 
+// Affiche les cartes dès que la section parente est visible
+html.js-reveal .reveal.is-visible .reveal-stagger > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .btn-emoji {
     display: inline-block;
     margin-right: 0.35em;
@@ -90,7 +96,7 @@ html.js-reveal .reveal-stagger > *:not(.is-visible) {
 
 @media (prefers-reduced-motion: reduce) {
     .emoji-float,
-    .contact-phone,
+    a.contact-tel-link,
     .app-badge {
         animation: none;
     }

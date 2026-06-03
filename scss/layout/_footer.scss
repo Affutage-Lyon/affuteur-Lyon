@@ -9,13 +9,17 @@ footer {
     color: var(--texte-muted);
 }
 
-.footer-phone {
+a.footer-phone,
+a.footer-phone:link,
+a.footer-phone:visited {
     color: var(--chene-clair);
     text-decoration: none;
     letter-spacing: 1px;
+    -webkit-text-fill-color: currentColor;
 }
 
-.footer-phone:hover {
+a.footer-phone:hover,
+a.footer-phone:active {
     color: var(--chene);
 }
 

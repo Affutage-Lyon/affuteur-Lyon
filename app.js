@@ -366,6 +366,9 @@ document.addEventListener('DOMContentLoaded', updateKnifeOnScroll);
 
     function markVisible(el) {
         el.classList.add('is-visible');
+        el.querySelectorAll('.reveal-stagger > *').forEach((child) => {
+            child.classList.add('is-visible');
+        });
     }
 
     if (prefersReduced) {

@@ -1,0 +1,8 @@
+// Valeurs chêne compilées — évite rgba(var(--chene-rgb)) si le navigateur ne le parse pas
+$chene-r: 221;
+$chene-g: 184;
+$chene-b: 146;
+
+@function chene-alpha($alpha) {
+    @return rgba($chene-r, $chene-g, $chene-b, $alpha);
+}
