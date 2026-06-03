@@ -19,7 +19,33 @@
 @media (max-width: 1023px) {
     :root { --nav-height: 64px; }
 
-    .nav-brand-text { display: none; }
+    .nav-brand .nav-logo--bar {
+        display: none;
+    }
+
+    .nav-brand-text {
+        display: block;
+        font-size: 0.72rem;
+        letter-spacing: 2px;
+    }
+
+    .nav-menu-brand {
+        display: block;
+        flex-shrink: 0;
+    }
+
+    .nav-logo--menu {
+        height: 72px;
+        max-width: 88px;
+    }
+
+    .nav-menu-brand-link {
+        gap: 16px;
+    }
+
+    .nav-menu-brand-text {
+        font-size: 0.88rem;
+    }
 
     .burger-menu { display: flex; }
 
@@ -48,9 +74,9 @@
         height: 100dvh;
         flex-direction: column;
         align-items: stretch;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 0;
-        padding: calc(var(--nav-height) + 24px) 32px 48px;
+        padding: calc(var(--nav-height) + 16px) 32px 48px;
         background: linear-gradient(165deg, rgba(28, 30, 33, 0.98) 0%, rgba(18, 20, 22, 0.99) 100%);
         border-left: 1px solid rgba(var(--chene-rgb), 0.15);
         box-shadow: -12px 0 40px rgba(0, 0, 0, 0.4);
@@ -64,7 +90,7 @@
         transform: translateX(0);
     }
 
-    .nav-links a {
+    .nav-links > a {
         font-size: 0.78rem;
         letter-spacing: 2.5px;
         padding: 18px 0;
@@ -72,21 +98,30 @@
         opacity: 1;
     }
 
-    .nav-links a::after {
+    .nav-links > a::after {
         bottom: 14px;
         left: 0;
         width: 0;
         background: var(--chene);
     }
 
-    .nav-links a.active::after {
+    .nav-links > a.active::after {
         width: 32px;
     }
 
-    .nav-links a.nav-cta {
+    .nav-links > a.nav-cta {
         margin-top: 20px;
         text-align: center;
         border-bottom: none;
+    }
+
+    .nav-menu-brand-link {
+        padding: 0 0 20px;
+        margin-bottom: 4px;
+    }
+
+    .nav-menu-brand-link::after {
+        display: none;
     }
 
     .burger-menu.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
@@ -95,7 +130,14 @@
 }
 
 @media (max-width: 480px) {
-    .nav-logo { height: 32px; }
+    .nav-logo--bar {
+        height: 32px;
+    }
+
+    .nav-logo--menu {
+        height: 60px;
+        max-width: 72px;
+    }
 }
 
 @media (max-width: 768px) {
