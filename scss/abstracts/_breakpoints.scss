@@ -1,0 +1,33 @@
+// Breakpoints — à utiliser dans les partials : @include bp-down(tablet) { … }
+$bp-xs: 480px;
+$bp-mobile: 768px;
+$bp-tablet: 640px;
+$bp-desktop: 1024px;
+
+@mixin bp-down($name) {
+    @if $name == xs {
+        @media (max-width: $bp-xs) { @content; }
+    } @else if $name == mobile {
+        @media (max-width: $bp-mobile) { @content; }
+    } @else if $name == tablet {
+        @media (max-width: $bp-tablet) { @content; }
+    } @else if $name == desktop {
+        @media (max-width: $bp-desktop) { @content; }
+    }
+}
+
+@mixin bp-up($name) {
+    @if $name == tablet {
+        @media (min-width: $bp-tablet) { @content; }
+    } @else if $name == tablet-lg {
+        @media (min-width: 768px) { @content; }
+    } @else if $name == desktop {
+        @media (min-width: $bp-desktop) { @content; }
+    }
+}
+
+@mixin reduced-motion {
+    @media (prefers-reduced-motion: reduce) {
+        @content;
+    }
+}

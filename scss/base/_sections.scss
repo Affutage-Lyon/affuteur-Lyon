@@ -1,0 +1,24 @@
+section {
+    padding: 90px 25px;
+    max-width: 950px;
+    margin: auto;
+    scroll-margin-top: calc(var(--nav-height) + 20px);
+}
+
+h2 { 
+    color: var(--chene-clair); 
+    text-transform: uppercase; 
+    letter-spacing: 6px; 
+    margin-bottom: 60px; 
+    text-align: center; 
+}
+
+.souligne-fleche { 
+    position: relative; 
+    display: inline-block; 
+    padding: 0 40px 12px 40px;
+    border-bottom: 0.5px solid var(--acier);
+}
+
+.souligne-fleche::before { content: ''; position: absolute; bottom: -3px; left: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-right: 6px solid var(--acier); }
+.souligne-fleche::after { content: ''; position: absolute; bottom: -3px; right: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-left: 6px solid var(--acier); }

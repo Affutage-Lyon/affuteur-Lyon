@@ -1,0 +1,19 @@
+:root {
+    /* Surfaces */
+    --fond: #1e2226;
+    --fond-elevated: #282d35;
+    --fond-footer: radial-gradient(circle at center, #2e333b 0%, #1e2226 100%);
+    /* Accents chêne */
+    --chene-rgb: 221, 184, 146;
+    --chene: #ddb892;
+    --chene-clair: #edd4b8;
+    /* Texte — hiérarchie lisible sur fond sombre */
+    --texte: #f2f0ec;
+    --texte-secondaire: #c8cfd8;
+    --texte-muted: #97a3b4;
+    --acier: #b8c2d0;
+    --neon-orange: #ffc970;
+    --bleu-metal: #7ab8ff;
+    --glint-pos: 0%;
+    --nav-height: 72px;
+}

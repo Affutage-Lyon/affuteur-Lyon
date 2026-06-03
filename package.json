@@ -1,0 +1,11 @@
+{
+  "name": "affuteur-lyon",
+  "private": true,
+  "scripts": {
+    "build:css": "sass scss/main.scss style.css --style=expanded",
+    "watch:css": "sass scss/main.scss style.css --watch --style=expanded"
+  },
+  "devDependencies": {
+    "sass": "^1.89.0"
+  }
+}

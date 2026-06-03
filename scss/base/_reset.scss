@@ -1,0 +1,17 @@
+html {
+    scroll-behavior: smooth !important;
+}
+
+body {
+    font-family: 'Cinzel', serif;
+    margin: 0;
+    background: var(--fond);
+    color: var(--texte);
+    line-height: 1.8;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+body.menu-open {
+    overflow: hidden;
+}

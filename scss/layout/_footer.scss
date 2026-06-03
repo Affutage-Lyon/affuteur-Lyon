@@ -1,0 +1,30 @@
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--fond-footer);
+}
+
+.footer-note {
+    font-size: 0.78rem;
+    color: var(--texte-muted);
+}
+
+.footer-phone {
+    color: var(--chene-clair);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.footer-phone:hover {
+    color: var(--chene);
+}
+
+.footer-hours {
+    font-size: 0.78rem;
+    color: var(--texte-secondaire);
+    letter-spacing: 1px;
+}
+
+.footer-info p {
+    margin: 0.35em 0;
+}

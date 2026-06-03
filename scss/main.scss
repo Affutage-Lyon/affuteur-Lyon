@@ -1,0 +1,19 @@
+// Point d'entrée SCSS — compile vers style.css (racine du site)
+@use 'abstracts/variables';
+@use 'abstracts/breakpoints';
+@use 'base/reset';
+@use 'layout/nav';
+@use 'sections/banner';
+@use 'sections/hero';
+@use 'components/buttons';
+@use 'base/sections';
+@use 'sections/galerie';
+@use 'sections/tarifs';
+@use 'sections/contact';
+@use 'sections/application';
+@use 'components/animations';
+@use 'layout/responsive';
+@use 'layout/footer';
+
+// Prochaines sections :
+// @use 'sections/biographie';

@@ -358,3 +358,38 @@ document.addEventListener('DOMContentLoaded', updateKnifeOnScroll);
 
     updateUI(0);
 })();
+
+// --- 8. APPARITION AU SCROLL (sections & grilles) ---
+(function initScrollReveal() {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.documentElement.classList.add('js-reveal');
+
+    function markVisible(el) {
+        el.classList.add('is-visible');
+    }
+
+    if (prefersReduced) {
+        document.querySelectorAll('.reveal, .reveal-stagger > *').forEach(markVisible);
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                markVisible(entry.target);
+                observer.unobserve(entry.target);
+            });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+    );
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    document.querySelectorAll('.reveal-stagger').forEach((container) => {
+        [...container.children].forEach((child, index) => {
+            child.style.setProperty('--reveal-delay', `${index * 0.1}s`);
+            observer.observe(child);
+        });
+    });
+})();

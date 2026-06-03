@@ -1,0 +1,132 @@
+.tarifs-section {
+    padding-bottom: 80px;
+}
+
+.tarifs-lead {
+    text-align: center;
+    color: var(--texte-secondaire);
+    font-size: 0.82rem;
+    letter-spacing: 1.5px;
+    line-height: 1.55;
+    margin: -36px auto 36px;
+    max-width: 480px;
+}
+
+.menu-container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 32px 28px;
+    border: 1px solid rgba(var(--chene-rgb), 0.4);
+    background: rgba(40, 45, 53, 0.95);
+}
+
+.menu-label {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--chene-clair);
+    margin: 0 0 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(var(--chene-rgb), 0.28);
+}
+
+.menu-grid {
+    display: grid;
+    gap: 32px;
+}
+
+.menu-section {
+    margin: 0;
+}
+
+.menu-section h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--chene-clair);
+    margin: 0 0 18px;
+}
+
+.menu-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    margin-bottom: 14px;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    transition: transform 0.25s ease;
+}
+
+.menu-row:hover {
+    transform: translateX(4px);
+}
+
+.menu-row:hover .menu-price {
+    color: var(--neon-orange);
+    transition: color 0.25s ease;
+}
+
+.menu-row:last-child {
+    margin-bottom: 0;
+}
+
+.menu-item {
+    flex-shrink: 0;
+    color: var(--texte);
+}
+
+.menu-dots {
+    flex: 1;
+    min-width: 12px;
+    margin: 0 10px;
+    border-bottom: 1px dotted rgba(var(--chene-rgb), 0.35);
+    transform: translateY(-3px);
+}
+
+.menu-price {
+    flex-shrink: 0;
+    min-width: 2.5rem;
+    text-align: right;
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--chene-clair);
+}
+
+.menu-footer-note {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(var(--chene-rgb), 0.25);
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--texte-secondaire);
+    line-height: 1.65;
+}
+
+.menu-footer-note p {
+    margin: 0 0 8px;
+}
+
+.menu-footer-note p:last-child {
+    margin-bottom: 0;
+}
+
+.menu-footer-note strong {
+    color: var(--chene);
+    font-weight: 400;
+}
+
+@media (min-width: 640px) {
+    .menu-container {
+        padding: 40px 36px;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px 48px;
+    }
+}

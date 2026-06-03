@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
-    <meta name="description" content="Ken Aiguise : Affûtage de précision à Lyon 4. Couteaux japonais, chef et ciseaux. Service express pour particuliers et collecte pro le mercredi.">
+    <meta name="description" content="Ken Aiguise : affûteur itinérant à Lyon. Passage en établissements professionnels (restaurants, collectivités). Particuliers : accueil mercredi Croix-Rousse. Tormek T-8.">
     <meta name="keywords" content="affûtage lyon, affûteur croix-rousse, aiguisage couteau lyon, tormek lyon, entretien couteau japonais">
 
     <title>Ken Aiguise | L'Art du Tranchant</title>
@@ -17,7 +17,7 @@
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Ken Aiguise">
     <meta property="og:title" content="Ken Aiguise | L'Art du Tranchant">
-    <meta property="og:description" content="Affûtage de précision à Lyon 4. Couteaux japonais, chef et ciseaux. Service express pour particuliers et collecte pro.">
+    <meta property="og:description" content="Affûteur itinérant à Lyon — passage pro sur site. Particuliers accueillis le mercredi en Croix-Rousse.">
     <meta property="og:url" content="https://affutage-lyon.github.io/affuteur-Lyon/">
     <meta property="og:image" content="https://affutage-lyon.github.io/affuteur-Lyon/img/atelier.webp">
 
@@ -56,15 +56,9 @@
         "openingHoursSpecification": [
             {
                 "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Thursday", "Friday"],
-                "opens": "16:00",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                "opens": "08:00",
                 "closes": "19:00"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Wednesday", "Saturday"],
-                "opens": "09:00",
-                "closes": "18:00"
             }
         ]
     }
@@ -97,13 +91,18 @@
     </nav>
  
     <div class="precaution-banner">
-        🏠 Ouverture de l'atelier prévue en septembre 2026 — Les rendez-vous ouvriront à cette date. En attendant, contactez-moi via le formulaire ci-dessous.
+        <div class="banner-chips" aria-hidden="true">
+            <span class="banner-chip"><span class="emoji-float">🚴</span> Pro itinérant</span>
+            <span class="banner-chip"><span class="emoji-float" style="--emoji-delay: 0.5s">☕</span> Mercredi Croix-Rousse</span>
+            <span class="banner-chip"><span class="emoji-float" style="--emoji-delay: 1s">🏠</span> Atelier sept. 2026</span>
+        </div>
+        <p class="banner-text">Je me déplace chez les <strong>professionnels</strong> (Lyon &amp; métropole). Particuliers : accueil prévu le <strong>mercredi</strong> dans un bistro de la Croix-Rousse <em>(partenaire à confirmer)</em>. Atelier rue d'Ypres : ouverture septembre 2026.</p>
     </div>
 
     <header id="home">
         <div class="header-content">
             <h1 class="shimmer-effect">KEN AIGUISE</h1>
-            <div class="subtitle">Affûteur • Lyon 4</div>
+            <div class="subtitle"><span class="emoji-float" aria-hidden="true">⚔️</span> Affûteur itinérant • Lyon 4</div>
             
             <div class="knife-showcase" id="knife-showcase">
                 <div class="knife-frame" aria-hidden="true">
@@ -197,9 +196,9 @@
     </header>
 
     <main>
-        <section id="galerie" class="galerie-section">
-            <h2><span class="souligne-fleche">Galerie</span></h2>
-            <p class="galerie-lead">Neuf regards sur le tranchant</p>
+        <section id="galerie" class="galerie-section reveal">
+            <h2><span class="souligne-fleche"><span class="section-emoji emoji-float" aria-hidden="true">📸</span>Galerie</span></h2>
+            <p class="galerie-lead">Neuf regards sur le tranchant ✨</p>
 
             <div class="galerie-viewer">
                 <div class="galerie-track" id="galerie-track" aria-label="Galerie — glisser pour naviguer"></div>
@@ -231,16 +230,16 @@
             </div>
         </div>
 
-        <section id="tarifs" class="tarifs-section">
-            <h2><span class="souligne-fleche">Tarifs</span></h2>
-            <p class="tarifs-lead">Collecte &amp; livraison incluses — Lyon 1er, 2e, 3e &amp; 4e</p>
+        <section id="tarifs" class="tarifs-section reveal">
+            <h2><span class="souligne-fleche"><span class="section-emoji emoji-float" aria-hidden="true">💎</span>Tarifs</span></h2>
+            <p class="tarifs-lead">Passage sur site pour les pros 🚴 — collecte &amp; retour inclus (Lyon 1er, 2e, 3e &amp; 4e)</p>
 
             <div class="menu-container">
                 <p class="menu-label">Affûtage de précision • Lyon 4</p>
 
-                <div class="menu-grid">
+                <div class="menu-grid reveal-stagger">
                     <div class="menu-section">
-                        <h3>Cuisine</h3>
+                        <h3><span class="inline-emoji" aria-hidden="true">🔪</span> Cuisine</h3>
                         <div class="menu-row"><span class="menu-item">Petite lame (&lt; 10 cm)</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">7 €</span></div>
                         <div class="menu-row"><span class="menu-item">Grande lame (&gt; 15 cm)</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">10 €</span></div>
                         <div class="menu-row"><span class="menu-item">Couteau japonais</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">14 €</span></div>
@@ -248,7 +247,7 @@
                     </div>
 
                     <div class="menu-section">
-                        <h3>Maison &amp; jardin</h3>
+                        <h3><span class="inline-emoji" aria-hidden="true">✂️</span> Maison &amp; jardin</h3>
                         <div class="menu-row"><span class="menu-item">Ciseaux de couture</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">12 €</span></div>
                         <div class="menu-row"><span class="menu-item">Sécateur</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">8 €</span></div>
                         <div class="menu-row"><span class="menu-item">Hache / hachoir</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">13 €</span></div>
@@ -256,35 +255,35 @@
                 </div>
 
                 <div class="menu-footer-note">
-                    <p><strong>Réparations :</strong> pointe cassée (+3 €) · brèche importante (sur devis)</p>
-                    <p>Travail sur meule Tormek T-8 — finition rasoir, sans chauffe de l'acier.</p>
+                    <p><span class="inline-emoji" aria-hidden="true">🔧</span> <strong>Réparations :</strong> pointe cassée (+3 €) · brèche importante (sur devis)</p>
+                    <p><span class="inline-emoji" aria-hidden="true">💧</span> Travail sur meule Tormek T-8 — finition rasoir, sans chauffe de l'acier.</p>
                 </div>
             </div>
         </section>
 
-        <section id="application">
-            <h2><span class="souligne-fleche">Application Mobile</span></h2>
+        <section id="application" class="reveal">
+            <h2><span class="souligne-fleche"><span class="section-emoji emoji-float" aria-hidden="true">📱</span>Application Mobile</span></h2>
             <p class="app-subtitle">Particuliers &amp; Professionnels</p>
 
-            <div class="app-badge">Bêta Privée</div>
+            <div class="app-badge">Bêta Privée 🚀</div>
 
             <p class="app-description">
-                Réservez vos créneaux, suivez mon vélo en temps réel et gérez vos rendez-vous depuis votre téléphone. L'application Ken Aiguise est disponible sur demande pour tous mes clients.
+                Pensée pour les <strong>professionnels</strong> en tournée : réservez un créneau, suivez mon vélo cargo et gérez vos passages depuis votre téléphone.
             </p>
 
-            <div class="app-features">
+            <div class="app-features reveal-stagger">
                 <div class="app-feature-card">
-                    <div class="app-feature-icon">📍</div>
+                    <div class="app-feature-icon emoji-float">📍</div>
                     <h4>Position Live</h4>
                     <p>Suivez mon vélo cargo en temps réel sur une carte interactive — sachez exactement où j'en suis dans ma tournée.</p>
                 </div>
                 <div class="app-feature-card">
-                    <div class="app-feature-icon">📅</div>
+                    <div class="app-feature-icon emoji-float" style="--emoji-delay: 0.6s">📅</div>
                     <h4>Réservation Directe</h4>
                     <p>Choisissez votre créneau parmi les disponibilités du jour, directement depuis l'application.</p>
                 </div>
                 <div class="app-feature-card">
-                    <div class="app-feature-icon">🔒</div>
+                    <div class="app-feature-icon emoji-float" style="--emoji-delay: 1.2s">🔒</div>
                     <h4>Accès Sécurisé</h4>
                     <p>Connexion via Google. Chaque accès est validé personnellement par Ken pour garantir la qualité du service.</p>
                 </div>
@@ -296,39 +295,67 @@
             </div>
         </section>
 
-        <section id="contact">
-            <h2><span class="souligne-fleche">Contact & Rendez-vous</span></h2>
+        <section id="contact" class="contact-section reveal">
+            <h2><span class="souligne-fleche"><span class="section-emoji emoji-float" aria-hidden="true">✉️</span>Contact &amp; passage</span></h2>
+            <p class="contact-lead">Disponible du lundi au dimanche, 8h–19h 🕗 — privilégiez le formulaire ou appelez-moi directement.</p>
+
+            <div class="contact-services reveal-stagger">
+                <article class="contact-service contact-service--pro">
+                    <h3><span class="inline-emoji" aria-hidden="true">👨‍🍳</span> Professionnels</h3>
+                    <p>Je viens à vous en vélo cargo 🚴 : restaurants, cuisines collectives, commerces. Indiquez votre adresse et le volume d'outils — je vous propose un créneau de passage.</p>
+                </article>
+                <article class="contact-service">
+                    <h3><span class="inline-emoji" aria-hidden="true">☕</span> Particuliers</h3>
+                    <p>Accueil prévu tous les <strong>mercredis</strong> dans un bistro de la Croix-Rousse <em>(adresse partenaire à confirmer)</em>. Atelier 74 rue d'Ypres : ouverture septembre 2026.</p>
+                </article>
+            </div>
+
+            <div class="contact-coords">
+                <a href="tel:+33635218784" class="contact-phone">06 35 21 87 84</a>
+                <span class="contact-hours">Lun. – dim. · 8h – 19h</span>
+            </div>
+
             <div class="contact-form">
                 <form action="https://formspree.io/f/xvzvjqve" method="POST" id="contact-form">
                     <input type="hidden" name="_subject" value="Nouvelle demande Ken Aiguise">
-                    
+
                     <div class="form-group">
-                        <label for="client-type">Vous êtes :</label>
+                        <label for="client-type">Vous êtes</label>
                         <select id="client-type" name="type_client" required>
                             <option value="" disabled selected>Sélectionnez votre profil</option>
-                            <option value="Professionnel">Professionnel (Collège, Lycée, EHPAD)</option>
-                            <option value="Particulier">Particulier</option>
+                            <option value="Professionnel — Restaurant / Bar">Professionnel — Restaurant / Bar</option>
+                            <option value="Professionnel — Collectivité (école, EHPAD…)">Professionnel — Collectivité (école, EHPAD…)</option>
+                            <option value="Professionnel — Commerce / Autre">Professionnel — Commerce / Autre</option>
+                            <option value="Particulier — Mercredi Croix-Rousse">Particulier — Mercredi Croix-Rousse</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Nom / Établissement" required>
+                        <label for="contact-name">Nom / Établissement</label>
+                        <input type="text" id="contact-name" name="name" placeholder="Ex. Restaurant Le Bouchon, M. Dupont…" required>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" name="adresse_lieu" placeholder="Adresse d'intervention (Lyon/Métropole)" required>
+                        <label for="contact-phone">Téléphone</label>
+                        <input type="tel" id="contact-phone" name="telephone" placeholder="06 12 34 56 78" autocomplete="tel" required>
                     </div>
 
                     <div class="form-group">
-                        <input type="email" name="_replyto" placeholder="votre@email.com" required>
+                        <label for="contact-address">Adresse de passage</label>
+                        <input type="text" id="contact-address" name="adresse_lieu" placeholder="Adresse complète (pro) ou « Mercredi Croix-Rousse »" required>
                     </div>
 
                     <div class="form-group">
-                        <textarea name="message" rows="5" placeholder="Votre besoin (nombre de couteaux...)" required></textarea>
+                        <label for="contact-email">E-mail</label>
+                        <input type="email" id="contact-email" name="_replyto" placeholder="votre@email.com" autocomplete="email" required>
                     </div>
 
-                    <button type="submit" class="btn-submit-pro">ENVOYER LA DEMANDE
-                    </button>
+                    <div class="form-group">
+                        <label for="contact-message">Votre besoin</label>
+                        <textarea id="contact-message" name="message" rows="5" placeholder="Nombre de couteaux / ciseaux, créneaux souhaités, accès (étage, digicode…)…" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit-pro"><span class="btn-emoji" aria-hidden="true">✉️</span> ENVOYER LA DEMANDE</button>
                 </form>
             </div>
         </section>
@@ -339,7 +366,9 @@
         <div class="footer-content">
             <div class="footer-info">
                 <h4>KEN AIGUISE</h4>
-                <p>74 Rue d'Ypres, 69004 Lyon</p>
+                <p>74 Rue d'Ypres, 69004 Lyon <span class="footer-note">(base atelier)</span></p>
+                <p><a href="tel:+33635218784" class="footer-phone">06 35 21 87 84</a></p>
+                <p class="footer-hours">Lun. – dim. · 8h – 19h</p>
             </div>
             <div class="footer-copy">
                 © 2026 Ken Aiguise — Affûtage de précision sur diamant (Tormek T-8)

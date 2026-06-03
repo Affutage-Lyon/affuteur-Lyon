@@ -1,0 +1,192 @@
+.contact-section {
+    padding-bottom: 80px;
+}
+
+.contact-lead {
+    text-align: center;
+    color: var(--texte-secondaire);
+    font-size: 0.85rem;
+    line-height: 1.65;
+    margin: -36px auto 28px;
+    max-width: 520px;
+}
+
+.contact-services {
+    display: grid;
+    gap: 16px;
+    max-width: 680px;
+    margin: 0 auto 28px;
+}
+
+@media (min-width: 640px) {
+    .contact-services {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.contact-service {
+    padding: 20px 22px;
+    border: 1px solid rgba(var(--chene-rgb), 0.25);
+    background: rgba(40, 45, 53, 0.6);
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.contact-service:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+.contact-service--pro {
+    border-color: rgba(var(--chene-rgb), 0.35);
+}
+
+.contact-service h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--chene-clair);
+    margin: 0 0 10px;
+}
+
+.contact-service p {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--texte-secondaire);
+}
+
+.contact-coords {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 32px;
+}
+
+.contact-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(var(--chene-rgb), 0.3);
+    font-family: 'Cinzel', serif;
+    font-size: 1.35rem;
+    letter-spacing: 2px;
+    color: var(--chene-clair);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    animation: phonePulse 3s ease-in-out infinite;
+}
+
+.contact-phone::before {
+    content: '📞';
+    font-size: 1rem;
+}
+
+.contact-phone:hover {
+    color: var(--chene);
+}
+
+.contact-hours {
+    font-size: 0.78rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--texte-muted);
+}
+
+.contact-hours::before {
+    content: '🕗 ';
+}
+
+.contact-form {
+    background: rgba(40, 45, 53, 0.55);
+    padding: 40px;
+    border: 1px solid rgba(var(--chene-rgb), 0.22);
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 8px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--chene-clair);
+    margin-bottom: 6px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 15px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    color: var(--texte);
+    margin-bottom: 22px;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--texte-muted);
+    opacity: 1;
+}
+
+input:focus, textarea:focus, select:focus { border-bottom: 1px solid var(--chene-clair); outline: none; }
+
+select option { background: var(--fond-elevated); color: var(--texte); }
+
+/* Style spécifique pour le bouton d'envoi du formulaire */
+.btn-submit-pro {
+    background-color: transparent;
+    color: var(--chene);
+    border: 1px solid var(--chene);
+    padding: 15px 30px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+    border-radius: 2px;
+}
+
+/* Effet au survol : remplissage et lueur orange néon */
+.btn-submit-pro:hover {
+    background-color: var(--chene);
+    color: var(--fond);
+    box-shadow: 0 0 15px rgba(255, 180, 77, 0.4); /* Rappel neon-orange */
+    transform: translateY(-2px);
+}
+
+/* Effet actif (clic) */
+.btn-submit-pro:active {
+    transform: translateY(0);
+}
+
+/* Optionnel : petit trait décoratif avant le texte */
+.btn-submit-pro::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -100%;
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: 0.5s;
+}
+
+.btn-submit-pro:hover::before {
+    left: 100%;
+}

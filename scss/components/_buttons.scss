@@ -1,0 +1,38 @@
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    padding: 14px 32px;
+    border: 1px solid var(--chene);
+    color: var(--chene);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: rgba(var(--chene-rgb), 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.btn-cta svg {
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    fill: var(--chene);
+    transition: transform 0.4s ease, fill 0.4s ease;
+}
+
+.btn-cta:hover {
+    background: var(--chene);
+    color: var(--fond);
+    box-shadow: 0 0 20px rgba(255, 180, 77, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-cta:hover svg {
+    fill: var(--fond);
+    transform: scale(1.1) rotate(5deg);
+}
