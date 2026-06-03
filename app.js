@@ -432,6 +432,11 @@ document.addEventListener('DOMContentLoaded', updateKnifeOnScroll);
         });
     }
 
+    function resetPageScroll(page) {
+        const inner = page?.querySelector('.bio-page-inner');
+        if (inner) inner.scrollTop = 0;
+    }
+
     function goTo(index) {
         if (animating || index === current || index < 0 || index >= total) return;
 
@@ -442,6 +447,7 @@ document.addEventListener('DOMContentLoaded', updateKnifeOnScroll);
             outgoing.classList.remove('is-active');
             incoming.classList.add('is-active');
             current = index;
+            resetPageScroll(incoming);
             updateUI();
             return;
         }
@@ -456,6 +462,7 @@ document.addEventListener('DOMContentLoaded', updateKnifeOnScroll);
             outgoing.classList.remove('is-flipping-out');
             incoming.classList.remove('is-flipping-in');
             current = index;
+            resetPageScroll(incoming);
             animating = false;
             updateUI();
         }, FLIP_MS);
@@ -470,14 +477,19 @@ document.addEventListener('DOMContentLoaded', updateKnifeOnScroll);
 
     if (bookEl) {
         let touchStartX = 0;
+        let touchStartY = 0;
+
         bookEl.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
         }, { passive: true });
 
         bookEl.addEventListener('touchend', (e) => {
-            const delta = e.changedTouches[0].screenX - touchStartX;
-            if (Math.abs(delta) < 40) return;
-            if (delta < 0) goTo(current + 1);
+            const dx = e.changedTouches[0].screenX - touchStartX;
+            const dy = e.changedTouches[0].screenY - touchStartY;
+            if (Math.abs(dx) < 40) return;
+            if (Math.abs(dy) > Math.abs(dx)) return;
+            if (dx < 0) goTo(current + 1);
             else goTo(current - 1);
         }, { passive: true });
     }
