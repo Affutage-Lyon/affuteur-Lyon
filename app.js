@@ -164,13 +164,14 @@ function updateKnifeOnScroll() {
 window.addEventListener('scroll', () => requestAnimationFrame(updateKnifeOnScroll));
 document.addEventListener('DOMContentLoaded', updateKnifeOnScroll);
 
-// --- 6. CARROUSEL AUTO OUTILS ---
+// --- 6. CARROUSEL AUTO OUTILS (couteau seul — pas de rotation si un seul outil) ---
 (function initToolsCarousel() {
     const viewport = document.getElementById('tools-viewport');
     if (!viewport || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const layers = [...viewport.querySelectorAll('.tool-layer')];
-    const labelMap = { knife: 'Couteau', scissors: 'Ciseaux' };
+    if (layers.length < 2) return;
+    const labelMap = { knife: 'Couteau' };
     const INTERVAL_MS = 4000;
     const TRANSITION_MS = 750;
     let current = 0;
