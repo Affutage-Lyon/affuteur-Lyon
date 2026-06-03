@@ -138,27 +138,58 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(hero);
 })();
 
-// --- 5. RÉPARATION DU COUTEAU AU SCROLL ---
-window.addEventListener('scroll', () => {
-    const blade = document.getElementById('main-blade');
-    const logo = document.getElementById('blade-logo-scroll');
-    if (!blade || !logo) return;
-    const progress = Math.min(window.scrollY / 100, 1);
+// --- 5. RÉPARATION DES OUTILS AU SCROLL ---
+function updateKnifeOnScroll() {
+    const blades = document.querySelectorAll('.tool-blade');
+    const logos = document.querySelectorAll('.tool-logo');
+    const showcase = document.getElementById('knife-showcase');
+    if (!blades.length) return;
 
-    if (progress >= 0.8) {
-        blade.setAttribute('d', blade.getAttribute('data-new'));
-        blade.style.fill = "#ffffff";
-        blade.classList.add('is-repaired');
-        logo.style.transform = "translateY(10px)";
-        logo.style.opacity = "1";
-    } else {
-        blade.setAttribute('d', blade.getAttribute('data-broken'));
-        blade.style.fill = "#555c69";
-        blade.classList.remove('is-repaired');
-        logo.style.transform = "translateY(0px)";
-        logo.style.opacity = "0.7";
-    }
-});
+    const repaired = Math.min(window.scrollY / 100, 1) >= 0.8;
+
+    blades.forEach((blade) => {
+        blade.setAttribute('d', blade.getAttribute(repaired ? 'data-new' : 'data-broken'));
+        blade.style.fill = repaired ? '#ffffff' : '#555c69';
+        blade.classList.toggle('is-repaired', repaired);
+    });
+
+    logos.forEach((logo) => {
+        logo.style.transform = repaired ? 'translateY(10px)' : 'translateY(0px)';
+        logo.style.opacity = repaired ? '1' : '0.7';
+    });
+
+    showcase?.classList.toggle('is-repaired', repaired);
+}
+
+window.addEventListener('scroll', () => requestAnimationFrame(updateKnifeOnScroll));
+document.addEventListener('DOMContentLoaded', updateKnifeOnScroll);
+
+// --- 6. CARROUSEL AUTO OUTILS ---
+(function initToolsCarousel() {
+    const viewport = document.getElementById('tools-viewport');
+    if (!viewport || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const layers = [...viewport.querySelectorAll('.tool-layer')];
+    const labelMap = { knife: 'Couteau', scissors: 'Ciseaux' };
+    const INTERVAL_MS = 4000;
+    const TRANSITION_MS = 750;
+    let current = 0;
+
+    setInterval(() => {
+        const prev = current;
+        current = (current + 1) % layers.length;
+
+        layers[prev].classList.remove('is-active');
+        layers[prev].classList.add('is-leaving');
+        layers[current].classList.remove('is-leaving');
+        layers[current].classList.add('is-active');
+
+        const tool = layers[current].dataset.tool;
+        viewport.setAttribute('aria-label', labelMap[tool] || 'Outil');
+
+        setTimeout(() => layers[prev].classList.remove('is-leaving'), TRANSITION_MS);
+    }, INTERVAL_MS);
+})();
 
 // --- GALERIE 9 PHOTOS ---
 (function initGalerie() {
@@ -327,18 +358,3 @@ window.addEventListener('scroll', () => {
 
     updateUI(0);
 })();
-
-// --- GESTION ACCORDÉON ROI ---
-document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
-        const faqItem = button.parentElement;
-        
-        // Ferme les autres items
-        document.querySelectorAll('.faq-item').forEach(item => {
-            if (item !== faqItem) item.classList.remove('active');
-        });
-        
-        // Bascule l'état actuel
-        faqItem.classList.toggle('active');
-    });
-});
