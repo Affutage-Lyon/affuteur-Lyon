@@ -231,6 +231,8 @@ header {
     display: inline-block;
     padding: 24px 18px;
     margin: 12px auto 20px;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .knife-watermark {
@@ -300,6 +302,7 @@ header {
     width: 100%;
     height: 100%;
     perspective: 900px;
+    overflow: hidden;
 }
 
 .tool-layer {
@@ -345,10 +348,12 @@ header {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 300px;
+    width: 100%;
+    max-width: 220px;
     height: 100%;
     pointer-events: none;
     z-index: 4;
+    overflow: hidden;
 }
 
 .particle {
@@ -1252,11 +1257,139 @@ select option { background: var(--fond); color: white; }
 }
 
 @media (max-width: 768px) {
-    .shimmer-effect { font-size: 2.2rem; letter-spacing: 6px; }
-    .knife-container { height: 380px; width: clamp(110px, 28vw, 140px); }
-    .knife-showcase { padding: 20px 14px; }
-    .menu-container { padding: 28px 20px; }
-    .menu-grid { gap: 28px; }
+    section {
+        padding: 56px 16px;
+    }
+
+    h2 {
+        margin-bottom: 36px;
+        letter-spacing: 3px;
+        font-size: 0.95rem;
+    }
+
+    .souligne-fleche {
+        padding: 0 22px 10px;
+    }
+
+    header {
+        min-height: auto;
+        padding: 20px 16px 28px;
+    }
+
+    .header-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .shimmer-effect {
+        font-size: clamp(1.75rem, 8.5vw, 2.2rem);
+        letter-spacing: 4px;
+    }
+
+    .subtitle {
+        letter-spacing: 3px;
+        font-size: 0.75rem;
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+
+    .precaution-banner {
+        font-size: 0.65rem;
+        padding: 10px 12px;
+        line-height: 1.55;
+        letter-spacing: 0.3px;
+        text-transform: none;
+    }
+
+    .knife-showcase {
+        padding: 14px 6px;
+        margin: 8px auto 12px;
+        width: min(260px, 92vw);
+    }
+
+    .knife-container {
+        width: min(200px, 78vw);
+        height: clamp(210px, 52vw, 260px);
+    }
+
+    .knife-watermark {
+        width: clamp(90px, 40vw, 120px);
+    }
+
+    .tool-layer.is-leaving {
+        transform: translateX(70%) rotateY(-28deg);
+    }
+
+    .tool-layer:not(.is-active):not(.is-leaving) {
+        transform: translateX(-12%) rotateY(18deg);
+    }
+
+    .btn-cta {
+        margin-top: 16px;
+        padding: 12px 24px;
+        font-size: 0.7rem;
+    }
+
+    .galerie-lead {
+        margin: -24px 0 20px;
+        font-size: 0.75rem;
+    }
+
+    .tarifs-lead {
+        margin: -24px auto 24px;
+        font-size: 0.75rem;
+        padding: 0 4px;
+    }
+
+    .menu-container {
+        padding: 24px 16px;
+    }
+
+    .menu-grid {
+        gap: 24px;
+    }
+
+    .menu-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2px 10px;
+        align-items: baseline;
+        margin-bottom: 12px;
+    }
+
+    .menu-dots {
+        display: none;
+    }
+
+    .menu-item {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .menu-price {
+        font-size: 0.9rem;
+    }
+
+    .menu-footer-note {
+        font-size: 0.78rem;
+        text-align: left;
+    }
+
+    .contact-form {
+        padding: 24px 16px;
+    }
+
+    .galerie-section {
+        padding-bottom: 48px;
+    }
+
+    .galerie-viewer {
+        margin: 0 -16px;
+    }
+
+    .galerie-thumbs-wrap {
+        padding: 0;
+    }
 }
 
 @media (min-width: 1024px) {
