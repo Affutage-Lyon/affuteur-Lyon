@@ -1202,6 +1202,10 @@ h2 {
   transform-style: preserve-3d;
   border-radius: 0 6px 6px 0;
   overflow: hidden;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: none;
 }
 
 .bio-page {
@@ -1278,11 +1282,12 @@ h2 {
 }
 
 .bio-page-eyebrow {
-  font-size: 0.62rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
   color: var(--chene-clair);
-  margin: 0 0 12px;
+  margin: 0 0 10px;
 }
 
 .bio-page--paper .bio-page-eyebrow {
@@ -1290,12 +1295,12 @@ h2 {
 }
 
 .bio-page-title {
-  font-family: "Cinzel", serif;
-  font-size: clamp(1.1rem, 4vw, 1.45rem);
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin: 0 0 16px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.15rem, 4vw, 1.4rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  margin: 0 0 14px;
   line-height: 1.35;
 }
 
@@ -1309,8 +1314,9 @@ h2 {
 
 .bio-page--cover .bio-page-title {
   color: var(--chene-clair);
-  font-size: clamp(1.2rem, 5vw, 1.6rem);
-  letter-spacing: clamp(3px, 1.2vw, 6px);
+  font-size: clamp(1.2rem, 5vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
   margin: 0;
   line-height: 1.3;
   flex-shrink: 0;
@@ -1364,9 +1370,9 @@ h2 {
 }
 .bio-page--cover .bio-page-text {
   color: var(--texte-secondaire);
-  font-size: clamp(0.72rem, 2.6vw, 0.85rem);
-  letter-spacing: 0.12em;
-  line-height: 1.75;
+  font-size: clamp(0.8rem, 2.6vw, 0.9rem);
+  letter-spacing: 0.01em;
+  line-height: 1.6;
   margin: 0 0 4px;
   flex-shrink: 0;
 }
@@ -1381,9 +1387,12 @@ h2 {
 }
 
 .bio-page-text {
-  font-family: "Cinzel", serif;
-  font-size: clamp(0.78rem, 2.5vw, 0.88rem);
-  line-height: 1.85;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  text-transform: none;
   margin: 0;
   color: inherit;
 }
@@ -1392,12 +1401,31 @@ h2 {
   color: #4a4038;
 }
 
+.bio-page-text a {
+  color: #5c4a38;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.25s ease;
+}
+
+.bio-page-text a:hover {
+  color: #8a6548;
+}
+
+.bio-page-text--note {
+  font-size: 0.9em;
+  font-style: italic;
+  opacity: 0.85;
+  margin-top: 12px;
+}
+
 .bio-page-hint {
   margin-top: auto;
   padding-top: 20px;
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
   color: var(--chene);
   opacity: 0.85;
 }
