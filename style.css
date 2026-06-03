@@ -58,7 +58,7 @@ nav {
     font-size: 0.70rem;
     letter-spacing: 1.5px;
     position: relative;
-    padding: 8px 0;
+    padding: 2px 0; /* Réduit de 8px à 2px pour resserrer le soulignement */
     opacity: 0.7;
     transition: color 0.4s ease, opacity 0.4s ease;
 }
@@ -71,7 +71,7 @@ nav {
 .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -2px;
     left: 50%;
     width: 0; 
     height: 1px;
@@ -112,18 +112,20 @@ nav {
     margin-top: 45px; 
 }
 
-.menu-logo-svg {
-    width: 200px;
-    height: auto;
-    transition: transform 0.3s ease;
-    filter: brightness(0) invert(1);
-    padding: 5px 0;
-}
-
 .menu-logo-container {
     display: flex;
     align-items: center;
     margin-right: 20px;
+    height: 100%; /* S'aligne strictement sur la hauteur de la nav */
+}
+
+.menu-logo-svg {
+    height: 50px;       /* Force une hauteur très fine pour le logo */
+    width: auto;        /* Conserve les proportions d'origine */
+    max-height: 50px;   /* Sécurité absolue anti-écrasement */
+    padding: 0;         /* Supprime le padding vertical qui écartait la nav */
+    transition: transform 0.3s ease;
+    filter: brightness(0) invert(1);
 }
 
 /* ==========================================================================
@@ -178,6 +180,13 @@ header {
     10% { opacity: 0.8; }
     80% { opacity: 0.4; }
     100% { transform: translate(var(--xDir), var(--yDir)) scale(0.3); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .particle { display: none !important; }
+    #main-blade.is-repaired { animation: none; }
+    .shimmer-effect { background-image: none; -webkit-text-fill-color: var(--chene); }
+    html { scroll-behavior: auto !important; }
 }
 
 #main-blade {

