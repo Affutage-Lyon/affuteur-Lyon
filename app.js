@@ -164,34 +164,6 @@ function updateKnifeOnScroll() {
 window.addEventListener('scroll', () => requestAnimationFrame(updateKnifeOnScroll));
 document.addEventListener('DOMContentLoaded', updateKnifeOnScroll);
 
-// --- 6. CARROUSEL AUTO OUTILS (couteau seul — pas de rotation si un seul outil) ---
-(function initToolsCarousel() {
-    const viewport = document.getElementById('tools-viewport');
-    if (!viewport || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const layers = [...viewport.querySelectorAll('.tool-layer')];
-    if (layers.length < 2) return;
-    const labelMap = { knife: 'Couteau' };
-    const INTERVAL_MS = 4000;
-    const TRANSITION_MS = 750;
-    let current = 0;
-
-    setInterval(() => {
-        const prev = current;
-        current = (current + 1) % layers.length;
-
-        layers[prev].classList.remove('is-active');
-        layers[prev].classList.add('is-leaving');
-        layers[current].classList.remove('is-leaving');
-        layers[current].classList.add('is-active');
-
-        const tool = layers[current].dataset.tool;
-        viewport.setAttribute('aria-label', labelMap[tool] || 'Outil');
-
-        setTimeout(() => layers[prev].classList.remove('is-leaving'), TRANSITION_MS);
-    }, INTERVAL_MS);
-})();
-
 // --- GALERIE 9 PHOTOS ---
 (function initGalerie() {
     // Modifier ce tableau pour ajouter / remplacer vos photos (01.webp → 09.webp dans img/galerie/)

@@ -259,6 +259,10 @@ $bio-font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial
     color: #4a4038;
 }
 
+.bio-page-text + .bio-page-text {
+    margin-top: 12px;
+}
+
 .bio-page-text a {
     color: #5c4a38;
     text-decoration: underline;
