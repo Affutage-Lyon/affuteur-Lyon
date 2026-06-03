@@ -84,6 +84,7 @@
             <div class="nav-links" id="nav-menu">
                 <a href="#galerie">Galerie</a>
                 <a href="#tarifs">Prix</a>
+                <a href="#bio">Bio</a>
                 <a href="#application">Application</a>
                 <a href="#contact" class="nav-cta">Contact</a>
             </div>
@@ -258,6 +259,87 @@
                     <p><span class="inline-emoji" aria-hidden="true">🔧</span> <strong>Réparations :</strong> pointe cassée (+3 €) · brèche importante (sur devis)</p>
                     <p><span class="inline-emoji" aria-hidden="true">💧</span> Travail sur meule Tormek T-8 — finition rasoir, sans chauffe de l'acier.</p>
                 </div>
+            </div>
+        </section>
+
+        <section id="bio" class="bio-section reveal" aria-labelledby="bio-heading">
+            <h2 id="bio-heading"><span class="souligne-fleche"><span class="section-emoji emoji-float" aria-hidden="true">📖</span>Bio</span></h2>
+            <p class="bio-lead">Feuilletez le livre pour découvrir mon parcours, ma méthode et ma vision du métier.</p>
+
+            <div class="bio-stage">
+                <div class="bio-book" id="bio-book">
+                    <div class="bio-book-spine" aria-hidden="true"></div>
+                    <div class="bio-book-pages" id="bio-pages" aria-live="polite">
+
+                        <article class="bio-page bio-page--cover is-active" data-chapter="Couverture">
+                            <div class="bio-page-inner">
+                                <p class="bio-page-eyebrow">Ken Aiguise</p>
+                                <h3 class="bio-page-title">L'Art du Tranchant</h3>
+                                <p class="bio-page-text">Affûteur itinérant · Lyon 4<br>Meule Tormek T-8 · Finition rasoir</p>
+                                <p class="bio-page-hint">Tourner la page ›</p>
+                            </div>
+                        </article>
+
+                        <article class="bio-page bio-page--paper" data-chapter="Origines">
+                            <div class="bio-page-inner">
+                                <p class="bio-page-eyebrow">Chapitre I</p>
+                                <h3 class="bio-page-title">Origines</h3>
+                                <p class="bio-page-text">Tout a commencé par une frustration simple : des lames qui peinent, des gestes qui s'alourdissent en cuisine. J'ai voulu comprendre l'acier — le respecter, le restaurer — plutôt que le remplacer trop tôt.</p>
+                            </div>
+                        </article>
+
+                        <article class="bio-page bio-page--paper" data-chapter="Méthode">
+                            <div class="bio-page-inner">
+                                <p class="bio-page-eyebrow">Chapitre II</p>
+                                <h3 class="bio-page-title">Méthode</h3>
+                                <p class="bio-page-text">Mon travail repose sur une meule à eau Tormek T-8 : affûtage au diamant, sans surchauffe, finition rasoir. Chaque outil repart avec un tranchant durable — japonais, chef ou ciseaux — prêt à encaisser les journées les plus denses.</p>
+                            </div>
+                        </article>
+
+                        <article class="bio-page bio-page--paper" data-chapter="Itinérance">
+                            <div class="bio-page-inner">
+                                <p class="bio-page-eyebrow">Chapitre III</p>
+                                <h3 class="bio-page-title">Itinérance</h3>
+                                <p class="bio-page-text">Je me déplace en vélo cargo chez les professionnels : restaurants, cuisines collectives, commerces. Je viens à vous, récupère vos outils si besoin, et vous les rends affûtés — du lundi au dimanche, de 8h à 19h.</p>
+                            </div>
+                        </article>
+
+                        <article class="bio-page bio-page--paper" data-chapter="Lyon">
+                            <div class="bio-page-inner">
+                                <p class="bio-page-eyebrow">Chapitre IV</p>
+                                <h3 class="bio-page-title">Lyon</h3>
+                                <p class="bio-page-text">Ancré dans le 4<sup>e</sup>, je prépare l'ouverture de mon atelier au 74 rue d'Ypres pour septembre 2026. En attendant, les particuliers sont accueillis le mercredi dans un bistro de la Croix-Rousse — adresse partenaire à confirmer.</p>
+                            </div>
+                        </article>
+
+                        <article class="bio-page bio-page--paper" data-chapter="Philosophie">
+                            <div class="bio-page-inner">
+                                <p class="bio-page-eyebrow">Chapitre V</p>
+                                <h3 class="bio-page-title">Philosophie</h3>
+                                <p class="bio-page-text">Un bon tranchant, c'est du soin en moins et du plaisir en plus. Je privilégie la relation de confiance avec les pros : régularité, transparence sur les tarifs, et un service pensé pour durer — comme vos couteaux une fois entre mes mains.</p>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <div class="bio-nav">
+                    <button type="button" class="bio-btn" id="bio-prev" aria-label="Page précédente" disabled>‹</button>
+                    <div class="bio-progress">
+                        <span class="bio-chapter-label" id="bio-chapter-label">Couverture</span>
+                        <span class="bio-page-counter" id="bio-page-counter">1 / 6</span>
+                    </div>
+                    <button type="button" class="bio-btn" id="bio-next" aria-label="Page suivante">›</button>
+                </div>
+
+                <ul class="bio-toc" id="bio-toc" aria-label="Sommaire des chapitres">
+                    <li><button type="button" data-page="0" class="is-current">Couverture</button></li>
+                    <li><button type="button" data-page="1">Origines</button></li>
+                    <li><button type="button" data-page="2">Méthode</button></li>
+                    <li><button type="button" data-page="3">Itinérance</button></li>
+                    <li><button type="button" data-page="4">Lyon</button></li>
+                    <li><button type="button" data-page="5">Philosophie</button></li>
+                </ul>
             </div>
         </section>
 

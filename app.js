@@ -393,3 +393,101 @@ document.addEventListener('DOMContentLoaded', updateKnifeOnScroll);
         });
     });
 })();
+
+// --- 9. LIVRE BIO (FEUILLETAGE) ---
+(function initBioBook() {
+    const pagesEl = document.getElementById('bio-pages');
+    const btnPrev = document.getElementById('bio-prev');
+    const btnNext = document.getElementById('bio-next');
+    const labelEl = document.getElementById('bio-chapter-label');
+    const counterEl = document.getElementById('bio-page-counter');
+    const tocEl = document.getElementById('bio-toc');
+    const bookEl = document.getElementById('bio-book');
+
+    if (!pagesEl || !btnPrev || !btnNext) return;
+
+    const pages = [...pagesEl.querySelectorAll('.bio-page')];
+    const tocButtons = tocEl ? [...tocEl.querySelectorAll('button[data-page]')] : [];
+    const total = pages.length;
+    const FLIP_MS = 650;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let current = 0;
+    let animating = false;
+
+    function pad(n) {
+        return String(n);
+    }
+
+    function updateUI() {
+        const chapter = pages[current].dataset.chapter || `Page ${current + 1}`;
+        if (labelEl) labelEl.textContent = chapter;
+        if (counterEl) counterEl.textContent = `${pad(current + 1)} / ${pad(total)}`;
+        btnPrev.disabled = current === 0;
+        btnNext.disabled = current === total - 1;
+        tocButtons.forEach((btn) => {
+            btn.classList.toggle('is-current', Number(btn.dataset.page) === current);
+        });
+    }
+
+    function goTo(index) {
+        if (animating || index === current || index < 0 || index >= total) return;
+
+        const outgoing = pages[current];
+        const incoming = pages[index];
+
+        if (prefersReduced) {
+            outgoing.classList.remove('is-active');
+            incoming.classList.add('is-active');
+            current = index;
+            updateUI();
+            return;
+        }
+
+        animating = true;
+        outgoing.classList.add('is-flipping-out');
+        outgoing.classList.remove('is-active');
+
+        incoming.classList.add('is-flipping-in', 'is-active');
+
+        setTimeout(() => {
+            outgoing.classList.remove('is-flipping-out');
+            incoming.classList.remove('is-flipping-in');
+            current = index;
+            animating = false;
+            updateUI();
+        }, FLIP_MS);
+    }
+
+    btnPrev.addEventListener('click', () => goTo(current - 1));
+    btnNext.addEventListener('click', () => goTo(current + 1));
+
+    tocButtons.forEach((btn) => {
+        btn.addEventListener('click', () => goTo(Number(btn.dataset.page)));
+    });
+
+    if (bookEl) {
+        let touchStartX = 0;
+        bookEl.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        bookEl.addEventListener('touchend', (e) => {
+            const delta = e.changedTouches[0].screenX - touchStartX;
+            if (Math.abs(delta) < 40) return;
+            if (delta < 0) goTo(current + 1);
+            else goTo(current - 1);
+        }, { passive: true });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        const bioSection = document.getElementById('bio');
+        if (!bioSection) return;
+        const rect = bioSection.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight * 0.75 && rect.bottom > window.innerHeight * 0.25;
+        if (!inView) return;
+        if (e.key === 'ArrowRight') goTo(current + 1);
+        if (e.key === 'ArrowLeft') goTo(current - 1);
+    });
+
+    updateUI();
+})();

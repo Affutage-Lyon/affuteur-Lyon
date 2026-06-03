@@ -1111,6 +1111,302 @@ h2 {
     gap: 40px 48px;
   }
 }
+.bio-section {
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.bio-lead {
+  text-align: center;
+  color: var(--texte-secondaire);
+  font-size: 0.85rem;
+  line-height: 1.65;
+  margin: -36px auto 32px;
+  max-width: 480px;
+}
+
+.bio-stage {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.bio-book {
+  position: relative;
+  perspective: 1400px;
+  margin: 0 auto 24px;
+  width: min(100%, 400px);
+  aspect-ratio: 4/5.2;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.45));
+}
+
+.bio-book-spine {
+  position: absolute;
+  top: 3%;
+  bottom: 3%;
+  left: 0;
+  width: 14px;
+  background: linear-gradient(90deg, #1a1510 0%, #3d342c 35%, #2a231c 100%);
+  border-radius: 3px 0 0 3px;
+  z-index: 5;
+  box-shadow: inset -2px 0 6px rgba(0, 0, 0, 0.4);
+}
+
+.bio-book-pages {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 10px;
+  transform-style: preserve-3d;
+  border-radius: 0 6px 6px 0;
+  overflow: hidden;
+}
+
+.bio-page {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  backface-visibility: hidden;
+  transform-origin: left center;
+  transform: rotateY(8deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.65s cubic-bezier(0.45, 0.05, 0.25, 1), opacity 0.45s ease;
+  z-index: 1;
+  border-radius: 0 6px 6px 0;
+  border: 1px solid rgba(var(--chene-rgb), 0.25);
+  border-left: none;
+}
+
+.bio-page.is-active {
+  transform: rotateY(0deg);
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 3;
+}
+
+.bio-page.is-flipping-out {
+  transform: rotateY(-165deg);
+  opacity: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.bio-page.is-flipping-in {
+  transform: rotateY(0deg);
+  opacity: 1;
+  z-index: 3;
+  pointer-events: auto;
+  animation: bioPageTurnIn 0.65s cubic-bezier(0.45, 0.05, 0.25, 1);
+}
+
+@keyframes bioPageTurnIn {
+  from {
+    transform: rotateY(28deg);
+    opacity: 0.35;
+  }
+  to {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+.bio-page--cover {
+  background: linear-gradient(145deg, #2a231c 0%, #1e2226 55%, #252019 100%);
+  border-color: rgba(var(--chene-rgb), 0.45);
+}
+
+.bio-page--paper {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.04) 0%, transparent 8%), linear-gradient(180deg, #f8f2e8 0%, #efe6d8 100%);
+  color: #2c2620;
+}
+
+.bio-page-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: clamp(24px, 6vw, 36px) clamp(20px, 5vw, 32px);
+  box-sizing: border-box;
+}
+
+.bio-page--cover .bio-page-inner {
+  align-items: center;
+  text-align: center;
+}
+
+.bio-page-eyebrow {
+  font-size: 0.62rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--chene-clair);
+  margin: 0 0 12px;
+}
+
+.bio-page--paper .bio-page-eyebrow {
+  color: #8a7560;
+}
+
+.bio-page-title {
+  font-family: "Cinzel", serif;
+  font-size: clamp(1.1rem, 4vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+  line-height: 1.35;
+}
+
+.bio-page--cover .bio-page-title {
+  color: var(--chene-clair);
+  font-size: clamp(1.25rem, 5vw, 1.65rem);
+  letter-spacing: 4px;
+}
+
+.bio-page--paper .bio-page-title {
+  color: #3d342c;
+}
+
+.bio-page-text {
+  font-family: "Cinzel", serif;
+  font-size: clamp(0.78rem, 2.5vw, 0.88rem);
+  line-height: 1.85;
+  margin: 0;
+  color: inherit;
+}
+
+.bio-page--cover .bio-page-text {
+  color: var(--texte-secondaire);
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+}
+
+.bio-page--paper .bio-page-text {
+  color: #4a4038;
+}
+
+.bio-page-hint {
+  margin-top: auto;
+  padding-top: 20px;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--chene);
+  opacity: 0.85;
+}
+
+.bio-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.bio-btn {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(var(--chene-rgb), 0.4);
+  border-radius: 50%;
+  background: rgba(40, 45, 53, 0.8);
+  color: var(--chene-clair);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.bio-btn:hover:not(:disabled) {
+  background: rgba(var(--chene-rgb), 0.2);
+  border-color: var(--chene);
+  transform: scale(1.05);
+}
+
+.bio-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.bio-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 140px;
+  text-align: center;
+}
+
+.bio-chapter-label {
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--chene-clair);
+}
+
+.bio-page-counter {
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  color: var(--texte-muted);
+}
+
+.bio-toc {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bio-toc button {
+  font-family: "Cinzel", serif;
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border: 1px solid rgba(var(--chene-rgb), 0.22);
+  border-radius: 999px;
+  background: rgba(40, 45, 53, 0.5);
+  color: var(--texte-secondaire);
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.bio-toc button:hover,
+.bio-toc button.is-current {
+  background: rgba(var(--chene-rgb), 0.18);
+  border-color: rgba(var(--chene-rgb), 0.45);
+  color: var(--chene-clair);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bio-page {
+    transition: opacity 0.2s ease;
+    transform: none !important;
+  }
+  .bio-page.is-flipping-in {
+    animation: none;
+  }
+}
+@media (max-width: 768px) {
+  .bio-lead {
+    margin: -24px auto 24px;
+    font-size: 0.8rem;
+    padding: 0 4px;
+  }
+  .bio-book {
+    width: min(100%, 320px);
+  }
+  .bio-page-inner {
+    padding: 20px 18px;
+  }
+  .bio-toc button {
+    font-size: 0.58rem;
+    padding: 5px 10px;
+  }
+}
 .contact-section {
   padding-bottom: 80px;
 }
