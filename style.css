@@ -1154,50 +1154,43 @@ h2 {
   }
 }
 .bio-section {
-  padding-bottom: 88px;
+  padding-bottom: 80px;
   overflow: hidden;
 }
 
 .bio-lead {
   text-align: center;
   color: var(--texte-secondaire);
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: clamp(0.88rem, 2.5vw, 0.95rem);
-  font-style: italic;
-  line-height: 1.7;
-  margin: -28px auto 36px;
-  max-width: 440px;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  margin: -36px auto 32px;
+  max-width: 480px;
 }
 
 .bio-stage {
-  max-width: 540px;
+  max-width: 520px;
   margin: 0 auto;
-  padding: clamp(20px, 4vw, 32px);
-  background: linear-gradient(165deg, rgba(40, 45, 53, 0.55) 0%, rgba(24, 27, 31, 0.85) 100%);
-  border: 1px solid rgba(var(--chene-rgb), 0.18);
-  border-radius: 16px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
 .bio-book {
   position: relative;
   perspective: 1400px;
-  margin: 0 auto 28px;
-  width: min(100%, 420px);
-  aspect-ratio: 4/5.15;
-  filter: drop-shadow(0 28px 56px rgba(0, 0, 0, 0.5));
+  margin: 0 auto 24px;
+  width: min(100%, 400px);
+  aspect-ratio: 4/5.2;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.45));
 }
 
 .bio-book-spine {
   position: absolute;
-  top: 2%;
-  bottom: 2%;
+  top: 3%;
+  bottom: 3%;
   left: 0;
-  width: 16px;
-  background: linear-gradient(90deg, #14110e 0%, #4a3f34 40%, #2a231c 100%);
-  border-radius: 4px 0 0 4px;
+  width: 14px;
+  background: linear-gradient(90deg, #1a1510 0%, #3d342c 35%, #2a231c 100%);
+  border-radius: 3px 0 0 3px;
   z-index: 5;
-  box-shadow: inset -3px 0 8px rgba(0, 0, 0, 0.5), 2px 0 12px rgba(0, 0, 0, 0.25);
+  box-shadow: inset -2px 0 6px rgba(0, 0, 0, 0.4);
 }
 
 .bio-book-pages {
@@ -1205,12 +1198,10 @@ h2 {
   top: 0;
   right: 0;
   bottom: 0;
-  left: 12px;
+  left: 10px;
   transform-style: preserve-3d;
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 6px 6px 0;
   overflow: hidden;
-  font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
 .bio-page {
@@ -1225,8 +1216,8 @@ h2 {
   pointer-events: none;
   transition: transform 0.65s cubic-bezier(0.45, 0.05, 0.25, 1), opacity 0.45s ease;
   z-index: 1;
-  border-radius: 0 8px 8px 0;
-  border: 1px solid rgba(var(--chene-rgb), 0.22);
+  border-radius: 0 6px 6px 0;
+  border: 1px solid rgba(var(--chene-rgb), 0.25);
   border-left: none;
 }
 
@@ -1263,14 +1254,13 @@ h2 {
   }
 }
 .bio-page--cover {
-  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(var(--chene-rgb), 0.12) 0%, transparent 55%), linear-gradient(160deg, #2f2822 0%, #1a1f24 45%, #222018 100%);
-  border-color: rgba(var(--chene-rgb), 0.35);
+  background: linear-gradient(145deg, #2a231c 0%, #1e2226 55%, #252019 100%);
+  border-color: rgba(var(--chene-rgb), 0.45);
 }
 
 .bio-page--paper {
-  background: linear-gradient(90deg, rgba(61, 52, 44, 0.08) 0%, transparent 6%), repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(61, 52, 44, 0.03) 28px, rgba(61, 52, 44, 0.03) 29px), linear-gradient(180deg, #faf6ef 0%, #f0e8da 48%, #ebe3d4 100%);
-  color: #2a2420;
-  box-shadow: inset 0 0 40px rgba(61, 52, 44, 0.06);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.04) 0%, transparent 8%), linear-gradient(180deg, #f8f2e8 0%, #efe6d8 100%);
+  color: #2c2620;
 }
 
 .bio-page-inner {
@@ -1278,7 +1268,7 @@ h2 {
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  padding: clamp(26px, 6vw, 38px) clamp(22px, 5vw, 34px);
+  padding: clamp(24px, 6vw, 36px) clamp(20px, 5vw, 32px);
   box-sizing: border-box;
 }
 
@@ -1287,134 +1277,43 @@ h2 {
   text-align: center;
 }
 
-.bio-page--paper .bio-page-inner {
-  justify-content: flex-start;
-  padding-top: clamp(28px, 7vw, 40px);
-}
-
 .bio-page-eyebrow {
-  font-size: 0.78rem;
-  font-weight: 600;
-  font-style: italic;
-  font-variant-numeric: oldstyle-nums;
-  letter-spacing: 0.04em;
-  text-transform: none;
-  color: #9a8572;
-  margin: 0 0 6px;
+  font-size: 0.62rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--chene-clair);
+  margin: 0 0 12px;
 }
 
 .bio-page--paper .bio-page-eyebrow {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.bio-page--paper .bio-page-eyebrow::after {
-  content: "";
-  display: block;
-  width: 36px;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(var(--chene-rgb), 0.7), transparent);
-  border-radius: 1px;
+  color: #8a7560;
 }
 
 .bio-page-title {
-  font-family: inherit;
-  font-size: clamp(1.2rem, 4.2vw, 1.55rem);
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  text-transform: none;
+  font-family: "Cinzel", serif;
+  font-size: clamp(1.1rem, 4vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   margin: 0 0 16px;
-  line-height: 1.28;
+  line-height: 1.35;
 }
 
 .bio-page--cover .bio-page-inner--cover {
   align-items: center;
   text-align: center;
   justify-content: flex-start;
-  gap: clamp(8px, 2vw, 12px);
-  padding: clamp(18px, 4vw, 26px) clamp(14px, 3vw, 20px) clamp(14px, 3vw, 18px);
+  gap: clamp(4px, 1.2vw, 8px);
+  padding: clamp(12px, 3vw, 18px) clamp(6px, 1.5vw, 10px) clamp(8px, 2vw, 12px);
 }
 
 .bio-page--cover .bio-page-title {
   color: var(--chene-clair);
-  font-size: clamp(1.35rem, 5.5vw, 1.75rem);
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-size: clamp(1.2rem, 5vw, 1.6rem);
+  letter-spacing: clamp(3px, 1.2vw, 6px);
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.3;
   flex-shrink: 0;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(var(--chene-rgb), 0.35);
-}
-
-.bio-page--cover .bio-page-text {
-  color: rgba(237, 212, 184, 0.88);
-  font-size: clamp(0.82rem, 2.5vw, 0.92rem);
-  letter-spacing: 0.02em;
-  line-height: 1.55;
-  margin: 0;
-  flex-shrink: 0;
-}
-
-.bio-page--paper .bio-page-title {
-  color: #352e28;
-  margin-bottom: 14px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(61, 52, 44, 0.15);
-}
-
-.bio-page-text {
-  font-family: inherit;
-  font-size: clamp(0.9rem, 2.7vw, 1rem);
-  font-weight: 400;
-  line-height: 1.78;
-  letter-spacing: 0.015em;
-  text-transform: none;
-  margin: 0;
-  color: inherit;
-  text-align: justify;
-  hyphens: auto;
-}
-
-.bio-page--paper .bio-page-text {
-  color: #453c35;
-}
-
-.bio-page-text::first-letter {
-  font-size: 1.35em;
-  font-weight: 600;
-  line-height: 1;
-  margin-right: 2px;
-  color: #6b5a4a;
-}
-
-.bio-page--cover .bio-page-text::first-letter {
-  font-size: inherit;
-  font-weight: inherit;
-  color: inherit;
-  margin: 0;
-}
-
-.bio-page-hint {
-  margin-top: auto;
-  padding-top: 16px;
-  font-family: inherit;
-  font-size: 0.78rem;
-  font-style: italic;
-  letter-spacing: 0.03em;
-  text-transform: none;
-  color: rgba(var(--chene-rgb), 0.85);
-  opacity: 0.9;
-}
-
-.bio-page--cover .bio-page-hint {
-  margin-top: auto;
-  padding-top: 10px;
-  font-size: 0.72rem;
-  color: var(--texte-muted);
 }
 
 .bio-cover-map {
@@ -1424,7 +1323,7 @@ h2 {
   justify-content: center;
   width: 100%;
   min-height: 0;
-  margin: 4px 0 0;
+  margin: 2px 0 0;
   padding: 0;
 }
 
@@ -1434,14 +1333,14 @@ h2 {
   justify-content: center;
   width: 100%;
   flex: 1;
-  min-height: 150px;
-  padding: clamp(8px, 2vw, 12px);
-  border-radius: 12px;
-  background: rgba(22, 30, 42, 0.5);
-  backdrop-filter: blur(14px) saturate(1.2);
-  -webkit-backdrop-filter: blur(14px) saturate(1.2);
-  border: 1px solid rgba(122, 184, 255, 0.15);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  min-height: 160px;
+  padding: clamp(6px, 1.5vw, 10px);
+  border-radius: 14px;
+  background: rgba(32, 40, 52, 0.42);
+  backdrop-filter: blur(16px) saturate(1.35);
+  -webkit-backdrop-filter: blur(16px) saturate(1.35);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   overflow: hidden;
 }
 
@@ -1449,55 +1348,90 @@ h2 {
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 180px;
-  max-height: min(46vh, 300px);
+  min-height: 200px;
+  max-height: min(48vh, 320px);
   object-fit: cover;
   object-position: center center;
-  transform: scale(1.14);
+  transform: scale(1.16);
   mix-blend-mode: screen;
-  filter: drop-shadow(0 0 20px rgba(77, 196, 220, 0.2));
+  filter: drop-shadow(0 0 18px rgba(77, 196, 220, 0.25));
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .bio-cover-map__glass {
-    background: rgba(28, 36, 48, 0.82);
+    background: rgba(36, 44, 56, 0.78);
   }
 }
+.bio-page--cover .bio-page-text {
+  color: var(--texte-secondaire);
+  font-size: clamp(0.72rem, 2.6vw, 0.85rem);
+  letter-spacing: 0.12em;
+  line-height: 1.75;
+  margin: 0 0 4px;
+  flex-shrink: 0;
+}
+
+.bio-page--cover .bio-page-hint {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.bio-page--paper .bio-page-title {
+  color: #3d342c;
+}
+
+.bio-page-text {
+  font-family: "Cinzel", serif;
+  font-size: clamp(0.78rem, 2.5vw, 0.88rem);
+  line-height: 1.85;
+  margin: 0;
+  color: inherit;
+}
+
+.bio-page--paper .bio-page-text {
+  color: #4a4038;
+}
+
+.bio-page-hint {
+  margin-top: auto;
+  padding-top: 20px;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--chene);
+  opacity: 0.85;
+}
+
 .bio-nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  margin-bottom: 22px;
-  padding: 14px 16px;
-  background: rgba(30, 34, 38, 0.6);
-  border-radius: 12px;
-  border: 1px solid rgba(var(--chene-rgb), 0.12);
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
 .bio-btn {
-  width: 42px;
-  height: 42px;
-  border: 1px solid rgba(var(--chene-rgb), 0.35);
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(var(--chene-rgb), 0.4);
   border-radius: 50%;
-  background: rgba(40, 45, 53, 0.9);
+  background: rgba(40, 45, 53, 0.8);
   color: var(--chene-clair);
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   line-height: 1;
   cursor: pointer;
-  transition: background 0.3s ease, border-color 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.25s ease;
   flex-shrink: 0;
 }
 
 .bio-btn:hover:not(:disabled) {
-  background: rgba(var(--chene-rgb), 0.22);
+  background: rgba(var(--chene-rgb), 0.2);
   border-color: var(--chene);
-  transform: scale(1.04);
-  box-shadow: 0 0 16px rgba(var(--chene-rgb), 0.2);
+  transform: scale(1.05);
 }
 
 .bio-btn:disabled {
-  opacity: 0.3;
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
@@ -1505,25 +1439,21 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  min-width: 150px;
+  gap: 4px;
+  min-width: 140px;
   text-align: center;
 }
 
 .bio-chapter-label {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 0.92rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: none;
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   color: var(--chene-clair);
 }
 
 .bio-page-counter {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 0.75rem;
-  font-style: italic;
-  letter-spacing: 0.04em;
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
   color: var(--texte-muted);
 }
 
@@ -1534,31 +1464,28 @@ h2 {
   gap: 8px;
   list-style: none;
   margin: 0;
-  padding: 12px 0 0;
-  border-top: 1px solid rgba(var(--chene-rgb), 0.1);
+  padding: 0;
 }
 
 .bio-toc button {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 0.76rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  text-transform: none;
-  padding: 8px 14px;
-  border: 1px solid rgba(var(--chene-rgb), 0.2);
-  border-radius: 8px;
-  background: rgba(30, 34, 38, 0.7);
+  font-family: "Cinzel", serif;
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border: 1px solid rgba(var(--chene-rgb), 0.22);
+  border-radius: 999px;
+  background: rgba(40, 45, 53, 0.5);
   color: var(--texte-secondaire);
   cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .bio-toc button:hover,
 .bio-toc button.is-current {
-  background: rgba(var(--chene-rgb), 0.16);
-  border-color: rgba(var(--chene-rgb), 0.4);
+  background: rgba(var(--chene-rgb), 0.18);
+  border-color: rgba(var(--chene-rgb), 0.45);
   color: var(--chene-clair);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1569,56 +1496,78 @@ h2 {
   .bio-page.is-flipping-in {
     animation: none;
   }
-  .bio-page-text::first-letter {
-    font-size: inherit;
-    font-weight: inherit;
-  }
 }
 @media (max-width: 768px) {
   .bio-lead {
-    margin: -20px auto 28px;
-    font-size: 0.84rem;
-    padding: 0 8px;
-  }
-  .bio-stage {
-    padding: 16px 12px 20px;
-    border-radius: 12px;
+    margin: -24px auto 24px;
+    font-size: 0.8rem;
+    padding: 0 4px;
   }
   .bio-book {
     width: min(100%, 320px);
-    margin-bottom: 20px;
+    touch-action: pan-y pinch-zoom;
+  }
+  .bio-page.is-active {
+    overflow: hidden;
   }
   .bio-page-inner {
-    padding: 22px 18px;
+    justify-content: flex-start;
+    align-items: stretch;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+    min-height: 0;
+    max-height: 100%;
+    padding: 18px 16px 20px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--chene-rgb), 0.4) transparent;
+  }
+  .bio-page-inner::-webkit-scrollbar {
+    width: 4px;
+  }
+  .bio-page-inner::-webkit-scrollbar-thumb {
+    background: rgba(var(--chene-rgb), 0.4);
+    border-radius: 4px;
+  }
+  .bio-page-eyebrow,
+  .bio-page-title,
+  .bio-cover-map,
+  .bio-page-hint {
+    flex-shrink: 0;
+  }
+  .bio-page--paper .bio-page-inner {
+    padding-top: 20px;
   }
   .bio-page--cover .bio-page-inner--cover {
-    padding: 14px 10px 12px;
+    padding: 12px 10px 14px;
     gap: 6px;
   }
+  .bio-cover-map {
+    flex: 0 1 auto;
+    min-height: 100px;
+  }
   .bio-cover-map__glass {
-    min-height: 130px;
+    min-height: 100px;
     padding: 6px;
-    border-radius: 10px;
+    border-radius: 12px;
   }
   .bio-cover-map__img {
-    min-height: 155px;
-    max-height: 220px;
+    min-height: 110px;
+    max-height: 160px;
     transform: scale(1.12);
   }
   .bio-page--cover .bio-page-title {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
   }
-  .bio-page-text {
-    text-align: left;
-    hyphens: manual;
-  }
-  .bio-nav {
-    gap: 12px;
-    padding: 12px;
+  .bio-page-hint {
+    margin-top: 12px;
+    padding-top: 12px;
   }
   .bio-toc button {
-    font-size: 0.72rem;
-    padding: 6px 11px;
+    font-size: 0.58rem;
+    padding: 5px 10px;
   }
 }
 .contact-section {
