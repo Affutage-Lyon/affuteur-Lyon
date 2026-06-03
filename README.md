@@ -11,7 +11,7 @@ index.html      Page principale
 style.css       Styles
 app.js          Interactions (nav, galerie, animations)
 img/            Images WebP et logo SVG
-videos/         Vidéo de démonstration
+img/galerie/    9 photos de la galerie (01.webp → 09.webp)
 sitemap.xml     Plan du site (SEO)
 robots.txt      Directives pour les moteurs de recherche
 ```

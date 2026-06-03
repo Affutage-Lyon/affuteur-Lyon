@@ -72,22 +72,28 @@
 </head>
 
 <body>
-    <nav>
-        <div class="burger-menu" id="burger-trigger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+    <nav class="site-nav" id="site-nav">
+        <div class="nav-inner">
+            <a href="#home" class="nav-brand" aria-label="Ken Aiguise — Accueil">
+                <img src="img/logo.svg" alt="" class="nav-logo" width="40" height="40">
+                <span class="nav-brand-text">Ken Aiguise</span>
+            </a>
 
-        <div class="nav-links" id="nav-menu">
-            <div class="menu-logo-container">
-                <img src="img/logo.svg" alt="Ken Aiguise" class="menu-logo-svg">
+            <button type="button" class="burger-menu" id="burger-trigger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+            <div class="nav-links" id="nav-menu">
+                <a href="#galerie">Galerie</a>
+                <a href="#expertise-pro">Expertise</a>
+                <a href="#tarifs">Prix</a>
+                <a href="#application">Application</a>
+                <a href="#contact" class="nav-cta">Contact</a>
             </div>
-            <a href="#galerie" class="active">Galerie</a>
-            <a href="#expertise-pro">Expertise</a>
-            <a href="#tarifs">Prix</a>
-            <a href="#application">Application</a>
-            <a href="#contact">Me contacter</a>
         </div>
     </nav>
  
@@ -126,39 +132,39 @@
     </header>
 
     <main>
-        <section id="galerie" class="galerie-moderne">
+        <section id="galerie" class="galerie-section">
             <h2><span class="souligne-fleche">Galerie</span></h2>
-            
-            <div class="galerie-container">
-                <div class="galerie-card active">
-                    <img src="img/knife_1.webp" alt="Geste technique sur meule à eau">
-                    <div class="card-overlay">
-                        <span class="card-tag" style="color: #E13F7C;">Avant</span>
-                    </div>
-                </div>
+            <p class="galerie-lead">Neuf regards sur le tranchant</p>
 
-                <div class="galerie-card">
-                    <img src="img/knife_2.webp" alt="Détail du tranchant miroir">
-                    <div class="card-overlay">
-                        <span class="card-tag" style="color:#67C090;">Après</span>
-                    </div>
-                </div>
-
-                <div class="galerie-card">
-                  <video autoplay loop muted playsinline poster="img/atelier.webp" class="video-galerie">
-                    <source src="videos/demo.mp4" type="video/mp4">
-                    <img src="img/atelier.webp" alt="Intérieur de l'Atelier d'Ypres">
-                    </video>
-                  </div>
-
+            <div class="galerie-viewer">
+                <div class="galerie-track" id="galerie-track" aria-label="Galerie — glisser pour naviguer"></div>
+                <button type="button" class="galerie-arrow galerie-arrow--prev" id="galerie-prev" aria-label="Photo précédente"></button>
+                <button type="button" class="galerie-arrow galerie-arrow--next" id="galerie-next" aria-label="Photo suivante"></button>
             </div>
-            
-            <div class="galerie-nav">
-                <button class="nav-dot active" data-index="0"></button>
-                <button class="nav-dot" data-index="1"></button>
-                <button class="nav-dot" data-index="2"></button>
+
+            <div class="galerie-thumbs-wrap">
+                <div class="galerie-thumbs" id="galerie-thumbs" aria-label="Miniatures"></div>
+            </div>
+
+            <div class="galerie-ui">
+                <div class="galerie-progress" aria-hidden="true">
+                    <div class="galerie-progress-fill" id="galerie-progress"></div>
+                </div>
+                <div class="galerie-meta">
+                    <span class="galerie-counter" id="galerie-counter">01 / 09</span>
+                    <p class="galerie-caption" id="galerie-caption">Avant affûtage</p>
+                </div>
             </div>
         </section>
+
+        <div class="galerie-lightbox" id="galerie-lightbox" aria-hidden="true" role="dialog" aria-label="Photo agrandie">
+            <button type="button" class="galerie-lightbox-close" id="galerie-lightbox-close" aria-label="Fermer">×</button>
+            <div class="galerie-lightbox-track" id="galerie-lightbox-track"></div>
+            <div class="galerie-lightbox-footer">
+                <span id="galerie-lightbox-counter">01 / 09</span>
+                <span id="galerie-lightbox-caption">Avant affûtage</span>
+            </div>
+        </div>
 
         <section id="expertise-pro">
             <h2><span class="souligne-fleche">Expertise & Rentabilité</span></h2>
