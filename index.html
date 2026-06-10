@@ -376,24 +376,21 @@
                         </select>
                     </div>
 
+                    <div class="form-group form-group--autocomplete">
+                        <label for="contact-address">Adresse du lieu</label>
+                        <input type="text" id="contact-address" name="adresse_lieu" placeholder="Adresse dans le Rhône — ex. 74 rue d'Ypres, Lyon" required autocomplete="off" aria-autocomplete="list" aria-controls="address-suggestions" aria-expanded="false">
+                        <ul id="address-suggestions" class="address-suggestions" role="listbox" aria-label="Suggestions d'adresse" hidden></ul>
+                    </div>
+
                     <div class="form-group">
-                        <label for="contact-name">Nom / Établissement</label>
-                        <input type="text" id="contact-name" name="name" placeholder="Ex. Restaurant Le Bouchon, M. Dupont…" required>
+                        <label for="contact-name">Nom de l'établissement</label>
+                        <input type="text" id="contact-name" name="name" placeholder="Détecté automatiquement à partir de l'adresse" required readonly>
+                        <p id="establishment-detected" class="establishment-detected" hidden aria-live="polite"></p>
                     </div>
 
                     <div class="form-group">
                         <label for="contact-tel-input">Téléphone</label>
                         <input type="tel" id="contact-tel-input" name="telephone" placeholder="06 12 34 56 78" autocomplete="tel" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="contact-address">Adresse de passage</label>
-                        <input type="text" id="contact-address" name="adresse_lieu" placeholder="Adresse complète (pro) ou « Mercredi Croix-Rousse »" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="contact-email">E-mail</label>
-                        <input type="email" id="contact-email" name="_replyto" placeholder="votre@email.com" autocomplete="email" required>
                     </div>
 
                     <div class="form-group">

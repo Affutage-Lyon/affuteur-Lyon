@@ -70,7 +70,6 @@
     margin-bottom: 32px;
 }
 
-// Lien tel — classe dédiée (évite conflit avec l'input du formulaire)
 a.contact-tel-link,
 a.contact-tel-link:link,
 a.contact-tel-link:visited,
@@ -129,6 +128,85 @@ a.contact-tel-link:active {
     margin-bottom: 8px;
 }
 
+.form-group--autocomplete {
+    position: relative;
+}
+
+.address-suggestions {
+    position: absolute;
+    z-index: 30;
+    left: 0;
+    right: 0;
+    top: calc(100% - 14px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-height: 220px;
+    overflow-y: auto;
+    background: var(--fond-elevated);
+    border: 1px solid fn.chene-alpha(0.45);
+    border-radius: 4px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+.address-suggestions:not([hidden]) {
+    display: block;
+}
+
+.address-suggestions[hidden] {
+    display: none;
+}
+
+.address-suggestions li + li {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.address-suggestion {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border: none;
+    background: transparent;
+    color: var(--texte);
+    font-family: inherit;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.address-suggestion:hover,
+.address-suggestion:focus {
+    background: fn.chene-alpha(0.12);
+    outline: none;
+}
+
+.address-suggestion__meta {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.75rem;
+    color: var(--chene-clair);
+    letter-spacing: 0.5px;
+}
+
+.address-suggestions__empty {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    color: var(--texte-muted);
+}
+
+.establishment-detected {
+    margin: 8px 0 0;
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
+    color: var(--chene-clair);
+}
+
+.establishment-detected::before {
+    content: '🏪 ';
+}
+
 .form-group label {
     display: block;
     font-size: 0.7rem;
@@ -163,6 +241,11 @@ textarea:focus,
 select:focus {
     border-bottom: 1px solid var(--chene-clair);
     outline: none;
+}
+
+input[readonly] {
+    color: var(--chene-clair);
+    cursor: default;
 }
 
 select option {

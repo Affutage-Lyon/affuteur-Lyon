@@ -479,3 +479,395 @@ document.addEventListener('DOMContentLoaded', updateKnifeOnScroll);
 
     updateUI();
 })();
+
+// --- 7. AUTOCOMPLÉTION ADRESSE (API Adresse data.gouv.fr — Rhône 69) ---
+(function initAddressAutocomplete() {
+    const ADRESSE_API = 'https://api-adresse.data.gouv.fr/search/';
+    const DEBOUNCE_MS = 280;
+    const RHONE_POSTCODE = /^69\d{3}$/;
+    const SUGGESTION_LIMIT = 6;
+    const FETCH_LIMIT = 20;
+
+    const input = document.getElementById('contact-address');
+    const nameInput = document.getElementById('contact-name');
+    const establishmentHint = document.getElementById('establishment-detected');
+    const list = document.getElementById('address-suggestions');
+    if (!input || !nameInput || !list) return;
+
+    let debounceTimer = null;
+    let lastResults = [];
+    let activeIndex = -1;
+
+    function isInRhone(props) {
+        const postcode = props.postcode || '';
+        const citycode = String(props.citycode || '');
+        return RHONE_POSTCODE.test(postcode) || citycode.startsWith('69');
+    }
+
+    function normalizeText(str) {
+        return String(str)
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/\p{M}/gu, '')
+            .trim();
+    }
+
+    function streetKey(street) {
+        return normalizeText(street)
+            .replace(/\b(rue|avenue|av|boulevard|bd|place|pl|cours|chemin|ch|impasse|allée|allee)\b/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    function streetsMatch(banStreet, osmStreet) {
+        const a = streetKey(banStreet);
+        const b = streetKey(osmStreet);
+        if (!a || !b) return false;
+        return a === b || a.includes(b) || b.includes(a);
+    }
+
+    function getElementCoords(el) {
+        if (el.lat != null && el.lon != null) return { lat: el.lat, lon: el.lon };
+        if (el.center) return { lat: el.center.lat, lon: el.center.lon };
+        return null;
+    }
+
+    function distanceMeters(lat1, lon1, lat2, lon2) {
+        const R = 6371000;
+        const toRad = (deg) => (deg * Math.PI) / 180;
+        const dLat = toRad(lat2 - lat1);
+        const dLon = toRad(lon2 - lon1);
+        const a =
+            Math.sin(dLat / 2) ** 2 +
+            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function banStreetName(props) {
+        return props.street || props.name || '';
+    }
+
+    function scoreEstablishment(el, lat, lon, props) {
+        const tags = el.tags || {};
+        const name = tags.name?.trim();
+        if (!name) return -Infinity;
+
+        const coords = getElementCoords(el);
+        if (!coords) return -Infinity;
+
+        const dist = distanceMeters(lat, lon, coords.lat, coords.lon);
+        const banHn = normalizeText(props.housenumber || '');
+        const banStreet = banStreetName(props);
+        const osmHn = normalizeText(tags['addr:housenumber'] || '');
+        const osmStreet = tags['addr:street'] || '';
+
+        const hnMatch = Boolean(banHn && osmHn && banHn === osmHn);
+        const stMatch = streetsMatch(banStreet, osmStreet);
+        const pcMatch = tags['addr:postcode'] === props.postcode;
+
+        let score = 0;
+
+        if (hnMatch) score += 110;
+        if (stMatch) score += 90;
+        if (pcMatch) score += 25;
+
+        if (osmHn && banHn && !hnMatch) score -= 150;
+        if (osmStreet && banStreet && !stMatch) score -= 100;
+
+        score += Math.max(0, 30 - dist * 1.5);
+
+        const hasAddressTags = Boolean(osmHn || osmStreet);
+        if (!hasAddressTags && dist > 10) score -= 60;
+
+        return score;
+    }
+
+    function pickBestEstablishment(elements, lat, lon, props) {
+        let best = null;
+        for (const el of elements) {
+            const score = scoreEstablishment(el, lat, lon, props);
+            if (!best || score > best.score) {
+                best = { name: el.tags?.name?.trim(), score };
+            }
+        }
+        return best;
+    }
+
+    async function fetchOsmEstablishments(lat, lon) {
+        const amenityFilter =
+            'restaurant|bar|cafe|fast_food|pub|food_court|biergarten|school|kindergarten|college|university|hospital|clinic|nursing_home|marketplace|pharmacy';
+        const query = `[out:json][timeout:6];(node(around:25,${lat},${lon})["name"]["amenity"~"${amenityFilter}"];way(around:25,${lat},${lon})["name"]["amenity"~"${amenityFilter}"];node(around:25,${lat},${lon})["name"]["shop"];way(around:25,${lat},${lon})["name"]["shop"];node(around:25,${lat},${lon})["name"]["office"];way(around:25,${lat},${lon})["name"]["office"];);out center tags;`;
+
+        const res = await fetch('https://overpass-api.de/api/interpreter', {
+            method: 'POST',
+            body: query,
+        });
+        if (!res.ok) return [];
+        const data = await res.json();
+        return data.elements || [];
+    }
+
+    async function fetchNominatimEstablishment(lat, lon, props) {
+        const url = new URL('https://nominatim.openstreetmap.org/reverse');
+        url.searchParams.set('lat', String(lat));
+        url.searchParams.set('lon', String(lon));
+        url.searchParams.set('format', 'json');
+        url.searchParams.set('zoom', '18');
+        url.searchParams.set('addressdetails', '1');
+        url.searchParams.set('extratags', '1');
+
+        const res = await fetch(url, {
+            headers: {
+                'Accept-Language': 'fr',
+            },
+        });
+        if (!res.ok) return '';
+
+        const data = await res.json();
+        const name = data.name || data.extratags?.name || '';
+        if (!name) return '';
+
+        const addr = data.address || {};
+        const banHn = normalizeText(props.housenumber || '');
+        const osmHn = normalizeText(addr.house_number || '');
+        const banStreet = banStreetName(props);
+        const osmStreet = addr.road || addr.pedestrian || addr.footway || '';
+
+        const hnMatch = !banHn || !osmHn || banHn === osmHn;
+        const stMatch = !banStreet || !osmStreet || streetsMatch(banStreet, osmStreet);
+
+        if (!hnMatch || !stMatch) return '';
+
+        const poiTypes = new Set(['restaurant', 'cafe', 'bar', 'pub', 'fast_food', 'school', 'kindergarten', 'shop', 'commercial']);
+        if (!poiTypes.has(data.type) && !data.extratags?.amenity && !data.extratags?.shop) {
+            return '';
+        }
+
+        return name.trim();
+    }
+
+    /** Recherche un établissement correspondant exactement à l'adresse BAN. */
+    async function lookupEstablishmentName(lat, lon, props) {
+        if (lat == null || lon == null) return '';
+
+        const MIN_SCORE = 85;
+
+        try {
+            const elements = await fetchOsmEstablishments(lat, lon);
+            const best = pickBestEstablishment(elements, lat, lon, props);
+            if (best && best.score >= MIN_SCORE) {
+                return best.name;
+            }
+        } catch {
+            /* secours Nominatim */
+        }
+
+        try {
+            return await fetchNominatimEstablishment(lat, lon, props);
+        } catch {
+            return '';
+        }
+    }
+
+    function resetEstablishment(pending = false) {
+        nameInput.value = '';
+        nameInput.readOnly = true;
+        nameInput.placeholder = pending
+            ? 'Recherche en cours…'
+            : 'Détecté automatiquement à partir de l\'adresse';
+
+        if (establishmentHint) {
+            establishmentHint.hidden = !pending;
+            establishmentHint.textContent = pending
+                ? 'Recherche de l\'établissement à cette adresse…'
+                : '';
+        }
+    }
+
+    function showEstablishment(name) {
+        if (!name) {
+            nameInput.readOnly = false;
+            nameInput.placeholder = 'Non détecté — saisissez le nom de l\'établissement';
+            if (establishmentHint) {
+                establishmentHint.hidden = false;
+                establishmentHint.textContent =
+                    'Établissement non identifié à cette adresse précise. Saisissez le nom ci-dessus.';
+            }
+            return;
+        }
+
+        nameInput.value = name;
+        nameInput.readOnly = true;
+        if (establishmentHint) {
+            establishmentHint.hidden = false;
+            establishmentHint.textContent = `Établissement : ${name}`;
+        }
+    }
+
+    function extractArrondissement(props) {
+        const postcode = props.postcode || '';
+        const city = (props.city || '').trim();
+
+        if (/^6900[1-9]$/.test(postcode)) {
+            const num = parseInt(postcode.slice(-1), 10);
+            return `Lyon ${num}${num === 1 ? 'er' : 'e'}`;
+        }
+
+        if (/^69/.test(postcode) && city) {
+            return `${city} (${postcode})`;
+        }
+
+        return city || props.context || '';
+    }
+
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    function setListOpen(open) {
+        list.hidden = !open;
+        input.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    function clearSuggestions() {
+        lastResults = [];
+        activeIndex = -1;
+        list.innerHTML = '';
+        setListOpen(false);
+    }
+
+    async function fetchSuggestions(query) {
+        const params = new URLSearchParams({
+            q: query,
+            limit: String(FETCH_LIMIT),
+            autocomplete: '1',
+            lat: '45.7640',
+            lon: '4.8357',
+        });
+        const res = await fetch(`${ADRESSE_API}?${params}`);
+        if (!res.ok) throw new Error('API Adresse indisponible');
+        const data = await res.json();
+        return (data.features || [])
+            .map((feature) => {
+                const props = feature.properties || {};
+                return {
+                    label: props.label || '',
+                    arrondissement: extractArrondissement(props),
+                    props,
+                    lat: feature.geometry?.coordinates?.[1],
+                    lon: feature.geometry?.coordinates?.[0],
+                };
+            })
+            .filter((item) => isInRhone(item.props))
+            .slice(0, SUGGESTION_LIMIT)
+            .map(({ label, arrondissement, props, lat, lon }) => ({
+                label,
+                arrondissement,
+                props,
+                lat,
+                lon,
+            }));
+    }
+
+    function renderSuggestions(results) {
+        lastResults = results;
+        activeIndex = -1;
+
+        if (!results.length) {
+            list.innerHTML = '<li class="address-suggestions__empty">Aucun résultat dans le Rhône (69) — saisissez l\'adresse manuellement.</li>';
+            setListOpen(true);
+            return;
+        }
+
+        list.innerHTML = results
+            .map(
+                (item, i) => `
+            <li role="presentation">
+                <button type="button" class="address-suggestion" role="option" data-index="${i}" id="address-option-${i}">
+                    ${escapeHtml(item.label)}
+                    <span class="address-suggestion__meta">${escapeHtml(item.arrondissement)}</span>
+                </button>
+            </li>`
+            )
+            .join('');
+
+        list.querySelectorAll('.address-suggestion').forEach((btn) => {
+            btn.addEventListener('click', () => selectSuggestion(parseInt(btn.dataset.index, 10)));
+        });
+
+        setListOpen(true);
+    }
+
+    async function selectSuggestion(index) {
+        const item = lastResults[index];
+        if (!item) return;
+
+        input.value = item.label;
+        clearSuggestions();
+        resetEstablishment(true);
+
+        const establishmentName = await lookupEstablishmentName(item.lat, item.lon, item.props);
+        showEstablishment(establishmentName);
+    }
+
+    function highlightOption(index) {
+        const options = list.querySelectorAll('.address-suggestion');
+        options.forEach((el, i) => el.setAttribute('aria-selected', i === index ? 'true' : 'false'));
+        if (options[index]) options[index].focus();
+    }
+
+    input.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        const query = input.value.trim();
+
+        if (establishmentHint) {
+            establishmentHint.hidden = true;
+            establishmentHint.textContent = '';
+        }
+        resetEstablishment();
+
+        if (query.length < 3) {
+            clearSuggestions();
+            return;
+        }
+
+        debounceTimer = setTimeout(async () => {
+            try {
+                const results = await fetchSuggestions(query);
+                renderSuggestions(results);
+            } catch {
+                list.innerHTML = '<li class="address-suggestions__empty">Service indisponible — saisissez manuellement.</li>';
+                setListOpen(true);
+            }
+        }, DEBOUNCE_MS);
+    });
+
+    input.addEventListener('keydown', (e) => {
+        if (list.hidden || !lastResults.length) return;
+
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            activeIndex = Math.min(activeIndex + 1, lastResults.length - 1);
+            highlightOption(activeIndex);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            activeIndex = Math.max(activeIndex - 1, 0);
+            highlightOption(activeIndex);
+        } else if (e.key === 'Enter' && activeIndex >= 0) {
+            e.preventDefault();
+            selectSuggestion(activeIndex);
+        } else if (e.key === 'Escape') {
+            clearSuggestions();
+        }
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.form-group--autocomplete')) {
+            clearSuggestions();
+        }
+    });
+})();
