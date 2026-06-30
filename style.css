@@ -468,9 +468,28 @@ h2 {
 .pro-card::after {
     display: none; /* Par défaut caché */
 }
-
-
 .pro-card:hover { border-color: var(--neon-orange); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transform: translateY(-10px); }
+
+/* --- effet de surlignement --- */
+.titre-surligne {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+.titre-surligne::after {
+    content: '';
+    position: absolute;
+    left: -2%;
+    bottom: 15%; /* Remonte légèrement sur le bas du texte */
+    width: 104%;
+    height: 35%; /* Épaisseur du trait de surlignage */
+    background-color: var(--chene);
+    opacity: 0.3; /* Transparence pour laisser le texte lisible */
+    z-index: -1;
+    border-radius: 2px;
+    transition: background-color 0.3s ease;
+}
 
 /* ==========================================================================
    9. CONTACT & FORMULAIRE
