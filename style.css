@@ -285,71 +285,77 @@ h2 {
 .souligne-fleche::after { content: ''; position: absolute; bottom: -3px; right: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-left: 6px solid var(--acier); }
 
 /* ==========================================================================
-   6. GALERIE ULTRA-FLUIDE
+   6. GALERIE TRIPTYQUE & PORTRAIT (GRANDE TAILLE MULTI-COLONNES)
    ========================================================================== */
-.galerie-container {
-    display: flex;
-    gap: 12px;
-    height: 550px;
-    margin-top: 40px;
-    perspective: 1000px;
-}
-
-.galerie-card {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    transition: flex 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.5s ease;
-    border: 1px solid rgba(194, 163, 130, 0.1);
-    background: #000;
-}
-
-.galerie-card.active {
-    flex: 5;
-    border-color: var(--chene);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.galerie-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(100%) contrast(1.1);
-    transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1), filter 0.8s ease;
-    transform: scale(1.1);
-}
-
-.galerie-card.active img {
-    filter: grayscale(0%) contrast(1);
-    transform: scale(1);
-}
-
-.video-galerie {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* La vidéo s'adapte à la hauteur ou largeur sans être coupée */
-    background-color: #000; /* Ajoute un fond noir pour les bandes si nécessaire */
+.galerie-grid {
     display: block;
-}
-
-
-.card-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    padding: 40px;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.2s;
+    margin: 30px auto 0 auto;
+    font-size: 0; /* Supprime les espaces résiduels du display inline-block */
+    text-align: center;
 }
 
-.galerie-card.active .card-overlay {
-    opacity: 1;
-    transform: translateY(0);
+.galerie-item {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    box-sizing: border-box;
+    padding: 6px; /* Écart minimaliste et élégant comme sur ta capture */
+    width: 50%; /* 2 colonnes strictes sur mobile pour maximiser la hauteur */
 }
+
+.galerie-item img,
+.galerie-item video {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid rgba(194, 163, 130, 0.15);
+    background-color: #000;
+    /* Ratio Portrait 3:4 pour obtenir de grandes images bien hautes */
+    aspect-ratio: 3 / 4; 
+}
+
+/* Badges de surcouche (Avant / Après) */
+.galerie-item .card-overlay {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    padding: 0;
+    background: transparent;
+    opacity: 1;
+    transform: none;
+}
+
+.card-tag {
+    font-size: 0.65rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.8);
+    display: inline-block;
+}
+
+.label-avant {
+    color: #e13f7c !important;
+    border: 1px solid rgba(225, 63, 124, 0.3);
+}
+
+.label-apres {
+    color: #67c090 !important;
+    border: 1px solid rgba(103, 192, 144, 0.3);
+}
+
+/* Passage à 4 colonnes sur Écrans Larges (Ordinateurs et Tablettes horizontales) */
+@media (min-width: 768px) {
+    .galerie-item {
+        width: 25%; /* 4 images alignées par ligne */
+        padding: 8px;
+    }
+}
+
 
 
 /* ==========================================================================

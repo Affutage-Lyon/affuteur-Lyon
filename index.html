@@ -63,30 +63,29 @@
   </head>
   <body>
     <nav>
-  <div class="burger-menu" id="burger-trigger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <div class="nav-links" id="nav-menu">
-    <div class="menu-logo-container">
-      <img src="img/logo.svg" alt="Ken Aiguise" class="menu-logo-svg" />
-    </div>
-    <a href="#galerie" class="active">Galerie</a>
-    <a href="#tarifs">Prix / Forfaits</a>
-    <a href="#contact">Me contacter</a>
-    <a
-      href="#"
-      id="_v-cal-sync"
-      class="low-priority-node"
-      aria-hidden="true"
-      style="display: none !important"
-      >Configuration</a
-    >
-  </div>
-</nav>
+      <div class="burger-menu" id="burger-trigger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links" id="nav-menu">
+        <div class="menu-logo-container">
+          <img src="img/logo.svg" alt="Ken Aiguise" class="menu-logo-svg" />
+        </div>
+        <a href="#galerie" class="active">Galerie</a>
+        <a href="#tarifs">Prix / Forfaits</a>
+        <a href="#contact">Me contacter</a>
+        <a
+          href="#"
+          id="_v-cal-sync"
+          class="low-priority-node"
+          aria-hidden="true"
+          style="display: none !important"
+          >Configuration</a
+        >
+      </div>
+    </nav>
 
-    
     <header id="home">
       <div class="header-content">
         <h1 class="shimmer-effect">KEN AIGUISE</h1>
@@ -144,43 +143,53 @@
       </div>
     </header>
     <main>
-      <section id="galerie" class="galerie-moderne">
+      
+            <section id="galerie" class="galerie-moderne">
         <h2><span class="souligne-fleche">Galerie</span></h2>
-        <div class="galerie-container">
-          <div class="galerie-card active">
+        <p class="pro-subtitle">L'art de l'affûtage de précision en images</p>
+        
+        <div class="galerie-grid">
+          <!-- Image 1 -->
+          <div class="galerie-item">
             <img src="img/knife_1.webp" alt="Geste technique sur meule à eau" />
-            <div class="card-overlay">
-              <span class="card-tag" style="color: #e13f7c">Avant</span>
-            </div>
+            <div class="card-overlay"><span class="card-tag label-avant">Avant</span></div>
           </div>
-          <div class="galerie-card">
+          <!-- Image 2 -->
+          <div class="galerie-item">
             <img src="img/knife_2.webp" alt="Détail du tranchant miroir" />
-            <div class="card-overlay">
-              <span class="card-tag" style="color: #67c090">Après</span>
-            </div>
+            <div class="card-overlay"><span class="card-tag label-apres">Après</span></div>
           </div>
-          <div class="galerie-card">
-            <video
-              autoplay=""
-              loop=""
-              muted
-              playsinline
-              poster="img/atelier.webp"
-              class="video-galerie"
-            >
+          <!-- Image 3 -->
+          <div class="galerie-item">
+            <video autoplay loop muted playsinline poster="img/atelier.webp">
               <source src="videos/demo.mp4" type="video/mp4" />
-              <img
-                src="img/atelier.webp"
-                alt="Intérieur de l'Atelier d'Ypres"
-              />
+              <img src="img/atelier.webp" alt="Intérieur de l'Atelier d'Ypres" />
             </video>
           </div>
+          <!-- Image 4 -->
+          <div class="galerie-item">
+            <img src="img/knife_3.webp" alt="Affûtage couteau de chef" />
+          </div>
+          <!-- Image 5 -->
+          <div class="galerie-item">
+            <img src="img/knife_4.webp" alt="Tranchant rasoir sur cuir" />
+          </div>
+          <!-- Image 6 -->
+          <div class="galerie-item">
+            <img src="img/knife_5.webp" alt="Ciseaux de cuisine professionnels" />
+          </div>
+          <!-- Image 7 -->
+          <div class="galerie-item">
+            <img src="img/knife_6.webp" alt="Lame acier premium japonaise" />
+          </div>
+          <!-- Image 8 -->
+          <div class="galerie-item">
+            <img src="img/knife_7.webp" alt="Outils de jardin affûtés" />
+          </div>
         </div>
-        <div class="galerie-nav"></div>
       </section>
-      
-      
-      
+
+
       <section id="tarifs">
         <h2><span class="souligne-fleche">Tarifs</span></h2>
         <p class="pro-subtitle">
@@ -265,35 +274,36 @@
           </div>
         </div>
       </section>
-      
+
       <section id="partenaires" class="partenaires-section">
-  <h2><span class="souligne-fleche">Futurs Établissements Partenaires</span></h2>
-  
-  <div class="logos-grid">
-    <!-- Emplacement Restaurant -->
-    <div class="logo-item">
-      <div class="logo-placeholder">🍽️</div>
-      <span class="partenaire-nom">Restaurants & Bistrots</span>
-      <p class="partenaire-statut"></p>
-    </div>
-    
-    <!-- Emplacement Collectivité -->
-    <div class="logo-item">
-      <div class="logo-placeholder">🏫</div>
-      <span class="partenaire-nom">Collèges & Lycées</span>
-      <p class="partenaire-statut"></p>
-    </div>
+        <h2>
+          <span class="souligne-fleche">Futurs Établissements Partenaires</span>
+        </h2>
 
-    <!-- Emplacement Santé/EHPAD -->
-    <div class="logo-item">
-      <div class="logo-placeholder">🏢</div>
-      <span class="partenaire-nom">EHPAD & Santé</span>
-      <p class="partenaire-statut"></p>
-    </div>
-  </div>
-</section>
+        <div class="logos-grid">
+          <!-- Emplacement Restaurant -->
+          <div class="logo-item">
+            <div class="logo-placeholder">🍽️</div>
+            <span class="partenaire-nom">Restaurants & Bistrots</span>
+            <p class="partenaire-statut"></p>
+          </div>
 
-      
+          <!-- Emplacement Collectivité -->
+          <div class="logo-item">
+            <div class="logo-placeholder">🏫</div>
+            <span class="partenaire-nom">Collèges & Lycées</span>
+            <p class="partenaire-statut"></p>
+          </div>
+
+          <!-- Emplacement Santé/EHPAD -->
+          <div class="logo-item">
+            <div class="logo-placeholder">🏢</div>
+            <span class="partenaire-nom">EHPAD & Santé</span>
+            <p class="partenaire-statut"></p>
+          </div>
+        </div>
+      </section>
+
       <section id="contact">
         <h2><span class="souligne-fleche">Contact & Rendez-vous</span></h2>
         <div class="contact-form">
