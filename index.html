@@ -1,336 +1,449 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="description" content="Ken Aiguise : Affûtage de précision à Lyon 4. Couteaux japonais, chef et ciseaux. Service express pour particuliers et collecte pro le mercredi.">
-    <meta name="keywords" content="affûtage lyon, affûteur croix-rousse, aiguisage couteau lyon, tormek lyon, entretien couteau japonais">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      name="description"
+      content="Ken Aiguise : Affûtage de précision à Lyon 4. Couteaux japonais, chef et ciseaux. Service express pour particuliers et collecte pro le mercredi."
+    />
+    <meta
+      name="keywords"
+      content="affûtage lyon, affûteur croix-rousse, aiguisage couteau lyon, tormek lyon, entretien couteau japonais"
+    />
+
     <title>Ken Aiguise | L'Art du Tranchant</title>
 
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
     <script type="application/ld+json">
-    {
+      {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "Ken Aiguise",
         "image": "https://affutage-lyon.github.io/affuteur-Lyon/img/atelier.webp",
         "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "74 Rue d'Ypres",
-            "addressLocality": "Lyon",
-            "postalCode": "69004",
-            "addressRegion": "Auvergne-Rhône-Alpes",
-            "addressCountry": "FR"
+          "@type": "PostalAddress",
+          "streetAddress": "74 Rue d'Ypres",
+          "addressLocality": "Lyon",
+          "postalCode": "69004",
+          "addressRegion": "Auvergne-Rhône-Alpes",
+          "addressCountry": "FR"
         },
         "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 45.7785,
-            "longitude": 4.8315
+          "@type": "GeoCoordinates",
+          "latitude": 45.7785,
+          "longitude": 4.8315
         },
         "url": "https://affutage-lyon.github.io/affuteur-Lyon/",
         "telephone": "+33635218784",
         "priceRange": "5€ - 3000€",
         "openingHoursSpecification": [
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Thursday", "Friday"],
-                "opens": "16:00",
-                "closes": "19:00"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Wednesday", "Saturday"],
-                "opens": "09:00",
-                "closes": "18:00"
-            }
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Thursday", "Friday"],
+            "opens": "16:00",
+            "closes": "19:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Wednesday", "Saturday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          }
         ]
-    }
+      }
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <nav>
-        <div class="burger-menu" id="burger-trigger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+      <div class="burger-menu" id="burger-trigger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
-        <div class="nav-links" id="nav-menu">
-            <div class="menu-logo-container">
-                <img src="img/logo.svg" alt="Ken Aiguise" class="menu-logo-svg">
-            </div>
-            <a href="#galerie" class="active">Galerie</a>
-            <a href="#expertise-pro">Expertise</a>
-            <a href="#tarifs">Prix / Forfaits</a>
-            <a href="#contact">Me contacter</a>
-            <a href="#" id="_v-cal-sync" class="low-priority-node" aria-hidden="true" style="display:none !important;">Configuration</a>
+      <div class="nav-links" id="nav-menu">
+        <div class="menu-logo-container">
+          <img src="img/logo.svg" alt="Ken Aiguise" class="menu-logo-svg" />
         </div>
+        <a href="#galerie" class="active">Galerie</a>
+        <a href="#expertise-pro">Expertise</a>
+        <a href="#tarifs">Prix / Forfaits</a>
+        <a href="#contact">Me contacter</a>
+        <a
+          href="#"
+          id="_v-cal-sync"
+          class="low-priority-node"
+          aria-hidden="true"
+          style="display: none !important"
+          >Configuration</a
+        >
+      </div>
     </nav>
- 
+
     <div class="precaution-banner">
-        🏠 Ouverture de l'atelier prévue en Septembre 2026 — Les prises de rendez-vous se feront au moment où vous avez lus ce texte.
+      🏠 Ouverture de l'atelier prévue en Septembre 2026 — Les prises de
+      rendez-vous se feront au moment où vous avez lus ce texte.
     </div>
 
     <header id="home">
-        <div class="header-content">
-            <h1 class="shimmer-effect">KEN AIGUISE</h1>
-            <div class="subtitle">Affûteur • Lyon 4</div>
-            
-            <div class="knife-container">
-                <div id="water-particles"></div>
-                <svg viewBox="0 0 200 650" fill="none" xmlns="http://www.w3.org/2000/svg" id="dynamic-knife">
-                    <path d="M 85,30 C 85,30 75,40 75,70 L 75,240 C 75,270 85,280 85,280 L 115,280 C 115,280 125,270 125,240 L 125,70 C 125,40 115,30 115,30 Z" fill="#FFF1D3" />
-                    <circle cx="100" cy="80" r="3.5" fill="#8e9aaf" />
-                    <circle cx="100" cy="155" r="3.5" fill="#8e9aaf" />
-                    <circle cx="100" cy="230" r="3.5" fill="#8e9aaf" />
-                    <rect x="72" y="280" width="56" height="15" rx="2" fill="#F2EAE0" /> 
-                    <path id="main-blade" 
-                          d="M 85,295 L 85,610 L 115,610 L 165,295 Z" 
-                          data-broken="M 85,295 L 85,610 L 115,610 L 165,295 Z"
-                          data-new="M 85,295 L 85,610 C 85,610 100,630 165,295 Z"
-                          fill="#555c69" />
-                    <image href="img/logo.svg" x="78" y="320" width="75" height="75" id="blade-logo-scroll" />
-                </svg>
-            </div>
+      <div class="header-content">
+        <h1 class="shimmer-effect">KEN AIGUISE</h1>
+        <div class="subtitle">Affûteur • Lyon 4</div>
 
-            <a href="https://www.instagram.com/ken_aiguise/" target="_blank" class="btn-cta">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.058-1.69-.072-4.949-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>Me suivre 
-            </a>
+        <div class="knife-container">
+          <div id="water-particles"></div>
+          <svg
+            viewBox="0 0 200 650"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            id="dynamic-knife"
+          >
+            <path
+              d="M 85,30 C 85,30 75,40 75,70 L 75,240 C 75,270 85,280 85,280 L 115,280 C 115,280 125,270 125,240 L 125,70 C 125,40 115,30 115,30 Z"
+              fill="#FFF1D3"
+            />
+            <circle cx="100" cy="80" r="3.5" fill="#8e9aaf" />
+            <circle cx="100" cy="155" r="3.5" fill="#8e9aaf" />
+            <circle cx="100" cy="230" r="3.5" fill="#8e9aaf" />
+            <rect x="72" y="280" width="56" height="15" rx="2" fill="#F2EAE0" />
+            <path
+              id="main-blade"
+              d="M 85,295 L 85,610 L 115,610 L 165,295 Z"
+              data-broken="M 85,295 L 85,610 L 115,610 L 165,295 Z"
+              data-new="M 85,295 L 85,610 C 85,610 100,630 165,295 Z"
+              fill="#555c69"
+            />
+            <image
+              href="img/logo.svg"
+              x="78"
+              y="320"
+              width="75"
+              height="75"
+              id="blade-logo-scroll"
+            />
+          </svg>
         </div>
+
+        <a
+          href="https://www.instagram.com/ken_aiguise/"
+          target="_blank"
+          class="btn-cta"
+        >
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.058-1.69-.072-4.949-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+            /></svg
+          >Me suivre
+        </a>
+      </div>
     </header>
 
     <main>
-        <section id="galerie" class="galerie-moderne">
-            <h2><span class="souligne-fleche">Galerie</span></h2>
-            
-            <div class="galerie-container">
-                <div class="galerie-card active">
-                    <img src="img/knife_1.webp" alt="Geste technique sur meule à eau">
-                    <div class="card-overlay">
-                        <span class="card-tag" style="color: #E13F7C;">Avant</span>
-                    </div>
-                </div>
+      <section id="galerie" class="galerie-moderne">
+        <h2><span class="souligne-fleche">Galerie</span></h2>
 
-                <div class="galerie-card">
-                    <img src="img/knife_2.webp" alt="Détail du tranchant miroir">
-                    <div class="card-overlay">
-                        <span class="card-tag"style="color:#67C090;">Après</span>
-                    </div>
-                </div>
-
-                <div class="galerie-card">
-                  <video autoplay loop muted playsinline poster="img/atelier.webp" class="video-galerie">
-                    <source src="videos/demo.mp4" type="video/mp4">
-                    <img src="img/atelier.webp" alt="Intérieur de l'Atelier d'Ypres">
-                    </video>
-                  </div>
-
+        <div class="galerie-container">
+          <div class="galerie-card active">
+            <img src="img/knife_1.webp" alt="Geste technique sur meule à eau" />
+            <div class="card-overlay">
+              <span class="card-tag" style="color: #e13f7c">Avant</span>
             </div>
-            
-            <div class="galerie-nav">
-                <button class="nav-dot active" data-index="0"></button>
-                <button class="nav-dot" data-index="1"></button>
-                <button class="nav-dot" data-index="2"></button>
+          </div>
+
+          <div class="galerie-card">
+            <img src="img/knife_2.webp" alt="Détail du tranchant miroir" />
+            <div class="card-overlay">
+              <span class="card-tag" style="color: #67c090">Après</span>
             </div>
-        </section>
+          </div>
 
-        <section id="expertise-pro">
-            <h2><span class="souligne-fleche">Expertise & Rentabilité</span></h2>
-            
-            <div class="faq-container">
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>01. Quel est le gain économique pour mon établissement ?</span>
-                        <i class="chevron"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>L'entretien régulier sur <b>Tormek T-8</b> prolonge la durée de vie de vos couteaux de 3 à 5 ans. En évitant le rachat prématuré de matériel professionnel, vous réduisez votre budget d'équipement annuel de <b>20%</b> dès la première année.</p>
-                    </div>
-                </div>
+          <div class="galerie-card">
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              poster="img/atelier.webp"
+              class="video-galerie"
+            >
+              <source src="videos/demo.mp4" type="video/mp4" />
+              <img
+                src="img/atelier.webp"
+                alt="Intérieur de l'Atelier d'Ypres"
+              />
+            </video>
+          </div>
+        </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>02. Comment garantissez-vous la sécurité de ma brigade ?</span>
-                        <i class="chevron"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Un couteau émoussé est la première cause d'accidents en cuisine collective. Nos contrats assurent un tranchant "rasoir" constant, garantissant un geste précis et une conformité aux normes <b>HACCP</b>.</p>
-                    </div>
-                </div>
+        <div class="galerie-nav">
+          <button class="nav-dot active" data-index="0"></button>
+          <button class="nav-dot" data-index="1"></button>
+          <button class="nav-dot" data-index="2"></button>
+        </div>
+      </section>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>03. Pourquoi choisir le service en vélo cargo à Lyon ?</span>
-                        <i class="chevron"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>En plus de la flexibilité, ce service s'inscrit dans votre démarche <b>RSE</b>. Nous intervenons sans émission de CO2, valorisant l'engagement environnemental de votre établissement.</p>
-                    </div>
-                </div>
+      <section id="expertise-pro">
+        <h2><span class="souligne-fleche">Expertise & Rentabilité</span></h2>
+
+        <div class="faq-container">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span
+                >01. Quel est le gain économique pour mon établissement ?</span
+              >
+              <i class="chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <p>
+                L'entretien régulier sur <b>Tormek T-8</b> prolonge la durée de
+                vie de vos couteaux de 3 à 5 ans. En évitant le rachat prématuré
+                de matériel professionnel, vous réduisez votre budget
+                d'équipement annuel de <b>20%</b> dès la première année.
+              </p>
             </div>
-        </section>
+          </div>
 
-        <section id="tarifs">
-            <h2><span class="souligne-fleche">Tarifs</span></h2>
-            <p class="pro-subtitle">Collecte & Livraison incluses (Lyon 1er, 2e, 3e, 4e)</p>
-            
-            <div class="menu-container">
-                <div class="menu-border">
-                    <p class="menu-label-top">Affûtage de précision • Lyon 4</p>
-                    
-                    <div class="menu-section">
-                        <h3>Cuisine</h3>
-                        <div class="menu-row"><span>Petite Lame (< 10cm)</span><div class="menu-dots"></div><span class="menu-price">7 €</span></div>
-                        <div class="menu-row"><span>Grande lame (> 15cm)</span><div class="menu-dots"></div><span class="menu-price">10 €</span></div>
-                        <div class="menu-row"><span>Couteau Japonais</span><div class="menu-dots"></div><span class="menu-price">14 €</span></div>
-                        <div class="menu-row"><span>Ciseaux de cuisine</span><div class="menu-dots"></div><span class="menu-price">8 €</span></div>
-                    </div>
-
-                    <div class="menu-section">
-                        <h3>Maison & Jardin</h3>
-                        <div class="menu-row"><span>Ciseaux de couture</span><div class="menu-dots"></div><span class="menu-price">12 €</span></div>
-                        <div class="menu-row"><span>Sécateur</span><div class="menu-dots"></div><span class="menu-price">8 €</span></div>
-                        <div class="menu-row"><span>Hache / Hachoir</span><div class="menu-dots"></div><span class="menu-price">13 €</span></div>
-                    </div>
-
-                    <div class="menu-footer-note">
-                        <p><b>💎 Réparations :</b> Pointe cassée (+3 €) | Brèche importante (sur devis).</p>
-                        <p>Travail réalisé sur meule Tormek T-8 pour une finition rasoir sans chauffe de l'acier.</p>
-                    </div>
-                </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              <span
+                >02. Comment garantissez-vous la sécurité de ma brigade ?</span
+              >
+              <i class="chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Un couteau émoussé est la première cause d'accidents en cuisine
+                collective. Nos contrats assurent un tranchant "rasoir"
+                constant, garantissant un geste précis et une conformité aux
+                normes <b>HACCP</b>.
+              </p>
             </div>
+          </div>
 
-            <div class="pro-tarifs-container">
-                <h3><span class="icon">🚲</span> Forfaits Professionnels (Annuel)</h3>
-                
-            <div class="pro-grid">
-    <div class="pro-card">
-        <h4>Forfait Cuisine</h4>
-        <div class="pro-price">800€<span>/an</span></div>
-        <ul class="pro-features">
-            <li><strong>6 passages</strong> / an (Bimestriel)</li>
-            <li>Jusqu'à <strong>15 pièces</strong> / passage</li>
-            <li>Spécial <strong>Petites Brigades</strong></li>
-            <li>Soit <strong>8,88€ par lame</strong></li>
-        </ul>
-    </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              <span
+                >03. Pourquoi choisir le service en vélo cargo à Lyon ?</span
+              >
+              <i class="chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <p>
+                En plus de la flexibilité, ce service s'inscrit dans votre
+                démarche <b>RSE</b>. Nous intervenons sans émission de CO2,
+                valorisant l'engagement environnemental de votre établissement.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <div class="pro-card featured">
-        <div class="badge-populaire">Recommandé</div>
-        <h4>Forfait Établissement</h4>
-        <div class="pro-price">2100€<span>/an</span></div>
-        <ul class="pro-features">
-            <li><strong>6 passages</strong> / an (Bimestriel)</li>
-            <li>Jusqu'à <strong>60 pièces</strong> / passage</li>
-            <li><strong>Cuisine, Table & Ciseaux</strong></li>
-            <li>Soit <strong>5,83€ par lame</strong></li>
-        </ul>
-        
-    </div>
-
-    <div class="pro-card">
-        <h4>Forfait Campus</h4>
-        <div class="pro-price">3000€<span>/an</span></div>
-        <ul class="pro-features">
-            <li><strong>4 passages</strong> / an (Trimestriel)</li>
-            <li>Jusqu'à <strong>100 pièces</strong> / passage</li>
-            <li>Inclut <strong>Cuisine Centrale & Mallettes Élèves</strong></li>
-            <li>Logistique 100% <strong>Vélo Cargo</strong></li>
-        </ul>
-        <p style="text-align: center; font-size: 0.9em; margin-top: 15px;">
-    <strong>Écoles & Centres de formation :</strong> Possibilité d'interventions ponctuelles avec paiement direct des étudiants (Tap to Pay).
-</p>
-
-    </div>
-</div>
-
-
-<div class="pro-custom-box" style="margin-top: 30px; padding: 20px; border: 1px dashed #d4af37; border-radius: 8px; text-align: center; background: rgba(212, 175, 55, 0.05);">
-    <h4 style="color: #d4af37; text-transform: uppercase; letter-spacing: 1px;">Forfait Personnalisé</h4>
-    <p style="font-size: 0.9em; line-height: 1.5; margin: 10px 0;">
-        Chaque établissement est unique. Pour un volume spécifique (ex: 40 lames), contactez-moi pour un <strong>devis personnalisé</strong> ajusté à vos besoins réels.
+      <section id="tarifs">
+        <h2><span class="souligne-fleche">Tarifs</span></h2>
+        <p class="pro-subtitle">
+          Collecte & Livraison incluses (Lyon 1er, 2e, 3e, 4e)
         </p>
-    </div>
 
+        <div class="menu-container">
+          <div class="menu-border">
+            <p class="menu-label-top">Affûtage de précision • Lyon 4</p>
+
+            <div class="menu-section">
+              <h3>Cuisine</h3>
+              <div class="menu-row">
+                <span>Petite Lame (< 10cm)</span>
+                <div class="menu-dots"></div>
+                <span class="menu-price">7 €</span>
+              </div>
+              <div class="menu-row">
+                <span>Grande lame (> 15cm)</span>
+                <div class="menu-dots"></div>
+                <span class="menu-price">10 €</span>
+              </div>
+              <div class="menu-row">
+                <span>Couteau Japonais</span>
+                <div class="menu-dots"></div>
+                <span class="menu-price">14 €</span>
+              </div>
+              <div class="menu-row">
+                <span>Ciseaux de cuisine</span>
+                <div class="menu-dots"></div>
+                <span class="menu-price">8 €</span>
+              </div>
             </div>
-        </section>
 
-        <section id="contact">
-            <h2><span class="souligne-fleche">Contact & Rendez-vous</span></h2>
-            <div class="contact-form">
-                <form action="https://formspree.io/f/xvzvjqve" method="POST" id="contact-form">
-                    <input type="hidden" name="_subject" value="Nouvelle demande Ken Aiguise">
-                    
-                    <div class="form-group">
-                        <label for="client-type">Vous êtes :</label>
-                        <select id="client-type" name="type_client" required>
-                            <option value="" disabled selected>Sélectionnez votre profil</option>
-                            <option value="Professionnel">Professionnel (Collège, Lycée, EHPAD)</option>
-                            <option value="Particulier">Particulier</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Nom / Établissement" required>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" name="adresse_lieu" placeholder="Adresse d'intervention (Lyon/Métropole)" required>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="email" name="_replyto" placeholder="votre@email.com" required>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="form-group">
-    <label>Date d'intervention souhaitée :</label>
-    <div id="calendar-widget" class="calendar-container">
-        <div class="calendar-header">
-            <button type="button" id="prevMonth">&lt;</button>
-            <span id="monthDisplay"></span>
-            <button type="button" id="nextMonth">&gt;</button>
-        </div>
-        <div class="calendar-weekdays">
-            <div>Lun</div><div>Mar</div><div>Mer</div><div>Jeu</div><div>Ven</div><div>Sam</div><div>Dim</div>
-        </div>
-        <div id="calendarDays" class="calendar-grid">
-        </div>
-      </div>
-      <input type="hidden" name="date_souhaitee" id="selectedDateInput">
-      <p id="dateStatus" class="date-status">Aucune date sélectionnée</p>
-    </div>
-
-                        <textarea name="message" rows="5" placeholder="Votre besoin (nombre de couteaux...)" required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-submit-pro">ENVOYER LA DEMANDE
-                    </button>
-                </form>
+            <div class="menu-section">
+              <h3>Maison & Jardin</h3>
+              <div class="menu-row">
+                <span>Ciseaux de couture</span>
+                <div class="menu-dots"></div>
+                <span class="menu-price">12 €</span>
+              </div>
+              <div class="menu-row">
+                <span>Sécateur</span>
+                <div class="menu-dots"></div>
+                <span class="menu-price">8 €</span>
+              </div>
+              <div class="menu-row">
+                <span>Hache / Hachoir</span>
+                <div class="menu-dots"></div>
+                <span class="menu-price">13 €</span>
+              </div>
             </div>
-        </section>
-        
+
+            <div class="menu-footer-note">
+              <p>
+                <b>💎 Réparations :</b> Pointe cassée (+3 €) | Brèche importante
+                (sur devis).
+              </p>
+              <p>
+                Travail réalisé sur meule Tormek T-8 pour une finition rasoir
+                sans chauffe de l'acier.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pro-tarifs-container">
+          <h3><span class="icon">🚲</span> Forfaits Professionnels (Annuel)</h3>
+
+          <div class="pro-grid">
+            <div class="pro-card featured">
+              <div class="badge-populaire">Recommandé</div>
+              <h4>Forfait Établissement</h4>
+              <div class="pro-price">1800€<span>/an</span></div>
+              <ul class="pro-features">
+                <li><strong>4 passages</strong> / an (Bimestriel)</li>
+                <li>Jusqu'à <strong>60 pièces</strong> / passage</li>
+                <li><strong>Cuisine, Table & Ciseaux</strong></li>
+                <li>Soit <strong>5,83€ par lame</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2><span class="souligne-fleche">Contact & Rendez-vous</span></h2>
+        <div class="contact-form">
+          <form
+            action="https://formspree.io/f/xvzvjqve"
+            method="POST"
+            id="contact-form"
+          >
+            <input
+              type="hidden"
+              name="_subject"
+              value="Nouvelle demande Ken Aiguise"
+            />
+
+            <div class="form-group">
+              <label for="client-type">Vous êtes :</label>
+              <select id="client-type" name="type_client" required>
+                <option value="" disabled selected>
+                  Sélectionnez votre profil
+                </option>
+                <option value="Professionnel">
+                  Professionnel (Collège, Lycée, EHPAD)
+                </option>
+                <option value="Particulier">Particulier</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                name="name"
+                placeholder="Nom / Établissement"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                name="adresse_lieu"
+                placeholder="Adresse d'intervention (Lyon/Métropole)"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="email"
+                name="_replyto"
+                placeholder="votre@email.com"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <div class="form-group">
+                <label>Date d'intervention souhaitée :</label>
+                <div id="calendar-widget" class="calendar-container">
+                  <div class="calendar-header">
+                    <button type="button" id="prevMonth">&lt;</button>
+                    <span id="monthDisplay"></span>
+                    <button type="button" id="nextMonth">&gt;</button>
+                  </div>
+                  <div class="calendar-weekdays">
+                    <div>Lun</div>
+                    <div>Mar</div>
+                    <div>Mer</div>
+                    <div>Jeu</div>
+                    <div>Ven</div>
+                    <div>Sam</div>
+                    <div>Dim</div>
+                  </div>
+                  <div id="calendarDays" class="calendar-grid"></div>
+                </div>
+                <input
+                  type="hidden"
+                  name="date_souhaitee"
+                  id="selectedDateInput"
+                />
+                <p id="dateStatus" class="date-status">
+                  Aucune date sélectionnée
+                </p>
+              </div>
+
+              <textarea
+                name="message"
+                rows="5"
+                placeholder="Votre besoin (nombre de couteaux...)"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit-pro">
+              ENVOYER LA DEMANDE
+            </button>
+          </form>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-info">
-                <h4>KEN AIGUISE</h4>
-                <p>74 Rue d'Ypres, 69004 Lyon</p>
-            </div>
-            <div class="footer-copy">
-                © 2026 — Affûtage de précision sur Diamant [cite: 2026-04-01, 2026-04-10]
-            </div>
+      <div class="footer-content">
+        <div class="footer-info">
+          <h4>KEN AIGUISE</h4>
+          <p>74 Rue d'Ypres, 69004 Lyon</p>
         </div>
+        <div class="footer-copy">
+          © 2026 — Affûtage de précision sur Diamant [cite: 2026-04-01,
+          2026-04-10]
+        </div>
+      </div>
     </footer>
-    
+
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
