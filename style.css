@@ -101,16 +101,6 @@ nav {
     transition: all 0.3s ease;
 }
 
-.precaution-banner {
-    background-color: rgba(194, 163, 130, 0.1);
-    color: var(--chene);
-    text-align: center;
-    padding: 10px 20px;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(194, 163, 130, 0.2);
-    margin-top: 45px; 
-}
 
 .menu-logo-svg {
     width: 200px;
@@ -361,62 +351,6 @@ h2 {
     transform: translateY(0);
 }
 
-/* ==========================================================================
-   7. EXPERTISE PRO (ACCORDÉON FAQ)
-   ========================================================================== */
-.faq-container {
-    max-width: 800px;
-    margin: 40px auto;
-}
-
-.faq-item {
-    border-bottom: 1px solid rgba(194, 163, 130, 0.2);
-    margin-bottom: 10px;
-}
-
-.faq-question {
-    width: 100%;
-    padding: 25px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: transparent;
-    border: none;
-    color: var(--texte);
-    font-family: 'Cinzel', serif;
-    font-size: 1rem;
-    text-align: left;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.faq-question:hover { color: var(--chene); }
-
-.chevron {
-    width: 10px;
-    height: 10px;
-    border-right: 2px solid var(--chene);
-    border-bottom: 2px solid var(--chene);
-    transform: rotate(45deg);
-    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.faq-item.active .chevron { transform: rotate(-135deg); }
-
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.faq-answer p {
-    padding-bottom: 25px;
-    color: var(--acier);
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-
-.faq-item.active .faq-answer { max-height: 200px; }
 
 /* ==========================================================================
    8. TARIFS
@@ -490,6 +424,59 @@ h2 {
     border-radius: 2px;
     transition: background-color 0.3s ease;
 }
+
+/* ==========================================================================
+   11. SECTION PARTENAIRES / LOGOS
+   ========================================================================== */
+.partenaires-section {
+    text-align: center;
+    padding: 60px 25px;
+}
+
+.logos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+    align-items: center;
+    justify-items: center;
+}
+
+.logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.3s ease;
+}
+
+.logo-item:hover {
+    transform: translateY(-5px);
+}
+
+.partenaire-logo {
+    width: 120px;
+    height: auto;
+    max-height: 80px;
+    object-fit: contain;
+    /* Aligne les logos colorés sur ton thème en les passant en monochrome gris/blanc doux */
+    filter: grayscale(100%) brightness(0.8) opacity(0.7);
+    transition: filter 0.3s ease;
+}
+
+.logo-item:hover .partenaire-logo {
+    filter: grayscale(0%) brightness(1) opacity(1);
+}
+
+.partenaire-nom {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--acier);
+    font-weight: bold;
+    text-align: center;
+}
+
 
 /* ==========================================================================
    9. CONTACT & FORMULAIRE
