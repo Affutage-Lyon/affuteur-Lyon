@@ -408,7 +408,8 @@ h2 {
 .pro-card::after {
     display: none; /* Par défaut caché */
 }
-.pro-card:hover { border-color: var(--neon-orange); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transform: translateY(-10px); }
+.pro-card:hover { border-color: var(--neon-orange); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transform: translateY(-10px); 
+}
 
 /* --- effet de surlignement --- */
 .titre-surligne {
@@ -416,6 +417,31 @@ h2 {
     display: inline-block;
     z-index: 1;
 }
+
+/* --- CARTE PRO SUR-MESURE --- */
+.pro-tarifs-container {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.pro-tarifs-container .pro-card {
+    max-width: 600px; /* Largeur maximale pour garder le texte lisible */
+    width: 100%;
+    border-radius: 4px;
+}
+
+.pro-cta-wrapper {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pro-cta-wrapper .btn-cta {
+    margin-top: 0;
+}
+
+
 
 .titre-surligne::after {
     content: '';
@@ -526,7 +552,61 @@ h2 {
     border-bottom: 1px solid rgba(194, 163, 130, 0.3);
 }
 
-/* Protection totale contre le bleu Android au clic ou survol */
+
+/* ==========================================================================
+   DESIGN COMPACT - CARD IDENTITÉ KEN GASSY
+   ========================================================================== */
+.contact-direct {
+    text-align: center;
+    margin: 0 auto 50px auto;
+    padding: 30px 25px;
+    max-width: 420px; /* Légèrement plus compact pour un effet "carte" plus percutant */
+    
+    /* Style de la Carte */
+    background: rgba(255, 255, 255, 0.02); /* Fond subtilement plus clair que le site */
+    border: 1px solid rgba(194, 163, 130, 0.2); /* Bordure fine couleur chêne */
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    
+    /* Transition pour l'effet de survol */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Effet au survol de la carte (Feedback visuel premium) */
+.contact-direct:hover {
+    transform: translateY(-5px); /* La carte se soulève légèrement */
+    border-color: var(--neon-orange); /* La bordure s'illumine en orange néon */
+    box-shadow: 0 15px 35px rgba(255, 180, 77, 0.1); /* Légère lueur diffuse en dessous */
+}
+
+.contact-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin: 0 0 12px 0;
+    text-transform: uppercase;
+}
+
+.contact-phone {
+    margin: 15px 0;
+}
+
+.contact-phone a {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: var(--chene) !important; /* Couleur chêne d'origine */
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    padding: 5px 15px;
+    border-bottom: 1px solid rgba(194, 163, 130, 0.3);
+}
+
+/* Comportement du lien lors des interactions */
 .contact-phone a:visited,
 .contact-phone a:hover,
 .contact-phone a:active {

@@ -243,24 +243,21 @@
           </div>
         </div>
         <div class="pro-tarifs-container">
-          <h3 class="titre-surligne">
-            <span class="icon">🚲</span> Solutions Professionnelles &
-            Collectivités
-          </h3>
-          <p
-            class="pro-subtitle"
-            style="max-width: 600px; margin: 10px auto 30px auto"
-          >
-            Restaurateurs, collèges, lycées et EHPAD : Je conçois des plans
-            d'entretien sur-mesure adaptés au volume de votre brigade et à vos
-            exigences HACCP.
-          </p>
-          <div style="text-align: center; margin-top: 20px">
-            <a href="#contact" class="btn-cta" style="margin-top: 0"
-              >Demander un devis personnalisé</a
-            >
-          </div>
-        </div>
+  <div class="pro-card featured">
+    <h3>
+      <span class="icon">🚲</span> Solutions Professionnelles &amp; Collectivités
+    </h3>
+    <p class="pro-subtitle">
+      Restaurateurs et Collectivités : Je conçois des plans
+      d'entretien sur-mesure adaptés au volume de votre brigade et à vos
+      exigences HACCP.
+    </p>
+    <div class="pro-cta-wrapper">
+      <a href="#contact" class="btn-cta">Demander un devis personnalisé</a>
+    </div>
+  </div>
+</div>
+
       </section>
 
       <section id="partenaires" class="partenaires-section">
@@ -304,7 +301,8 @@
     <p class="pro-subtitle">Artisan affûteur itinérant — Lyon 4</p>
   </div>
 
-      <form
+  <div class="contact-form">
+    <form
       action="https://formspree.io/f/xvzvjqve"
       method="post"
       id="contact-form"
@@ -314,6 +312,11 @@
         type="hidden"
         name="_subject"
         value="Nouvelle demande Ken Aiguise"
+      />
+      <input 
+        type="hidden" 
+        name="_senderName" 
+        value="Client Ken Aiguise" 
       />
       
       <!-- Profil & Volume (Saisie rapide) -->
@@ -359,7 +362,7 @@
         <input
           type="text"
           name="nom"
-          placeholder="Nom et Prenom (ex: Gassy Ken ou Ken Gassy)"
+          placeholder="Nom et Prénom (ex: Gassy Ken)"
           required=""
         />
       </div>
@@ -392,7 +395,7 @@
         <p id="dateStatus" class="date-status">Aucune date sélectionnée</p>
       </div>
 
-      <!-- Précisions optionnelles (Plus de blocage) -->
+      <!-- Précisions optionnelles -->
       <div class="form-group">
         <textarea
           name="message"
@@ -407,6 +410,7 @@
     </form>
   </div>
 </section>
+
 
 
     </main>
