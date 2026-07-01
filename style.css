@@ -733,62 +733,60 @@ select option {
 /* ==========================================================================
     FOOTER
    ========================================================================== */
-  
-footer { 
-    text-align: center; 
-    padding: 60px 20px; 
-    /* Fond plus lumineux pour contraster avec ton thème sombre */
-    background: radial-gradient(circle at center, #2d3136 0%, #1a1c1e 100%); 
-    border-top: 1px solid rgba(194, 163, 130, 0.2);
+
+footer {
+  text-align: center;
+  padding: 60px 20px;
+  /* Fond plus lumineux pour contraster avec ton thème sombre */
+  background: radial-gradient(circle at center, #2d3136 0%, #1a1c1e 100%);
+  border-top: 1px solid rgba(194, 163, 130, 0.2);
 }
 
-.footer-content { 
-    max-width: 800px; 
-    margin: auto; 
-    color: #b0b3b8; /* Une couleur d'acier plus claire pour une meilleure lisibilité */
-    font-size: 0.85rem;
+.footer-content {
+  max-width: 800px;
+  margin: auto;
+  color: #b0b3b8; /* Une couleur d'acier plus claire pour une meilleure lisibilité */
+  font-size: 0.85rem;
 }
 
-.footer-info h4 { 
-    color: #e5c5a0; /* Un chêne plus lumineux pour le titre */
-    letter-spacing: 3px; 
-    margin-bottom: 10px; 
-    text-transform: uppercase;
+.footer-info h4 {
+  color: #e5c5a0; /* Un chêne plus lumineux pour le titre */
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
-.footer-owner { 
-    margin: 20px 0; 
-    line-height: 1.5; 
-    color: #d1d4d8; /* Texte d'information plus clair */
+.footer-owner {
+  margin: 20px 0;
+  line-height: 1.5;
+  color: #d1d4d8; /* Texte d'information plus clair */
 }
 
-.footer-copy { 
-    margin-top: 25px; 
-    font-size: 0.75rem; 
-    text-transform: uppercase; 
-    letter-spacing: 1.5px; 
-    color: #8e9aaf;
+.footer-copy {
+  margin-top: 25px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #8e9aaf;
 }
 
 .footer-copy a {
-    color: var(--chene);
-    text-decoration: none;
+  color: var(--chene);
+  text-decoration: none;
 }
 
 .footer-logo {
-    width: 150px;       /* Taille adaptée pour un footer */
-    height: auto;
-    margin-bottom: 10px; /* Espace entre le logo et le titre */
-    filter: brightness(0) invert(1); /* S'assure que le logo est blanc sur ton fond sombre */
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
+  width: 150px; /* Taille adaptée pour un footer */
+  height: auto;
+  margin-bottom: 10px; /* Espace entre le logo et le titre */
+  filter: brightness(0) invert(1); /* S'assure que le logo est blanc sur ton fond sombre */
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
 }
 
 .footer-logo:hover {
-    opacity: 1;
+  opacity: 1;
 }
-
-
 
 /* ==========================================================================
    11. RESPONSIVE
@@ -846,4 +844,3 @@ footer {
     text-align: left;
   }
 }
-
