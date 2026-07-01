@@ -304,8 +304,7 @@
     <p class="pro-subtitle">Artisan affûteur itinérant — Lyon 4</p>
   </div>
 
-  <div class="contact-form">
-    <form
+      <form
       action="https://formspree.io/f/xvzvjqve"
       method="post"
       id="contact-form"
@@ -316,84 +315,99 @@
         name="_subject"
         value="Nouvelle demande Ken Aiguise"
       />
+      
+      <!-- Profil & Volume (Saisie rapide) -->
       <div class="form-group">
         <label for="client-type">Vous êtes :</label>
         <select id="client-type" name="type_client" required="">
-          <option value="" disabled selected>
-            Sélectionnez votre profil
-          </option>
-          <option value="Professionnel">
-            Professionnel (Collège, Lycée, EHPAD)
-          </option>
+          <option value="" disabled selected>Sélectionnez votre profil</option>
+          <option value="Professionnel">Professionnel (Restaurant, Collectivités)</option>
           <option value="Particulier">Particulier</option>
         </select>
       </div>
+
+      <div class="form-group">
+        <label for="lames-count">Estimation du volume :</label>
+        <select id="lames-count" name="estimation_lames" required="">
+          <option value="" disabled selected>Nombre de lames à affûter</option>
+          <option value="1-5">1 à 5 lames</option>
+          <option value="6-10">6 à 10 lames</option>
+          <option value="11-20">11 à 20 lames</option>
+          <option value="20+">Plus de 20 lames</option>
+        </select>
+      </div>
+
+      <!-- Coordonnées -->
       <div class="form-group">
         <input
           type="text"
           name="name"
-          placeholder="Nom / Établissement"
+          placeholder="Nom de l'Établissement"
+          required=""
+        />
+      </div>
+      
+      <div class="form-group">
+        <input
+          type="tel"
+          name="telephone_client"
+          placeholder="Numéro de téléphone"
           required=""
         />
       </div>
       <div class="form-group">
         <input
           type="text"
-          name="adresse_lieu"
-          placeholder="Adresse d'intervention (Lyon/Métropole)"
+          name="nom"
+          placeholder="Nom et Prenom (ex: Gassy Ken ou Ken Gassy)"
           required=""
         />
       </div>
+
+      <!-- Planification -->
       <div class="form-group">
-        <input
-          type="email"
-          name="_replyto"
-          placeholder="votre@email.com"
-          required=""
-        />
-      </div>
-      <div class="form-group">
-        <div class="form-group">
-          <label>Date d'intervention souhaitée :</label>
-          <div id="calendar-widget" class="calendar-container">
-            <div class="calendar-header">
-              <button type="button" id="prevMonth">&lt;</button>
-              <span id="monthDisplay"></span>
-              <button type="button" id="nextMonth">&gt;</button>
-            </div>
-            <div class="calendar-weekdays">
-              <div>Lun</div>
-              <div>Mar</div>
-              <div>Mer</div>
-              <div>Jeu</div>
-              <div>Ven</div>
-              <div>Sam</div>
-              <div>Dim</div>
-            </div>
-            <div id="calendarDays" class="calendar-grid"></div>
+        <label>Date d'intervention souhaitée :</label>
+        <div id="calendar-widget" class="calendar-container">
+          <div class="calendar-header">
+            <button type="button" id="prevMonth">&lt;</button>
+            <span id="monthDisplay"></span>
+            <button type="button" id="nextMonth">&gt;</button>
           </div>
-          <input
-            type="hidden"
-            name="date_souhaitee"
-            id="selectedDateInput"
-          />
-          <p id="dateStatus" class="date-status">
-            Aucune date sélectionnée
-          </p>
+          <div class="calendar-weekdays">
+            <div>Lun</div>
+            <div>Mar</div>
+            <div>Mer</div>
+            <div>Jeu</div>
+            <div>Ven</div>
+            <div>Sam</div>
+            <div>Dim</div>
+          </div>
+          <div id="calendarDays" class="calendar-grid"></div>
         </div>
+        <input
+          type="hidden"
+          name="date_souhaitee"
+          id="selectedDateInput"
+        />
+        <p id="dateStatus" class="date-status">Aucune date sélectionnée</p>
+      </div>
+
+      <!-- Précisions optionnelles (Plus de blocage) -->
+      <div class="form-group">
         <textarea
           name="message"
-          rows="5"
-          placeholder="Votre besoin (nombre de couteaux...)"
-          required=""
+          rows="3"
+          placeholder="Précisions particulières (ex: couteaux japonais, ciseaux...) — Facultatif"
         ></textarea>
       </div>
+
       <button type="submit" class="btn-submit-pro">
         ENVOYER LA DEMANDE
       </button>
     </form>
   </div>
 </section>
+
 
     </main>
     <footer>
