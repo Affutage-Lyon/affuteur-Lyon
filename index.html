@@ -143,27 +143,33 @@
       </div>
     </header>
     <main>
-      
-            <section id="galerie" class="galerie-moderne">
+      <section id="galerie" class="galerie-moderne">
         <h2><span class="souligne-fleche">Galerie</span></h2>
         <p class="pro-subtitle">L'art de l'affûtage de précision en images</p>
-        
+
         <div class="galerie-grid">
           <!-- Image 1 -->
           <div class="galerie-item">
             <img src="img/knife_1.webp" alt="Geste technique sur meule à eau" />
-            <div class="card-overlay"><span class="card-tag label-avant">Avant</span></div>
+            <div class="card-overlay">
+              <span class="card-tag label-avant">Avant</span>
+            </div>
           </div>
           <!-- Image 2 -->
           <div class="galerie-item">
             <img src="img/knife_2.webp" alt="Détail du tranchant miroir" />
-            <div class="card-overlay"><span class="card-tag label-apres">Après</span></div>
+            <div class="card-overlay">
+              <span class="card-tag label-apres">Après</span>
+            </div>
           </div>
           <!-- Image 3 -->
           <div class="galerie-item">
             <video autoplay loop muted playsinline poster="img/atelier.webp">
               <source src="videos/demo.mp4" type="video/mp4" />
-              <img src="img/atelier.webp" alt="Intérieur de l'Atelier d'Ypres" />
+              <img
+                src="img/atelier.webp"
+                alt="Intérieur de l'Atelier d'Ypres"
+              />
             </video>
           </div>
           <!-- Image 4 -->
@@ -176,7 +182,6 @@
           </div>
         </div>
       </section>
-
 
       <section id="tarifs">
         <h2><span class="souligne-fleche">Tarifs</span></h2>
@@ -243,21 +248,23 @@
           </div>
         </div>
         <div class="pro-tarifs-container">
-  <div class="pro-card featured">
-    <h3>
-      <span class="icon">🚲</span> Solutions Professionnelles &amp; Collectivités
-    </h3>
-    <p class="pro-subtitle">
-      Restaurateurs et Collectivités : Je conçois des plans
-      d'entretien sur-mesure adaptés au volume de votre brigade et à vos
-      exigences HACCP.
-    </p>
-    <div class="pro-cta-wrapper">
-      <a href="#contact" class="btn-cta">Demander un devis personnalisé</a>
-    </div>
-  </div>
-</div>
-
+          <div class="pro-card featured">
+            <h3>
+              <span class="icon">🚲</span> Solutions Professionnelles &amp;
+              Collectivités
+            </h3>
+            <p class="pro-subtitle">
+              Restaurateurs et Collectivités : Je conçois des plans d'entretien
+              sur-mesure adaptés au volume de votre brigade et à vos exigences
+              HACCP.
+            </p>
+            <div class="pro-cta-wrapper">
+              <a href="#contact" class="btn-cta"
+                >Demander un devis personnalisé</a
+              >
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="partenaires" class="partenaires-section">
@@ -290,130 +297,136 @@
       </section>
 
       <section id="contact">
-  <h2><span class="souligne-fleche">Contact & Rendez-vous</span></h2>
-  
-  <!-- Coordonnées Directes de l'Artisan -->
-  <div class="contact-direct">
-    <p class="contact-name">Ken Gassy</p>
-    <p class="contact-phone">
-      <a href="tel:+33759701247" aria-label="Appeler Ken Gassy">📞 07 59 70 12 47</a>
-    </p>
-    <p class="pro-subtitle">Artisan affûteur itinérant — Lyon 4</p>
-  </div>
+        <h2><span class="souligne-fleche">Contact & Rendez-vous</span></h2>
 
-  <div class="contact-form">
-    <form
-      action="https://formspree.io/f/xvzvjqve"
-      method="post"
-      id="contact-form"
-      name="contact-form"
-    >
-      <input
-        type="hidden"
-        name="_subject"
-        value="Nouvelle demande Ken Aiguise"
-      />
-      <input 
-        type="hidden" 
-        name="_senderName" 
-        value="Client Ken Aiguise" 
-      />
-      
-      <!-- Profil & Volume (Saisie rapide) -->
-      <div class="form-group">
-        <label for="client-type">Vous êtes :</label>
-        <select id="client-type" name="type_client" required="">
-          <option value="" disabled selected>Sélectionnez votre profil</option>
-          <option value="Professionnel">Professionnel (Restaurant, Collectivités)</option>
-          <option value="Particulier">Particulier</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="lames-count">Estimation du volume :</label>
-        <select id="lames-count" name="estimation_lames" required="">
-          <option value="" disabled selected>Nombre de lames à affûter</option>
-          <option value="1-5">1 à 5 lames</option>
-          <option value="6-10">6 à 10 lames</option>
-          <option value="11-20">11 à 20 lames</option>
-          <option value="20+">Plus de 20 lames</option>
-        </select>
-      </div>
-
-      <!-- Coordonnées -->
-      <div class="form-group">
-        <input
-          type="text"
-          name="name"
-          placeholder="Nom de l'Établissement"
-          required=""
-        />
-      </div>
-      
-      <div class="form-group">
-        <input
-          type="tel"
-          name="telephone_client"
-          placeholder="Numéro de téléphone"
-          required=""
-        />
-      </div>
-      <div class="form-group">
-  <input
-    type="text"
-    name="facturation_identite"
-    placeholder="Nom et Prénom (ex: Gassy Ken)"
-    required=""
-  />
-</div>
-
-
-      <!-- Planification -->
-      <div class="form-group">
-        <label>Date d'intervention souhaitée :</label>
-        <div id="calendar-widget" class="calendar-container">
-          <div class="calendar-header">
-            <button type="button" id="prevMonth">&lt;</button>
-            <span id="monthDisplay"></span>
-            <button type="button" id="nextMonth">&gt;</button>
-          </div>
-          <div class="calendar-weekdays">
-            <div>Lun</div>
-            <div>Mar</div>
-            <div>Mer</div>
-            <div>Jeu</div>
-            <div>Ven</div>
-            <div>Sam</div>
-            <div>Dim</div>
-          </div>
-          <div id="calendarDays" class="calendar-grid"></div>
+        <!-- Coordonnées Directes de l'Artisan -->
+        <div class="contact-direct">
+          <p class="contact-name">Ken Gassy</p>
+          <p class="contact-phone">
+            <a href="tel:+33759701247" aria-label="Appeler Ken Gassy"
+              >📞 07 59 70 12 47</a
+            >
+          </p>
+          <p class="pro-subtitle">Artisan affûteur itinérant — Lyon 4</p>
         </div>
-        <input
-          type="hidden"
-          name="date_souhaitee"
-          id="selectedDateInput"
-        />
-        <p id="dateStatus" class="date-status">Aucune date sélectionnée</p>
-      </div>
 
-      <!-- Précisions optionnelles -->
-      <div class="form-group">
-        <textarea
-          name="message"
-          rows="3"
-          placeholder="Précisions particulières (ex: couteaux japonais, ciseaux...) — Facultatif"
-        ></textarea>
-      </div>
+        <div class="contact-form">
+          <form
+            action="https://formspree.io/f/xvzvjqve"
+            method="post"
+            id="contact-form"
+            name="contact-form"
+          >
+            <input
+              type="hidden"
+              name="_subject"
+              value="Nouvelle demande Ken Aiguise"
+            />
+            <input
+              type="hidden"
+              name="_senderName"
+              value="Client Ken Aiguise"
+            />
 
-      <button type="submit" class="btn-submit-pro">
-        ENVOYER LA DEMANDE
-      </button>
-    </form>
-  </div>
-</section>
+            <!-- Profil & Volume (Saisie rapide) -->
+            <div class="form-group">
+              <label for="client-type">Vous êtes :</label>
+              <select id="client-type" name="type_client" required="">
+                <option value="" disabled selected>
+                  Sélectionnez votre profil
+                </option>
+                <option value="Professionnel">
+                  Professionnel (Restaurant, Collectivités)
+                </option>
+                <option value="Particulier">Particulier</option>
+              </select>
+            </div>
 
+            <div class="form-group">
+              <label for="lames-count">Estimation du volume :</label>
+              <select id="lames-count" name="estimation_lames" required="">
+                <option value="" disabled selected>
+                  Nombre de lames à affûter
+                </option>
+                <option value="1-5">1 à 5 lames</option>
+                <option value="6-10">6 à 10 lames</option>
+                <option value="11-20">11 à 20 lames</option>
+                <option value="20+">Plus de 20 lames</option>
+              </select>
+            </div>
 
+            <!-- Coordonnées -->
+            <div class="form-group">
+              <input
+                type="text"
+                name="name"
+                placeholder="Nom de l'Établissement"
+                required=""
+              />
+            </div>
 
+            <div class="form-group">
+              <input
+                type="tel"
+                name="telephone_client"
+                placeholder="Numéro de téléphone"
+                required=""
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                name="facturation_identite"
+                placeholder="Nom et Prénom (ex: Gassy Ken)"
+                required=""
+              />
+            </div>
+
+            <!-- Planification -->
+            <div class="form-group">
+              <label>Date d'intervention souhaitée :</label>
+              <div id="calendar-widget" class="calendar-container">
+                <div class="calendar-header">
+                  <button type="button" id="prevMonth">&lt;</button>
+                  <span id="monthDisplay"></span>
+                  <button type="button" id="nextMonth">&gt;</button>
+                </div>
+                <div class="calendar-weekdays">
+                  <div>Lun</div>
+                  <div>Mar</div>
+                  <div>Mer</div>
+                  <div>Jeu</div>
+                  <div>Ven</div>
+                  <div>Sam</div>
+                  <div>Dim</div>
+                </div>
+                <div id="calendarDays" class="calendar-grid"></div>
+              </div>
+              <input
+                type="hidden"
+                name="date_souhaitee"
+                id="selectedDateInput"
+              />
+              <p id="dateStatus" class="date-status">
+                Aucune date sélectionnée
+              </p>
+            </div>
+
+            <!-- Précisions optionnelles -->
+            <div class="form-group">
+              <textarea
+                name="message"
+                rows="3"
+                placeholder="Précisions particulières (ex: couteaux japonais, ciseaux...) — Facultatif"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit-pro">
+              ENVOYER LA DEMANDE
+            </button>
+          </form>
+        </div>
+      </section>
     </main>
     <footer>
       <div class="footer-content">
