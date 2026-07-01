@@ -510,73 +510,33 @@ h2 {
 }
 
 
-   /* ==========================================================================
-   DESIGN IDENTITÉ - CONTACT KEN GASSY
-   ========================================================================== */
-.contact-direct {
-    text-align: center;
-    margin: 0 auto 50px auto;
-    padding: 30px 20px;
-    max-width: 500px;
-    border: 1px solid rgba(194, 163, 130, 0.15);
-    background: linear-gradient(180deg, rgba(30, 34, 38, 0.5) 0%, rgba(26, 28, 30, 0.8) 100%);
-    border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.contact-name {
-    font-family: 'Cinzel', serif;
-    font-size: 1.6rem;
-    color: var(--texte);
-    font-weight: 700;
-    letter-spacing: 4px;
-    margin: 0 0 10px 0;
-    text-transform: uppercase;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-.contact-phone {
-    margin: 15px 0;
-}
-
-.contact-phone a {
-    font-family: 'Cinzel', serif;
-    font-size: 1.8rem;
-    color: var(--chene) !important; /* Force l'or de ta charte */
-    text-decoration: none;
-    font-weight: bold;
-    letter-spacing: 2px;
-    transition: all 0.4s ease;
-    display: inline-block;
-    padding: 5px 15px;
-    border-bottom: 1px solid rgba(194, 163, 130, 0.3);
-}
-
-
 /* ==========================================================================
-   DESIGN COMPACT - CARD IDENTITÉ KEN GASSY
+   SECTION CONTACT & RENDEZ-VOUS
    ========================================================================== */
+
+/* --- 1. DESIGN COMPACT - CARD IDENTITÉ KEN GASSY (ANIMÉE EN DIRECT AU SCROLL) --- */
 .contact-direct {
     text-align: center;
     margin: 0 auto 50px auto;
     padding: 30px 25px;
-    max-width: 420px; /* Légèrement plus compact pour un effet "carte" plus percutant */
-    
-    /* Style de la Carte */
-    background: rgba(255, 255, 255, 0.02); /* Fond subtilement plus clair que le site */
-    border: 1px solid rgba(194, 163, 130, 0.2); /* Bordure fine couleur chêne */
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(194, 163, 130, 0.2);
     border-radius: 4px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     
-    /* Transition pour l'effet de survol */
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    /* Valeurs initiales (Gérées ensuite par le JavaScript app.js en direct) */
+    opacity: 0;
+    transform: translateY(30px);
+    
+    /* On garde des transitions uniquement pour l'effet de survol (hover) */
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Effet au survol de la carte (Feedback visuel premium) */
+/* Effet au survol quand le client l'effleure */
 .contact-direct:hover {
-    transform: translateY(-5px); /* La carte se soulève légèrement */
-    border-color: var(--neon-orange); /* La bordure s'illumine en orange néon */
-    box-shadow: 0 15px 35px rgba(255, 180, 77, 0.1); /* Légère lueur diffuse en dessous */
+    border-color: var(--neon-orange) !important;
+    box-shadow: 0 15px 35px rgba(255, 180, 77, 0.1) !important;
 }
 
 .contact-name {
@@ -596,7 +556,7 @@ h2 {
 .contact-phone a {
     font-family: 'Cinzel', serif;
     font-size: 1.8rem;
-    color: var(--chene) !important; /* Couleur chêne d'origine */
+    color: var(--chene) !important;
     text-decoration: none;
     font-weight: bold;
     letter-spacing: 1px;
@@ -610,7 +570,7 @@ h2 {
 .contact-phone a:visited,
 .contact-phone a:hover,
 .contact-phone a:active {
-    color: var(--neon-orange) !important; /* Éclat orange néon discret au survol */
+    color: var(--neon-orange) !important;
     border-bottom-color: var(--neon-orange);
     text-shadow: 0 0 10px rgba(255, 180, 77, 0.4);
 }

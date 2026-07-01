@@ -52,6 +52,47 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+    
+    // --- 6. ANIMATIONS FLUIDES (HORS DOMCONTENTLOADED POUR LES PERFORMANCES) ---
+window.addEventListener('scroll', () => {
+    // Animation 1 : Couteau dynamique & Logo
+    const blade = document.getElementById('main-blade');
+    const logo = document.getElementById('blade-logo-scroll');
+    if (blade && logo) {
+        const progressKnife = Math.min(window.scrollY / 100, 1);
+        if (progressKnife >= 0.8) {
+            blade.setAttribute('d', blade.getAttribute('data-new'));
+            blade.style.fill = "#ffffff";
+            blade.classList.add('is-repaired');
+            logo.style.transform = "translateY(10px)";
+            logo.style.opacity = "1";
+        } else {
+            blade.setAttribute('d', blade.getAttribute('data-broken'));
+            blade.style.fill = "#555c69";
+            blade.classList.remove('is-repaired');
+            logo.style.transform = "translateY(0px)";
+            logo.style.opacity = "0.7";
+        }
+    }
+
+    // Animation 2 : Carte d'identité Contact interactive en direct au scroll
+    const contactCard = document.querySelector('.contact-direct');
+    if (contactCard) {
+        const cardPosition = contactCard.getBoundingClientRect().top;
+        const screenHeight = window.innerHeight;
+
+        // On calcule l'apparition de la carte quand elle entre dans l'écran
+        // 0 = hors écran en bas, 1 = totalement centrée/dépassée
+        let progressCard = (screenHeight - cardPosition) / (screenHeight * 0.5);
+        progressCard = Math.max(0, Math.min(progressCard, 1)); // Sécurité entre 0 et 1
+
+        // Application chirurgicale des styles en temps réel
+        const translateY = 30 - (progressCard * 30); // Glisse de 30px à 0px
+        contactCard.style.opacity = progressCard;
+        contactCard.style.transform = `translateY(${translateY}px)`;
+    }
+});
+
 
     // 4. Calendrier de Réservation
     initCalendar();
