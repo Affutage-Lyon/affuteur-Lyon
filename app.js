@@ -54,6 +54,36 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+  
+  // --- ANIMATION PARTICULES D'EAU ---
+  function createWaterParticles() {
+    const container = document.getElementById("water-particles");
+    if (!container) return;
+
+    setInterval(() => {
+      const particle = document.createElement("div");
+      particle.classList.add("particle");
+      
+      // Position aléatoire horizontale
+      const size = Math.random() * 4 + 2;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${Math.random() * 100}%`;
+      
+      // Variables CSS pour l'animation
+      particle.style.setProperty("--duration", `${Math.random() * 2 + 2}s`);
+      particle.style.setProperty("--xDir", `${(Math.random() - 0.5) * 50}px`);
+      particle.style.setProperty("--yDir", `-${Math.random() * 200 + 100}px`);
+      
+      container.appendChild(particle);
+      
+      // Supprimer après animation
+      setTimeout(() => particle.remove(), 4000);
+    }, 300);
+  }
+
+  // Appel de la fonction directement (sans imbriquer un nouvel écouteur d'événement)
+  createWaterParticles();
 
   // 4. Calendrier de Réservation
   initCalendar();
