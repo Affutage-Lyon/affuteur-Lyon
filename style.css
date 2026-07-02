@@ -146,15 +146,15 @@ header {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 300px;
+  width: 350px;
   height: 100%;
   pointer-events: none;
   z-index: 4;
 }
 .particle {
   position: absolute;
-  top: 95%;
-  background: var(--texte);
+  top: 110%;
+  background: #5996FF;
   border-radius: 50%;
   box-shadow:
     0 0 6px rgba(0, 51, 153, 0.8),

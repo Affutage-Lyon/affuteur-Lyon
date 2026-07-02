@@ -55,31 +55,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   
-  // --- ANIMATION PARTICULES D'EAU ---
+  // --- ANIMATION PARTICULES D'EAU (Vitesse et Quantité augmentées) ---
   function createWaterParticles() {
     const container = document.getElementById("water-particles");
     if (!container) return;
 
+    // Intervalle réduit à 80ms (génère beaucoup plus de particules)
     setInterval(() => {
       const particle = document.createElement("div");
       particle.classList.add("particle");
       
-      // Position aléatoire horizontale
+      // Taille légèrement variée
       const size = Math.random() * 4 + 2;
       particle.style.width = `${size}px`;
       particle.style.height = `${size}px`;
       particle.style.left = `${Math.random() * 100}%`;
       
-      // Variables CSS pour l'animation
-      particle.style.setProperty("--duration", `${Math.random() * 2 + 2}s`);
-      particle.style.setProperty("--xDir", `${(Math.random() - 0.5) * 50}px`);
-      particle.style.setProperty("--yDir", `-${Math.random() * 200 + 100}px`);
+      // Vitesse augmentée : la durée de vie passe de 1 seconde à 2.5 secondes max
+      particle.style.setProperty("--duration", `${Math.random() * 4.5 + 3.5}s`);
+      // Les particules montent un peu plus haut avec la vitesse
+      particle.style.setProperty("--xDir", `${(Math.random() - 0.5) * 90}px`);
+      particle.style.setProperty("--yDir", `-${Math.random() * 350 + 250}px`); 
       
       container.appendChild(particle);
-      
-      // Supprimer après animation
-      setTimeout(() => particle.remove(), 4000);
-    }, 300);
+      setTimeout(() => particle.remove(), 9500);
+    }, 30); // <-- C'est ici que la densité est contrôlée
   }
 
   // Appel de la fonction directement (sans imbriquer un nouvel écouteur d'événement)
