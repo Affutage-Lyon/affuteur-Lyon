@@ -55,32 +55,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   
-  // --- ANIMATION PARTICULES D'EAU (Vitesse et Quantité augmentées) ---
+  // --- ANIMATION PARTICULES D'EAU (Jet Dense & Rapide) ---
   function createWaterParticles() {
     const container = document.getElementById("water-particles");
     if (!container) return;
 
-    // Intervalle réduit à 80ms (génère beaucoup plus de particules)
+    // Intervalle à 30ms = Flux continu très dense
     setInterval(() => {
       const particle = document.createElement("div");
       particle.classList.add("particle");
       
-      // Taille légèrement variée
-      const size = Math.random() * 4 + 2;
+      // Taille cohérente : entre 3.5px et 4px
+      const size = Math.random() * 0.5 + 3.5;
       particle.style.width = `${size}px`;
       particle.style.height = `${size}px`;
       particle.style.left = `${Math.random() * 100}%`;
       
-      // Vitesse augmentée : la durée de vie passe de 1 seconde à 2.5 secondes max
+      // Mouvement : Durée plus longue (3.5s à 8s) pour un jet fluide et constant
       particle.style.setProperty("--duration", `${Math.random() * 4.5 + 3.5}s`);
-      // Les particules montent un peu plus haut avec la vitesse
+      
+      // Amplitude augmentée : jaillissement large et haut
       particle.style.setProperty("--xDir", `${(Math.random() - 0.5) * 90}px`);
       particle.style.setProperty("--yDir", `-${Math.random() * 350 + 250}px`); 
       
       container.appendChild(particle);
+      
+      // Nettoyage après 9.5s pour laisser le temps au jet de se dissiper complètement
       setTimeout(() => particle.remove(), 9500);
-    }, 30); // <-- C'est ici que la densité est contrôlée
+    }, 75); 
   }
+
 
   // Appel de la fonction directement (sans imbriquer un nouvel écouteur d'événement)
   createWaterParticles();
