@@ -337,7 +337,21 @@ h2 {
   box-sizing: border-box;
   padding: 6px;
   width: 50%;
+  transition: transform 0.4s ease, box-shadow    
+    0.4s ease, border-color 0.4s ease;
 }
+
+.galerie-item.is-focused img,
+.galerie-item.is-focused video {
+  border-color: var(--chene);
+  box-shadow: 0 8px 25px rgba(255, 180, 77, 0.25);
+}
+
+.galerie-item.is-focused {
+  transform: translateY(-6px) scale(1.02);
+}
+
+
 .galerie-item img,
 .galerie-item video {
   width: 100%;

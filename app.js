@@ -223,6 +223,37 @@ function handleScrollAnimations() {
   }
 }
 
+// --- ANIMATION SÉQUENTIELLE DE SURVOL SUR LA GALERIE AU SCROLL ---
+function initGalerieScrollFocus() {
+  const items = document.querySelectorAll('.galerie-item');
+  if (!items.length) return;
+
+  const observerOptions = {
+    root: null,
+    // La zone d'activation se situe au centre de l'écran (entre 35% et 65% de la hauteur)
+    rootMargin: '-35% 0px -35% 0px',
+    threshold: 0.2
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-focused');
+      } else {
+        entry.target.classList.remove('is-focused');
+      }
+    });
+  }, observerOptions);
+
+  items.forEach((item) => observer.observe(item));
+}
+
+// Appeler la fonction au chargement du DOM
+document.addEventListener('DOMContentLoaded', () => {
+  initGalerieScrollFocus();
+});
+
+
 // Lier l'animation au défilement de la page
 window.addEventListener("scroll", () =>
   window.requestAnimationFrame(handleScrollAnimations),
