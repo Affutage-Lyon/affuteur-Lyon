@@ -337,20 +337,9 @@ h2 {
   box-sizing: border-box;
   padding: 6px;
   width: 50%;
-  transition: transform 0.4s ease, box-shadow    
-    0.4s ease, border-color 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  will-change: transform;
 }
-
-.galerie-item.is-focused img,
-.galerie-item.is-focused video {
-  border-color: var(--chene);
-  box-shadow: 0 8px 25px rgba(255, 180, 77, 0.25);
-}
-
-.galerie-item.is-focused {
-  transform: translateY(-6px) scale(1.02);
-}
-
 
 .galerie-item img,
 .galerie-item video {
@@ -361,7 +350,21 @@ h2 {
   border: 1px solid rgba(194, 163, 130, 0.15);
   background-color: #000;
   aspect-ratio: 3 / 4;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
+
+/* État Focus activé séquentiellement */
+.galerie-item.is-focused {
+  transform: translateY(-8px) scale(1.03) !important;
+  z-index: 10;
+}
+
+.galerie-item.is-focused img,
+.galerie-item.is-focused video {
+  border-color: var(--chene) !important;
+  box-shadow: 0 10px 30px rgba(255, 180, 77, 0.35) !important;
+}
+
 
 .galerie-item .card-overlay {
   position: absolute;
@@ -372,6 +375,8 @@ h2 {
   opacity: 1;
   transform: none;
 }
+
+
 .card-tag {
   font-size: 0.65rem;
   font-weight: bold;

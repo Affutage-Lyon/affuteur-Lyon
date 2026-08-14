@@ -223,30 +223,52 @@ function handleScrollAnimations() {
   }
 }
 
-// --- ANIMATION SÉQUENTIELLE DE SURVOL SUR LA GALERIE AU SCROLL ---
+// --- ANIMATION SÉQUENTIELLE CARTE PAR CARTE AU SCROLL ---
 function initGalerieScrollFocus() {
   const items = document.querySelectorAll('.galerie-item');
   if (!items.length) return;
 
-  const observerOptions = {
-    root: null,
-    // La zone d'activation se situe au centre de l'écran (entre 35% et 65% de la hauteur)
-    rootMargin: '-35% 0px -35% 0px',
-    threshold: 0.2
-  };
+  function updateFocus() {
+    const viewportCenterY = window.innerHeight / 2;
+    let closestItem = null;
+    let minScore = Infinity;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-focused');
-      } else {
-        entry.target.classList.remove('is-focused');
+    items.forEach((item, index) => {
+      const rect = item.getBoundingClientRect();
+      
+      // Si la carte est dans le champ de vision
+      if (rect.bottom > 0 && rect.top < window.innerHeight) {
+        const cardCenterY = rect.top + rect.height / 2;
+        
+        // Décalage pour dissocier la colonne de gauche et la colonne de droite
+        const offsetDirection = (index % 2 === 0) ? -50 : 50; 
+        const score = Math.abs(viewportCenterY - (cardCenterY + offsetDirection));
+
+        if (score < minScore) {
+          minScore = score;
+          closestItem = item;
+        }
       }
     });
-  }, observerOptions);
 
-  items.forEach((item) => observer.observe(item));
+    items.forEach((item) => {
+      if (item === closestItem) {
+        item.classList.add('is-focused');
+      } else {
+        item.classList.remove('is-focused');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    window.requestAnimationFrame(updateFocus);
+  });
+
+  updateFocus();
 }
+
+
+
 
 // Appeler la fonction au chargement du DOM
 document.addEventListener('DOMContentLoaded', () => {
