@@ -1,6 +1,91 @@
-// --- CENTRALISATION DU DOM INITIALISÉ ---
+// --- 1. MODULES FIREBASE & INITIALISATION ---
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-analytics.js";
+import { 
+  getFirestore, 
+  collection, 
+  addDoc, 
+  serverTimestamp 
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCeAutpjSd99WhhYOJnKqmRLDNJ6305w-8",
+  authDomain: "ken-aiguise-app.firebaseapp.com",
+  projectId: "ken-aiguise-app",
+  storageBucket: "ken-aiguise-app.firebasestorage.app",
+  messagingSenderId: "215038466816",
+  appId: "1:215038466816:web:e2104fa0954c08529eb1e5",
+  measurementId: "G-N31GJX4H5C"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);
+
+// --- 2. TRAITEMENT & ENVOI DU FORMULAIRE VERS FIRESTORE ---
+function initContactForm() {
+  const contactForm = document.getElementById("contact-form");
+  const submitBtn = document.querySelector(".btn-submit-pro");
+  const statusMsg = document.getElementById("dateStatus");
+
+  if (!contactForm || !submitBtn) return;
+
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    const initialText = submitBtn.innerText;
+    submitBtn.innerText = "ENVOI EN COURS...";
+
+    const nouvelleDemande = {
+      type_client: document.getElementById("client-type")?.value || "",
+      estimation_lames: document.getElementById("lames-count")?.value || "",
+      nom_etablissement: document.querySelector('input[name="name"]')?.value.trim() || "",
+      telephone: document.querySelector('input[name="telephone_client"]')?.value.trim() || "",
+      identite: document.querySelector('input[name="facturation_identite"]')?.value.trim() || "",
+      date_souhaitee: document.getElementById("selectedDateInput")?.value || "Non précisée",
+      message: document.querySelector('textarea[name="message"]')?.value.trim() || "",
+      statut: "a_traiter",
+      created_at: serverTimestamp()
+    };
+
+    try {
+      await addDoc(collection(db, "demandes"), nouvelleDemande);
+
+      submitBtn.innerText = "DEMANDE ENVOYÉE !";
+      submitBtn.style.borderColor = "#67c090";
+      submitBtn.style.color = "#67c090";
+
+      if (statusMsg) {
+        statusMsg.innerText = "Votre demande a bien été transmise à Ken Aiguise.";
+        statusMsg.style.color = "#67c090";
+      }
+
+      contactForm.reset();
+
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerText = initialText;
+        submitBtn.style.borderColor = "";
+        submitBtn.style.color = "";
+      }, 4000);
+
+    } catch (error) {
+      console.error("Erreur Firestore :", error);
+      submitBtn.disabled = false;
+      submitBtn.innerText = "RÉESSAYER";
+      
+      if (statusMsg) {
+        statusMsg.innerText = "Une erreur est survenue lors de l'envoi. Veuillez réessayer.";
+        statusMsg.style.color = "#e13f7c";
+      }
+    }
+  });
+}
+
+// --- 3. CENTRALISATION DU DOM INITIALISÉ ---
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Navigation & Scroll
+  // Navigation & Scroll
   const navLinks = document.querySelectorAll(".nav-links a");
   const sections = document.querySelectorAll("section");
   const offset = 120;
@@ -25,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   updateActiveLink();
 
-  // 2. Animation Titre (Shimmer)
+  // Animation Titre (Shimmer)
   const title = document.querySelector(".shimmer-effect");
   if (title) {
     let position = 120;
@@ -38,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     animateShimmer();
   }
 
-  // 3. Menu Burger Mobile
+  // Menu Burger Mobile
   const burger = document.getElementById("burger-trigger");
   const navMenu = document.getElementById("nav-menu");
   if (burger && navMenu) {
@@ -55,45 +140,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   
-  // --- ANIMATION PARTICULES D'EAU (Jet Dense & Rapide) ---
-  function createWaterParticles() {
-    const container = document.getElementById("water-particles");
-    if (!container) return;
-
-    // Intervalle à 30ms = Flux continu très dense
-    setInterval(() => {
-      const particle = document.createElement("div");
-      particle.classList.add("particle");
-      
-      // Taille cohérente : entre 3.5px et 4px
-      const size = Math.random() * 0.5 + 3.5;
-      particle.style.width = `${size}px`;
-      particle.style.height = `${size}px`;
-      particle.style.left = `${Math.random() * 100}%`;
-      
-      // Mouvement : Durée plus longue (3.5s à 8s) pour un jet fluide et constant
-      particle.style.setProperty("--duration", `${Math.random() * 4.5 + 3.5}s`);
-      
-      // Amplitude augmentée : jaillissement large et haut
-      particle.style.setProperty("--xDir", `${(Math.random() - 0.5) * 90}px`);
-      particle.style.setProperty("--yDir", `-${Math.random() * 350 + 250}px`); 
-      
-      container.appendChild(particle);
-      
-      // Nettoyage après 9.5s pour laisser le temps au jet de se dissiper complètement
-      setTimeout(() => particle.remove(), 9500);
-    }, 75); 
-  }
-
-
-  // Appel de la fonction directement (sans imbriquer un nouvel écouteur d'événement)
+  // Particules d'eau
   createWaterParticles();
 
-  // 4. Calendrier de Réservation
+  // Calendrier, Formulaire & Focus Galerie
   initCalendar();
+  initContactForm();
+  initGalerieScrollFocus();
 
-  // 5. Initialisation forcée des animations au chargement
-  // (Évite que la carte soit invisible si on rafraîchit en bas de page)
+  // Initialisation forcée des animations au chargement
   handleScrollAnimations();
 });
 
@@ -177,9 +232,32 @@ function initCalendar() {
   renderCalendar();
 }
 
-// --- 6. ANIMATIONS FLUIDES DYNAMIQUES ---
+// --- ANIMATION PARTICULES D'EAU ---
+function createWaterParticles() {
+  const container = document.getElementById("water-particles");
+  if (!container) return;
+
+  setInterval(() => {
+    const particle = document.createElement("div");
+    particle.classList.add("particle");
+    
+    const size = Math.random() * 0.5 + 3.5;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${Math.random() * 100}%`;
+    
+    particle.style.setProperty("--duration", `${Math.random() * 4.5 + 3.5}s`);
+    particle.style.setProperty("--xDir", `${(Math.random() - 0.5) * 90}px`);
+    particle.style.setProperty("--yDir", `-${Math.random() * 350 + 250}px`); 
+    
+    container.appendChild(particle);
+    
+    setTimeout(() => particle.remove(), 9500);
+  }, 75); 
+}
+
+// --- ANIMATIONS FLUIDES DYNAMIQUES ---
 function handleScrollAnimations() {
-  // Animation 1 : Couteau dynamique & Logo
   const blade = document.getElementById("main-blade");
   const logo = document.getElementById("blade-logo-scroll");
   if (blade && logo) {
@@ -199,21 +277,18 @@ function handleScrollAnimations() {
     }
   }
 
-  // Animation 2 : Carte d'identité Contact (en direct)
   const contactCard = document.querySelector(".contact-direct");
   if (contactCard) {
     const cardRect = contactCard.getBoundingClientRect();
     const cardCenter = cardRect.top + cardRect.height / 2;
     const screenHeight = window.innerHeight;
 
-    // 1. Allumage des Néons (si la carte est bien centrée sur l'écran)
     if (cardCenter > screenHeight * 0.15 && cardCenter < screenHeight * 0.85) {
       contactCard.classList.add("neon-active");
     } else {
       contactCard.classList.remove("neon-active");
     }
 
-    // 2. Mouvement fluide (Calcul de l'opacité et position)
     let progressCard = (screenHeight - cardRect.top) / screenHeight;
     progressCard = Math.max(0, Math.min(progressCard, 1));
 
@@ -236,11 +311,8 @@ function initGalerieScrollFocus() {
     items.forEach((item, index) => {
       const rect = item.getBoundingClientRect();
       
-      // Si la carte est dans le champ de vision
       if (rect.bottom > 0 && rect.top < window.innerHeight) {
         const cardCenterY = rect.top + rect.height / 2;
-        
-        // Décalage pour dissocier la colonne de gauche et la colonne de droite
         const offsetDirection = (index % 2 === 0) ? -50 : 50; 
         const score = Math.abs(viewportCenterY - (cardCenterY + offsetDirection));
 
@@ -267,16 +339,6 @@ function initGalerieScrollFocus() {
   updateFocus();
 }
 
-
-
-
-// Appeler la fonction au chargement du DOM
-document.addEventListener('DOMContentLoaded', () => {
-  initGalerieScrollFocus();
-});
-
-
-// Lier l'animation au défilement de la page
 window.addEventListener("scroll", () =>
   window.requestAnimationFrame(handleScrollAnimations),
 );
