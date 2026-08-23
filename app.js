@@ -38,12 +38,13 @@ function initContactForm() {
     submitBtn.innerText = "ENVOI EN COURS...";
 
     const nouvelleDemande = {
-      type_client: document.getElementById("client-type")?.value || "",
+      type_client: document.getElementById("client-type")?.value || "Particulier",
       estimation_lames: document.getElementById("lames-count")?.value || "",
       nom_etablissement: document.querySelector('input[name="name"]')?.value.trim() || "",
       telephone: document.querySelector('input[name="telephone_client"]')?.value.trim() || "",
+      adresse_complete: document.querySelector('input[name="adresse_complete"]')?.value.trim() || "",
       identite: document.querySelector('input[name="facturation_identite"]')?.value.trim() || "",
-      date_souhaitee: document.getElementById("selectedDateInput")?.value || "Non précisée",
+      date_souhaitee: document.getElementById("selectedDateInput")?.value || "",
       message: document.querySelector('textarea[name="message"]')?.value.trim() || "",
       statut: "a_traiter",
       created_at: serverTimestamp()
@@ -212,7 +213,9 @@ function initCalendar() {
           div.classList.add("selected");
 
           const formattedDate = `${day} ${monthDisplay.innerText}`;
-          selectedDateInput.value = `${year}-${month + 1}-${day}`;
+          const m = String(month + 1).padStart(2, '0');
+          const d = String(day).padStart(2, '0');
+          selectedDateInput.value = `${year}-${m}-${d}`;
           dateStatus.innerText = `Souhaité pour le : ${formattedDate}`;
         };
       }
