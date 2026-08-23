@@ -313,24 +313,27 @@
                 Plus de 20 lames
               </option>
             </select>
-          </div><!-- Coordonnées -->
+          </div>
+          
+                    <!-- Coordonnées -->
           <div class="form-group">
             <input type="text" name="name" placeholder=
             "Nom et Prénom (ex: Gassy Ken)" required="">
+          </div>
+          <div class="form-group" id="group-etablissement" style="display: none;">
+            <input type="text" name="facturation_identite" id="input-etablissement"
+            placeholder="Nom Établissement">
           </div>
           <div class="form-group">
             <input type="tel" name="telephone_client" placeholder=
             "Numéro de téléphone" required="">
           </div>
           <div class="form-group">
-  <input type="text" name="adresse_complete" placeholder="Adresse d'intervention (ex: 12 Rue de la République, 69004 Lyon)" required="">
+            <input type="text" name="adresse_complete" placeholder="Adresse d'intervention (ex: 12 Rue de la République, 69004 Lyon)" required="">
           </div>
 
-          <div class="form-group">
-            <input type="text" name="facturation_identite"
-            placeholder="Nom Établissement" required=
-            "">
-          </div><!-- Planification -->
+          
+          <!-- Planification -->
           <div class="form-group">
             <label>Date d'intervention souhaitée :</label>
             <div id="calendar-widget" class="calendar-container">
@@ -367,7 +370,8 @@
             "selectedDateInput">
             <p id="dateStatus" class="date-status">Aucune date
             sélectionnée</p>
-          </div><!-- Précisions optionnelles -->
+          </div>
+          <!-- Précisions optionnelles -->
           <div class="form-group">
             <textarea name="message" rows="3" placeholder=
             "Précisions particulières (ex: couteaux japonais, ciseaux...) — Facultatif">

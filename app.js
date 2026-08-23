@@ -147,8 +147,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Calendrier, Formulaire & Focus Galerie
   initCalendar();
   initContactForm();
+  initClientTypeToggle()
   initGalerieScrollFocus();
-
   // Initialisation forcée des animations au chargement
   handleScrollAnimations();
 });
@@ -234,6 +234,27 @@ function initCalendar() {
 
   renderCalendar();
 }
+
+// --- GESTION DYNAMIQUE DU CHAMP ÉTABLISSEMENT ---
+function initClientTypeToggle() {
+  const selectType = document.getElementById("client-type");
+  const groupEtab = document.getElementById("group-etablissement");
+  const inputEtab = document.getElementById("input-etablissement");
+
+  if (!selectType || !groupEtab || !inputEtab) return;
+
+  selectType.addEventListener("change", () => {
+    if (selectType.value === "Professionnel") {
+      groupEtab.style.display = "block";
+      inputEtab.required = true;
+    } else {
+      groupEtab.style.display = "none";
+      inputEtab.required = false;
+      inputEtab.value = "";
+    }
+  });
+}
+
 
 // --- ANIMATION PARTICULES D'EAU ---
 function createWaterParticles() {
