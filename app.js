@@ -22,7 +22,12 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
-// --- 2. TRAITEMENT & ENVOI DU FORMULAIRE VERS FIRESTORE ---
+// Initialisation SDK EmailJS
+if (window.emailjs) {
+  emailjs.init("ZrMBA4io7RZem9Ym8");
+}
+
+// --- 2. TRAITEMENT & ENVOI DU FORMULAIRE (FIRESTORE + EMAILJS) ---
 function initContactForm() {
   const contactForm = document.getElementById("contact-form");
   const submitBtn = document.querySelector(".btn-submit-pro");
@@ -37,21 +42,48 @@ function initContactForm() {
     const initialText = submitBtn.innerText;
     submitBtn.innerText = "ENVOI EN COURS...";
 
+    const typeClient = document.getElementById("client-type")?.value || "Particulier";
+    const nomContact = document.querySelector('input[name="name"]')?.value.trim() || "";
+    const etablissement = document.querySelector('input[name="facturation_identite"]')?.value.trim() || "";
+    const telephone = document.querySelector('input[name="telephone_client"]')?.value.trim() || "";
+    const adresse = document.querySelector('input[name="adresse_complete"]')?.value.trim() || "";
+    const volume = document.getElementById("lames-count")?.value || "";
+    const dateSouhaitee = document.getElementById("selectedDateInput")?.value || "";
+    const message = document.querySelector('textarea[name="message"]')?.value.trim() || "";
+
+    const nomAffiche = (typeClient === "Professionnel" && etablissement !== "") 
+      ? `${etablissement} (${nomContact})` 
+      : nomContact;
+
     const nouvelleDemande = {
-      type_client: document.getElementById("client-type")?.value || "Particulier",
-      estimation_lames: document.getElementById("lames-count")?.value || "",
-      nom_etablissement: document.querySelector('input[name="name"]')?.value.trim() || "",
-      telephone: document.querySelector('input[name="telephone_client"]')?.value.trim() || "",
-      adresse_complete: document.querySelector('input[name="adresse_complete"]')?.value.trim() || "",
-      identite: document.querySelector('input[name="facturation_identite"]')?.value.trim() || "",
-      date_souhaitee: document.getElementById("selectedDateInput")?.value || "",
-      message: document.querySelector('textarea[name="message"]')?.value.trim() || "",
+      type_client: typeClient,
+      estimation_lames: volume,
+      nom_etablissement: typeClient === "Professionnel" ? etablissement : "",
+      identite: nomContact,
+      telephone: telephone,
+      adresse_complete: adresse,
+      date_souhaitee: dateSouhaitee,
+      message: message,
       statut: "a_traiter",
       created_at: serverTimestamp()
     };
 
     try {
+      // 1. Enregistrement dans Firestore
       await addDoc(collection(db, "demandes"), nouvelleDemande);
+
+      // 2. Envoi direct de l'e-mail d'alerte via EmailJS
+      if (window.emailjs) {
+        await emailjs.send("service_4384pf2", "template_w3x9qjh", {
+          nom_client: nomAffiche,
+          type_client: typeClient,
+          telephone: telephone,
+          adresse: adresse,
+          date_souhaitee: dateSouhaitee || "Non précisée",
+          volume: volume || "Non précisé",
+          message: message || "Aucun message particulier"
+        });
+      }
 
       submitBtn.innerText = "DEMANDE ENVOYÉE !";
       submitBtn.style.borderColor = "#67c090";
@@ -64,6 +96,10 @@ function initContactForm() {
 
       contactForm.reset();
 
+      // Réinitialise le champ établissement
+      const groupEtab = document.getElementById("group-etablissement");
+      if (groupEtab) groupEtab.style.display = "none";
+
       setTimeout(() => {
         submitBtn.disabled = false;
         submitBtn.innerText = initialText;
@@ -72,7 +108,7 @@ function initContactForm() {
       }, 4000);
 
     } catch (error) {
-      console.error("Erreur Firestore :", error);
+      console.error("Erreur d'envoi :", error);
       submitBtn.disabled = false;
       submitBtn.innerText = "RÉESSAYER";
       
@@ -86,7 +122,6 @@ function initContactForm() {
 
 // --- 3. CENTRALISATION DU DOM INITIALISÉ ---
 document.addEventListener("DOMContentLoaded", () => {
-  // Navigation & Scroll
   const navLinks = document.querySelectorAll(".nav-links a");
   const sections = document.querySelectorAll("section");
   const offset = 120;
@@ -111,7 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   updateActiveLink();
 
-  // Animation Titre (Shimmer)
   const title = document.querySelector(".shimmer-effect");
   if (title) {
     let position = 120;
@@ -124,7 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
     animateShimmer();
   }
 
-  // Menu Burger Mobile
   const burger = document.getElementById("burger-trigger");
   const navMenu = document.getElementById("nav-menu");
   if (burger && navMenu) {
@@ -141,15 +174,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   
-  // Particules d'eau
   createWaterParticles();
-
-  // Calendrier, Formulaire & Focus Galerie
   initCalendar();
   initContactForm();
-  initClientTypeToggle()
+  initClientTypeToggle();
   initGalerieScrollFocus();
-  // Initialisation forcée des animations au chargement
   handleScrollAnimations();
 });
 
@@ -235,7 +264,7 @@ function initCalendar() {
   renderCalendar();
 }
 
-// --- GESTION DYNAMIQUE DU CHAMP ÉTABLISSEMENT ---
+// --- GESTION DU CHAMP ÉTABLISSEMENT ---
 function initClientTypeToggle() {
   const selectType = document.getElementById("client-type");
   const groupEtab = document.getElementById("group-etablissement");
@@ -255,8 +284,7 @@ function initClientTypeToggle() {
   });
 }
 
-
-// --- ANIMATION PARTICULES D'EAU ---
+// --- PARTICULES D'EAU ---
 function createWaterParticles() {
   const container = document.getElementById("water-particles");
   if (!container) return;
@@ -280,7 +308,7 @@ function createWaterParticles() {
   }, 75); 
 }
 
-// --- ANIMATIONS FLUIDES DYNAMIQUES ---
+// --- SCROLL ANIMATIONS ---
 function handleScrollAnimations() {
   const blade = document.getElementById("main-blade");
   const logo = document.getElementById("blade-logo-scroll");
@@ -322,7 +350,6 @@ function handleScrollAnimations() {
   }
 }
 
-// --- ANIMATION SÉQUENTIELLE CARTE PAR CARTE AU SCROLL ---
 function initGalerieScrollFocus() {
   const items = document.querySelectorAll('.galerie-item');
   if (!items.length) return;
