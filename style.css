@@ -922,6 +922,49 @@ footer {
   opacity: 1;
 }
 
+/* --- ENCADREMENT ET FORMAT DU QR CODE --- */
+.footer-qr-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px auto 25px auto;
+}
+
+.footer-qr-frame {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 8px;
+  border: 1px solid var(--chene);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(194, 163, 130, 0.15);
+  overflow: hidden;
+  background: #111315;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-qr-frame:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 180, 77, 0.3);
+}
+
+.footer-qr-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.footer-qr-caption {
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--acier);
+  margin-top: 10px;
+}
+
+
 /* ==========================================================================
    11. RESPONSIVE
    ========================================================================== */
