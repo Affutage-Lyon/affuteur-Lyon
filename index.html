@@ -294,5 +294,16 @@
   <!-- SDK EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script type="module" src="app.js"></script>
+<!-- Modale Lightbox avec support Image et Vidéo -->
+  <div id="image-modal" class="modal-lightbox" aria-hidden="true">
+    <span class="modal-close">&times;</span>
+    <button type="button" class="modal-nav prev-btn" aria-label="Précédent">&#10094;</button>
+  
+    <img class="modal-content" id="modal-img" alt="Vue agrandie" style="display: none;">
+    <video class="modal-content" id="modal-video" controls playsinline style="display: none;"></video>
+  
+    <button type="button" class="modal-nav next-btn" aria-label="Suivant">&#10095;</button>
+  </div>
+
 </body>
 </html>

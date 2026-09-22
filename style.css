@@ -404,6 +404,121 @@ h2 {
 }
 
 /* ==========================================================================
+   MODALE LIGHTBOX (AGRANDISSEMENT DES IMAGES)
+   ========================================================================== */
+.galerie-item img {
+  cursor: zoom-in;
+}
+
+.modal-lightbox {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 11, 13, 0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-lightbox.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 6px;
+  border: 1px solid var(--chene);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(194, 163, 130, 0.25);
+  object-fit: contain;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.modal-lightbox.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  color: var(--texte);
+  font-size: 2.5rem;
+  font-weight: 300;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.modal-close:hover {
+  color: var(--chene);
+  transform: scale(1.1);
+}
+
+/* Flèches de navigation de la modale */
+.modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(26, 28, 30, 0.6);
+  border: 1px solid var(--chene);
+  color: var(--texte);
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2010;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.modal-nav:hover {
+  background: var(--chene);
+  color: var(--fond);
+  box-shadow: 0 0 15px rgba(255, 180, 77, 0.4);
+}
+
+.prev-btn {
+  left: 20px;
+}
+
+.next-btn {
+  right: 20px;
+}
+
+@media (max-width: 768px) {
+  .modal-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
+  .prev-btn {
+    left: 10px;
+  }
+  .next-btn {
+    right: 10px;
+  }
+}
+.galerie-item img,
+.galerie-item video {
+  cursor: zoom-in;
+}
+
+
+/* ==========================================================================
    8. TARIFS & SOLUTIONS PRO
    ========================================================================== */
 .menu-container {

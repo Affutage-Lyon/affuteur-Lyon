@@ -120,7 +120,105 @@ function initContactForm() {
   });
 }
 
-// --- 3. CENTRALISATION DU DOM INITIALISÉ ---
+// --- 3. GESTION DE LA MODALE LIGHTBOX (IMAGES & VIDÉOS AVEC NAVIGATION) ---
+function initGalerieModal() {
+  const modal = document.getElementById("image-modal");
+  const modalImg = document.getElementById("modal-img");
+  const modalVideo = document.getElementById("modal-video");
+  const closeBtn = document.querySelector(".modal-close");
+  const prevBtn = document.querySelector(".prev-btn");
+  const nextBtn = document.querySelector(".next-btn");
+
+  // Récupère uniquement les médias directs de chaque case de la galerie
+  const galleryItems = Array.from(document.querySelectorAll(".galerie-item"));
+  const mediaElements = galleryItems.map(item => item.querySelector("img, video")).filter(Boolean);
+
+  if (!modal || !modalImg || !modalVideo || !mediaElements.length) return;
+
+  let currentIndex = 0;
+
+  const displayMedia = (index) => {
+    currentIndex = (index + mediaElements.length) % mediaElements.length;
+    const media = mediaElements[currentIndex];
+
+    // Coupe la vidéo précédente si elle tournait
+    modalVideo.pause();
+    modalVideo.removeAttribute("src");
+    modalVideo.load();
+
+    if (media.tagName.toLowerCase() === "video") {
+      modalImg.style.display = "none";
+      modalVideo.style.display = "block";
+      
+      const source = media.querySelector("source");
+      modalVideo.src = source ? source.src : media.src;
+      modalVideo.play().catch(() => {}); // Lecture automatique avec audio au clic
+    } else {
+      modalVideo.style.display = "none";
+      modalImg.style.display = "block";
+      modalImg.src = media.src;
+      modalImg.alt = media.alt || "Vue agrandie";
+    }
+  };
+
+  mediaElements.forEach((el, index) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      currentIndex = index;
+      displayMedia(currentIndex);
+      modal.classList.add("active");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  const closeModal = () => {
+    modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+
+    modalVideo.pause();
+    modalVideo.removeAttribute("src");
+    modalVideo.load();
+    modalImg.src = "";
+  };
+
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      displayMedia(currentIndex - 1);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      displayMedia(currentIndex + 1);
+    });
+  }
+
+  modal.addEventListener("click", (e) => {
+    // Ferme si on clique en dehors du média et des boutons
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!modal.classList.contains("active")) return;
+
+    if (e.key === "Escape") {
+      closeModal();
+    } else if (e.key === "ArrowLeft") {
+      displayMedia(currentIndex - 1);
+    } else if (e.key === "ArrowRight") {
+      displayMedia(currentIndex + 1);
+    }
+  });
+}
+
+
+// --- 4. CENTRALISATION DU DOM INITIALISÉ ---
 document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll(".nav-links a");
   const sections = document.querySelectorAll("section");
@@ -179,6 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactForm();
   initClientTypeToggle();
   initGalerieScrollFocus();
+  initGalerieModal();
   handleScrollAnimations();
 });
 
