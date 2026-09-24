@@ -129,19 +129,16 @@ function initGalerieModal() {
   const prevBtn = document.querySelector(".prev-btn");
   const nextBtn = document.querySelector(".next-btn");
 
-  // Récupère uniquement les médias directs de chaque case de la galerie
-  const galleryItems = Array.from(document.querySelectorAll(".galerie-item"));
-  const mediaElements = galleryItems.map(item => item.querySelector("img, video")).filter(Boolean);
+  if (!modal || !modalImg || !modalVideo) return;
 
-  if (!modal || !modalImg || !modalVideo || !mediaElements.length) return;
-
+  let currentMediaList = [];
   let currentIndex = 0;
 
   const displayMedia = (index) => {
-    currentIndex = (index + mediaElements.length) % mediaElements.length;
-    const media = mediaElements[currentIndex];
+    if (currentMediaList.length === 0) return;
+    currentIndex = (index + currentMediaList.length) % currentMediaList.length;
+    const media = currentMediaList[currentIndex];
 
-    // Coupe la vidéo précédente si elle tournait
     modalVideo.pause();
     modalVideo.removeAttribute("src");
     modalVideo.load();
@@ -149,10 +146,9 @@ function initGalerieModal() {
     if (media.tagName.toLowerCase() === "video") {
       modalImg.style.display = "none";
       modalVideo.style.display = "block";
-      
       const source = media.querySelector("source");
       modalVideo.src = source ? source.src : media.src;
-      modalVideo.play().catch(() => {}); // Lecture automatique avec audio au clic
+      modalVideo.play().catch(() => {}); 
     } else {
       modalVideo.style.display = "none";
       modalImg.style.display = "block";
@@ -161,22 +157,32 @@ function initGalerieModal() {
     }
   };
 
-  mediaElements.forEach((el, index) => {
-    el.addEventListener("click", (e) => {
-      e.preventDefault();
-      currentIndex = index;
-      displayMedia(currentIndex);
-      modal.classList.add("active");
-      modal.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
+  // Création d'une fonction pour attacher la modale à n'importe quel groupe
+  const attachModalToGroup = (selector) => {
+    const items = Array.from(document.querySelectorAll(selector));
+    const medias = items.map(item => item.querySelector("img, video")).filter(Boolean);
+    
+    medias.forEach((el, index) => {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        currentMediaList = medias; // Charge soit la galerie principale, soit les partenaires
+        currentIndex = index;
+        displayMedia(currentIndex);
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      });
     });
-  });
+  };
+
+  // Initialisation sur nos deux sections séparément
+  attachModalToGroup(".galerie-item");
+  attachModalToGroup(".partenaire-item");
 
   const closeModal = () => {
     modal.classList.remove("active");
     modal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
-
     modalVideo.pause();
     modalVideo.removeAttribute("src");
     modalVideo.load();
@@ -200,22 +206,17 @@ function initGalerieModal() {
   }
 
   modal.addEventListener("click", (e) => {
-    // Ferme si on clique en dehors du média et des boutons
     if (e.target === modal) closeModal();
   });
 
   document.addEventListener("keydown", (e) => {
     if (!modal.classList.contains("active")) return;
-
-    if (e.key === "Escape") {
-      closeModal();
-    } else if (e.key === "ArrowLeft") {
-      displayMedia(currentIndex - 1);
-    } else if (e.key === "ArrowRight") {
-      displayMedia(currentIndex + 1);
-    }
+    if (e.key === "Escape") closeModal();
+    else if (e.key === "ArrowLeft") displayMedia(currentIndex - 1);
+    else if (e.key === "ArrowRight") displayMedia(currentIndex + 1);
   });
 }
+
 
 
 // --- 4. CENTRALISATION DU DOM INITIALISÉ ---
@@ -450,7 +451,7 @@ function handleScrollAnimations() {
 }
 
 function initGalerieScrollFocus() {
-  const items = document.querySelectorAll('.galerie-item');
+  const items = document.querySelectorAll('.galerie-item, .partenaire-item'); // <-- ICI
   if (!items.length) return;
 
   function updateFocus() {
@@ -488,6 +489,8 @@ function initGalerieScrollFocus() {
 
   updateFocus();
 }
+
+
 
 window.addEventListener("scroll", () =>
   window.requestAnimationFrame(handleScrollAnimations),
